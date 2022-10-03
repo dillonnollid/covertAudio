@@ -13,7 +13,7 @@ include("includes/includedFiles.php");
 	<div class="buttonItems">
 		<button class="button mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">USER DETAILS</button>
         <br>
-		<button class="button mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">LOGOUT</button>
+		<a href="logout.php" class="button mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">LOGOUT</a>
 	</div>
 
 
