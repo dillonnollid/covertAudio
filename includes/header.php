@@ -39,4 +39,4 @@ else {
 
         <?php include("includes/sideSearchBarContainer.php"); ?>
 
-        <div id="mainContent" class="min-h-screen overflow-y-auto justify-center items-center">
+        <div id="mainContent" class="container min-h-screen overflow-y-auto justify-center items-center">
