@@ -45,37 +45,37 @@ CREATE TABLE IF NOT EXISTS `artists` (
 -- Dumping data for table `artists`
 --
 INSERT INTO `artists` (`id`, `name`) VALUES
-(1, 'Kanye West'),
-(2, 'Kendrick Lamar'),
-(3, 'Travis Scott'),
+(1, 'Ye'),
+(2, 'Kendrick'),
+(3, 'Travis'),
 (4, 'Don Toliver'),
 (5, 'BROCKHAMPTON'),
-(6, 'Kid Cudi'),
+(6, 'Cudi'),
 (7, 'Drake'),
-(8, 'MF DOOM'),
-(9, 'Biggie Smalls'),
+(8, 'DOOM'),
+(9, 'Biggie'),
 (10, 'Freddie Gibbs'),
-(10, 'Big L'),
-(11, 'Playboi Carti'),
-(12, 'Denzel Curry'),
-(13, 'Frank Ocean'),
+(11, 'Carti'),
+(12, 'Denz'),
+(13, 'Frank'),
 (14, 'JPEGMAFIA'),
-(15, 'Meek Mill'),
+(15, 'Meek'),
 (16, 'Tupac'),
 (17, 'DMX'),
 (18, 'Souls Of Mischief'),
 (19, 'Nujabes'),
-(20, 'Joey Badass'),
+(20, 'Joey Bada$$'),
 (21, 'Nas'),
-(22, 'Post Malone'),
-(23, 'Isaiah Rashad'),
-(24, 'XXXTentacion'),
+(22, 'Posty'),
+(23, 'Isaiah'),
+(24, 'XXX'),
 (25, 'S.T.E.E.L'),
 (26, 'KNXWLEDGE'),
 (27, 'Erick The Architect'),
 (28, 'Kings Of Leon'),
 (29, 'Melia'),
 (30, 'Cookin Soul'),
+(31, 'Big L'),
 (100, 'Other');
 -- --------------------------------------------------------
 --
@@ -173,8 +173,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `firstName`, `lastName`, `email`, `password`, `signUpDate`, `profilePic`) VALUES
-(1, 'dillo', 'Dillo', 'Kello', 'dillonnollid@gmail.com', 'XX', '2022-02-02 00:00:00', 'assets/images/profile-pics/head_emerald.png'),
-(2, 'donkey-kong', 'Donkey', 'Kong', 'Dk@yahoo.com', '7c6a180b36896a0a8c02787eeafb0e4c', '2017-06-28 00:00:00', 'assets/images/profile-pics/head_emerald.png');
+(1, 'diddy-kong', 'Diddy', 'Kong', 'Dk@yahoo.com', '7c6a180b36896a0a8c02787eeafb0e4c', '2017-06-28 00:00:00', 'assets/images/profile-pics/head_emerald.png');
 
 
 --
@@ -248,6 +247,3 @@ ALTER TABLE `Songs` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
