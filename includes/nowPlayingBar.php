@@ -23,10 +23,10 @@ $(document).ready(function() {
 	updateVolumeProgressBar(audioElement.audio);//Volume bar not yet implemented with tailwind player
 
 	$("#nowPlayingBarContainer").on("mousedown touchstart mousemove touchmove", function(e) {
-		e.preventDefault();//prevents default behaviour for these events. Since we are coding their behaviour. Cannot highlight the buttons and stuff in now playing.  
+		e.preventDefault();//prevents default behaviour for these events. Since we are coding their behaviour. Cannot highlight the buttons and stuff in now playing.
 	});
 
-	//When the mouse is being clicked down on those elements, then we turn on mouseDown. 
+	//When the mouse is being clicked down on those elements, then we turn on mouseDown.
 	$(".playbackBar .progressBar").mousedown(function() {
 		mouseDown = true;
 	});
@@ -192,7 +192,7 @@ function setTrack(trackId, newPlaylist, play) {
 	}
 	pauseSong();
 
-	//Ajax call, pass in handler location, function is what we wanna do with result! 
+	//Ajax call, pass in handler location, function is what we wanna do with result!
 	//This is so we can change the song without refreshing the page, PHP won't allow us to do it since server-side
 	$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
 
@@ -200,7 +200,7 @@ function setTrack(trackId, newPlaylist, play) {
 		var track = JSON.parse(data);
 		$(".trackName span").text(track.title);//Title is the var name in our track object
 
-		//nested ajax call to get Artist info, send in Artist ID encapsulated in track, 
+		//nested ajax call to get Artist info, send in Artist ID encapsulated in track,
 		$.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data) {
 			var artist = JSON.parse(data);
 			$(".trackInfo .artistName span").text(artist.name);
@@ -244,10 +244,11 @@ function pauseSong() {
 
 <div id="nowPlayingBarContainer" class="flex flex-col items-center justify-center bg-blue-100 md:flex-row"><!-- max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl -->
     <!-- Outer div that holds the left, center and right divs-->
-	<div id="nowPlayingBar" class="container mx-auto p-4">
+	<div id="nowPlayingBar" class="container mx-auto p-4 bg-green-100">
 
+        <!-- -->
 		<div id="nowPlayingLeft" class="">
-			<div class="content justify-center items-center">
+			<div class="content p-6 justify-center items-center">
 				<span class="albumLink">
 					<img role="link" tabindex="0" src="" class="albumArtwork object-cover rounded-xl mx-auto hover:scale-105 duration-200">
 				</span>
@@ -266,7 +267,7 @@ function pauseSong() {
 
 		<div id="nowPlayingCenter">
 			<div class="content playerControls">
-				<div class="buttons flex justify-center">
+				<div class="buttons flex justify-between">
 					<!--<button class="controlButton shuffle flex-auto w-14" title="Shuffle button" onclick="setShuffle()">
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>-->
@@ -285,17 +286,17 @@ function pauseSong() {
                         Play
 					</button>
 					<!-- Setting display to none so it's not initially visible, JS functions will control when play or pause shown -->
-					<button id="pause" title="Pause button" style="display: none;" onclick="" class="controlButton pause px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" >
+					<button id="pause" title="Pause button" style="display: none;" onclick="" class="controlButton pause px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
 						<!--<img src="assets/images/icons/pause.png" alt="Pause">-->
                         Pause
 					</button>
 
-					<button id="next" title="Next button" onclick="" class="controlButton next px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" >
+					<button id="next" title="Next button" onclick="" class="controlButton next px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
 						<!--<img src="assets/images/icons/next.png" alt="Next">-->
                         Next
 					</button>
 
-					<button id="repeat" title="Repeat button" onclick="" class="controlButton repeat px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" >
+					<button id="repeat" title="Repeat button" onclick="" class="controlButton repeat px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
 						<!--<img src="assets/images/icons/repeat.png" alt="Repeat">-->
                         Repeat
 					</button>
@@ -319,7 +320,7 @@ function pauseSong() {
 		<div id="nowPlayingRight">
 			<div class="volumeBar">
 
-				<button id="volume" title="Volume button" onclick="setMute()" class="controlButton volume px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+				<button id="volume" title="Volume button" onclick="setMute()" class="controlButton volume px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
 					<!--<img src="assets/images/icons/volume.png" alt="Volume">-->
                     Mute Toggle
 				</button>
@@ -335,7 +336,7 @@ function pauseSong() {
 
 	</div><!-- END NOW PLAYING BAR -->
 
-    <div class="container mx-auto p-4">
+    <div class="container h-full mx-auto p-4 bg-red-100">
         TESTING RIGHT SIDE (UNDER ON MOBILE)
         <div class="min-w-0 p-4 text-white bg-blue-600 rounded-lg shadow-xs">
             <h4 class="mb-4 font-semibold">

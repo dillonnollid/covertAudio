@@ -36,6 +36,10 @@
 			return $this->genre;
 		}
 
+        public function getID(){
+            return $this->id;
+        }
+
 		public function getArtworkPath() {
 			return $this->artworkPath;
 		}
@@ -58,11 +62,6 @@
 			return $array;
 
 		}
-
-
-
-
-
 
 	}
 ?>
