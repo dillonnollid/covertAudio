@@ -12,7 +12,7 @@
     if (isset($_FILES['upload'])) {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // collect value of input field
-            $songSource = $_POST['songSource'];
+            //$songSource = $_POST['songSource'];
             $artistID = $_POST['artistID'];
             $songTitle = $_POST['songTitle'];
             $albumID = $_POST['albumID'];
@@ -88,7 +88,7 @@ if(isset($_POST['add'])){
         $artist = $_POST['songArtist'];
         $genre = $_POST['genre'];
         $sql = "INSERT INTO artists ".
-               "(artist,genre) "."VALUES ".
+               "(name,genre) "."VALUES ".
                "('$artist','$genre')";
 
         if (mysqli_query($con,$sql) == 1) {

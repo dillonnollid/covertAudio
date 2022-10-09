@@ -39,7 +39,8 @@ INSERT INTO `albums`
 --
 CREATE TABLE IF NOT EXISTS `artists` (
 `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
+`name` varchar(50) NOT NULL,
+`genre` int(11)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 --
 -- Dumping data for table `artists`

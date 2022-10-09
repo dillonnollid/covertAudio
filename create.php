@@ -3,14 +3,14 @@ include("includes/includedFiles.php");
 ?>
 
 <h1 class="pageHeadingBig"></h1>
-
 <div class="container px-6 mx-auto grid">
 
 	<?php if(isset($_GET["id"]) && trim($_GET["id"]) == 'song'){ ?>
 		<div class="items-center justify-center p-6">
+
 			<h1 class="text-gray-600 dark:text-gray-400 text-center"><a href="https://ytmp3.cc/" target="blank">Add Song! <br>Click here go to youtube downloader. <br>Download MP3 in top quality and upload the file below!</a><br></h1>
-			
 			<hr>
+
 	        <form action="FileUpload.php" method="post" enctype="multipart/form-data">
 	        	<input type="text" name="songSource" placeholder="Youtube URL (Not Available yet, use youtubeToMP3 link above)" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" disabled/>
 	        	<input type="text" name="songTitle" placeholder="Song Title" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"/>
@@ -18,39 +18,38 @@ include("includes/includedFiles.php");
 
 				<select name="artistID" id="ART" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input">
 					<option value="" class="" disabled selected>Select the artist!</option>
-				<?php
-					$artistQuery = mysqli_query($con, "SELECT * FROM artists");
-					$i=1;
-					while($row = mysqli_fetch_array($artistQuery)) {
-						echo '<option value=' . $row['id'] . '>' . $row['name'] . '</option>';
-					}
+                    <?php
+                        $artistQuery = mysqli_query($con, "SELECT * FROM artists");
+                        $i=1;
+                        while($row = mysqli_fetch_array($artistQuery)) {
+                            echo '<option value=' . $row['id'] . '>' . $row['name'] . '</option>';
+                        }
 
-				?>
+                    ?>
 				</select>
 
 				<select name="albumID" id="ART" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input">
 					<option value="" disabled selected>Select the album!</option>
-				<?php
-					$albumQuery = mysqli_query($con, "SELECT * FROM albums");
-					$i=1;
-					while($row = mysqli_fetch_array($albumQuery)) {
-						echo '<option value=' . $row['id'] . '>' . $row['title'] . '</option>';
-						$i+=1;
-					}
-
-				?>
+                    <?php
+                        $albumQuery = mysqli_query($con, "SELECT * FROM albums");
+                        $i=1;
+                        while($row = mysqli_fetch_array($albumQuery)) {
+                            echo '<option value=' . $row['id'] . '>' . $row['title'] . '</option>';
+                            $i+=1;
+                        }
+                    ?>
 				</select>
 				
 				<select name="genre" id="ART" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input">
 					<option value="" disabled selected>Select the genre!</option>
-				<?php
-					$genreQuery = mysqli_query($con, "SELECT * FROM genres");
-					$i=1;
-					while($row = mysqli_fetch_array($genreQuery)) {
-						echo '<option value=' . $row['id'] . '>' . $row['name'] . '</option>';
-						$i+=1;
-					}
-				?>
+                    <?php
+                        $genreQuery = mysqli_query($con, "SELECT * FROM genres");
+                        $i=1;
+                        while($row = mysqli_fetch_array($genreQuery)) {
+                            echo '<option value=' . $row['id'] . '>' . $row['name'] . '</option>';
+                            $i+=1;
+                        }
+                    ?>
 				</select>
 				<input type="hidden" name="add" value="song">
 	            <input type="file" name="upload" id="upload" placeholder="Choose File To Upload" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"><br/>
@@ -70,7 +69,7 @@ include("includes/includedFiles.php");
 			}
 			echo "</ul>"; 
 			//YOUTUBE DL
-			 // YOUTUBE VIDEO ID
+            // YOUTUBE VIDEO ID
  			//$id = '3e69G8LPqEg';
 
 			 // FETCHING DATA FROM SERVER
@@ -78,7 +77,6 @@ include("includes/includedFiles.php");
 			 //$links = json_decode($jsonData,TRUE);
 
 			 //print_r($links);die();
-
 			?>
 	<?php } elseif(isset($_GET["id"]) && trim($_GET["id"]) == 'artist'){ ?>
 		<div class="items-center justify-center p-6">
@@ -87,12 +85,21 @@ include("includes/includedFiles.php");
 				
 	        <form action="FileUpload.php" method="post" enctype="multipart/form-data">
 				<input type="text" name="songArtist" placeholder="Artist Name" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"/>
-							
-				<input type="text" name="genre" placeholder="Genre" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"/>
+
+                <select name="genre" id="genre" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input">
+                    <option value="" disabled selected>Select the genre!</option>
+                    <?php
+                        $genreQuery = mysqli_query($con, "SELECT * FROM genres");
+                        $i=1;
+                        while($row = mysqli_fetch_array($genreQuery)) {
+                            echo '<option value=' . $row['id'] . '>' . $row['name'] . '</option>';
+                            $i+=1;
+                        }
+                    ?>
+                </select>
 				<input type="hidden" name="add" value="artist" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"/>
 	            <hr>
 	            <input type="submit" name="submit" value="Upload" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input">
-
 	        </form>
 		</div>
 		<?php
@@ -126,14 +133,14 @@ include("includes/includedFiles.php");
 				
 				<select name="genre" id="ART" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input">
 					<option value="" disabled selected>Select the genre!</option>
-				<?php
-					$genreQuery = mysqli_query($con, "SELECT * FROM genres");
-					$i=1;
-					while($row = mysqli_fetch_array($genreQuery)) {
-						echo '<option value=' . $row['id'] . '>' . $row['name'] . '</option>';
-						$i+=1;
-					}
-				?>
+                    <?php
+                        $genreQuery = mysqli_query($con, "SELECT * FROM genres");
+                        $i=1;
+                        while($row = mysqli_fetch_array($genreQuery)) {
+                            echo '<option value=' . $row['id'] . '>' . $row['name'] . '</option>';
+                            $i+=1;
+                        }
+                    ?>
 				</select>
 
 				<input type="hidden" name="add" value="album" />
