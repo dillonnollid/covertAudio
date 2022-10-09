@@ -3,6 +3,7 @@
 
 		private $con;
 		private $id;
+        private $genre;
 
 		public function __construct($con, $id) {
 			$this->con = $con;
@@ -18,6 +19,10 @@
 			$artist = mysqli_fetch_array($artistQuery);
 			return $artist['name'];
 		}
+
+        public function getGenre(){
+            return $this->genre;
+        }
 		
 		public function getSongIds() {
 
