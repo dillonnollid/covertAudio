@@ -248,12 +248,12 @@ function pauseSong() {
 
         <!-- -->
 		<div id="nowPlayingLeft" class="">
-			<div class="content p-6 justify-center items-center">
+			<div class="content p-6 justify-center items-center mx-auto bg-orange-100 flex flex-col">
 				<span class="albumLink">
 					<img role="link" tabindex="0" src="" class="albumArtwork object-cover rounded-xl mx-auto hover:scale-105 duration-200">
 				</span>
 
-				<div class="trackInfo">
+				<div class="trackInfo text-center p-4">
 					<span class="trackName">
 						<span role="link" tabindex="0"></span>
 					</span>
@@ -266,39 +266,34 @@ function pauseSong() {
 		</div>
 
 		<div id="nowPlayingCenter">
-			<div class="content playerControls">
-				<div class="buttons flex justify-between">
+			<div class="content playerControls p-4">
+				<div class="buttons flex justify-between items-center md:px-4">
 					<!--<button class="controlButton shuffle flex-auto w-14" title="Shuffle button" onclick="setShuffle()">
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>-->
 
-                    <button id="shuffle" title="Shuffle button" onclick="" class="controlButton shuffle px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
-                        Shuffle
+                    <button id="shuffle" title="Shuffle button" onclick="" class="controlButton shuffle w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
+                        <i class="fa fa-random fa-2x text-white" aria-hidden="true"></i>
                     </button>
 
-					<button id="previous" title="Previous button" onclick="" class="controlButton previous px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
-						<!--<img src="assets/images/icons/previous.png" alt="Previous">-->
-                        Previous
+					<button id="previous" title="Previous button" onclick="" class="controlButton previous w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
+                        <i class="fa fa-backward fa-2x text-white"></i>
 					</button>
 
-					<button id="play" title="Play button" onclick="" class="controlButton play px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
-						<!--<img src="assets/images/icons/play.png" alt="Play">-->
-                        Play
-					</button>
-					<!-- Setting display to none so it's not initially visible, JS functions will control when play or pause shown -->
-					<button id="pause" title="Pause button" style="display: none;" onclick="" class="controlButton pause px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
-						<!--<img src="assets/images/icons/pause.png" alt="Pause">-->
-                        Pause
+					<button id="play" title="Play button" onclick="" class="controlButton play w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
+                        <i class="fa fa-play fa-2x text-white" id="play-btn"></i>
 					</button>
 
-					<button id="next" title="Next button" onclick="" class="controlButton next px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
-						<!--<img src="assets/images/icons/next.png" alt="Next">-->
-                        Next
+					<button id="pause" title="Pause button" onclick="" class="controlButton pause w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"  style="display: none;">
+                        <i class="fa fa-pause fa-2x text-white" id="pause-btn"></i>
 					</button>
 
-					<button id="repeat" title="Repeat button" onclick="" class="controlButton repeat px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
-						<!--<img src="assets/images/icons/repeat.png" alt="Repeat">-->
-                        Repeat
+					<button id="next" title="Next button" onclick="" class="controlButton next w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
+                        <i class="fa fa-forward fa-2x text-white"></i>
+					</button>
+
+					<button id="repeat" title="Repeat button" onclick="" class="controlButton repeat w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
+                        <i class="fa fa-repeat fa-2x text-white" aria-hidden="true"></i>
 					</button>
 				</div>
 
@@ -320,9 +315,8 @@ function pauseSong() {
 		<div id="nowPlayingRight">
 			<div class="volumeBar">
 
-				<button id="volume" title="Volume button" onclick="setMute()" class="controlButton volume px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
-					<!--<img src="assets/images/icons/volume.png" alt="Volume">-->
-                    Mute Toggle
+				<button id="volume" title="Volume button" onclick="setMute()" class="controlButton volume w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
+                    <i class="fa  fa-volume-off fa-2x text-white" aria-hidden="true"></i>
 				</button>
 
 				<div class="progressBar">
@@ -336,7 +330,7 @@ function pauseSong() {
 
 	</div><!-- END NOW PLAYING BAR -->
 
-    <div class="container h-full mx-auto p-4 bg-red-100">
+    <div class="container mx-auto p-4 bg-green-100 h-full">
         TESTING RIGHT SIDE (UNDER ON MOBILE)
         <div class="min-w-0 p-4 text-white bg-blue-600 rounded-lg shadow-xs">
             <h4 class="mb-4 font-semibold">
