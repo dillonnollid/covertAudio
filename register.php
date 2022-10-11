@@ -22,17 +22,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<title>musiqueAuth</title>
-
-	<!--<link rel="stylesheet" type="text/css" href="assets/css/register.css">-->
+	<title>Auth - covertAudio</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/css/tailwind.output.css"/>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="assets/js/init-alpine.js"></script>
 
-	<!-- JS, we use JQuery in our very simple register.js file. -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- JS, we use JQuery in our very simple register.js file. -->
 	<!--<script src="assets/js/register.js"></script>-->
 </head>
 <body>
@@ -45,8 +43,7 @@
 					$("#registerForm").show();
 				});
 			</script>';
-	}
-	else {
+	} else {
 		echo '<script>
 				$(document).ready(function() {
 					$("#loginForm").show();
@@ -54,7 +51,6 @@
 				});
 			</script>';
 	}
-
 	?>
 
 	<div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900" id="background" >
@@ -145,7 +141,6 @@
                     </form>
                 </div>
 			</div>
-
 
 		</div>
 	</div>

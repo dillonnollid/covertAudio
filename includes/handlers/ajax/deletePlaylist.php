@@ -11,5 +11,4 @@ else {
 	echo "PlaylistId was not passed into deletePlaylist.php";
 }
 
-
 ?>

@@ -12,19 +12,15 @@
 
 		//Login and register are public because we need to use them from outside the class, most others are private. 
 		public function login($un, $pw) {
-
 			$pw = md5($pw);
-
 			$query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$un' AND password='$pw'");
 
 			if(mysqli_num_rows($query) == 1) {
 				return true;
-			}
-			else {
+			} else {
 				array_push($this->errorArray, Constants::$loginFailed);
 				return false;
 			}
-
 		}
 
 		public function register($un, $fn, $ln, $em, $em2, $pw, $pw2) {
@@ -42,7 +38,6 @@
 			else {
 				return false;
 			}
-
 		}
 
 		public function getError($error) {
@@ -59,7 +54,6 @@
 			$date = date("Y-m-d");
 
 			$result = mysqli_query($this->con, "INSERT INTO users VALUES ('', '$un', '$fn', '$ln', '$em', '$encryptedPw', '$date', '$profilePic')");
-
 			return $result;
 		}
 
@@ -75,7 +69,6 @@
 				array_push($this->errorArray, Constants::$usernameTaken);
 				return;
 			}
-
 		}
 
 		private function validateFirstName($fn) {
@@ -108,11 +101,9 @@
 				array_push($this->errorArray, Constants::$emailTaken);
 				return;
 			}
-
 		}
 
 		private function validatePasswords($pw, $pw2) {
-			
 			if($pw != $pw2) {
 				array_push($this->errorArray, Constants::$passwordsDoNoMatch);
 				return;
@@ -127,9 +118,7 @@
 				array_push($this->errorArray, Constants::$passwordCharacters);
 				return;
 			}
-
 		}
-
 
 	}
 ?>

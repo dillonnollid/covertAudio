@@ -9,12 +9,12 @@ include("includes/includedFiles.php");
 		<div class="items-center justify-center">
 
 			<h1 class="text-gray-600 dark:text-gray-400 text-center"><a href="https://ytmp3.cc/" target="blank">Add Song! <br>Click here go to youtube downloader. <br>Download MP3 in top quality and upload the file below!</a><br></h1>
-			<br><hr>
+			<br>
+            <hr>
 
 	        <form action="FileUpload.php" method="post" enctype="multipart/form-data">
 	        	<!--<input type="text" name="songSource" placeholder="Youtube URL (Not Available yet, use youtubeToMP3 link above)" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" disabled/>-->
 	        	<input type="text" name="songTitle" placeholder="Song Title" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" required/>
-
 
 				<select name="artistID" id="ART" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" required>
 					<option value="" class="" disabled selected>Select the artist!</option>
@@ -24,7 +24,6 @@ include("includes/includedFiles.php");
                         while($row = mysqli_fetch_array($artistQuery)) {
                             echo '<option value=' . $row['id'] . '>' . $row['name'] . '</option>';
                         }
-
                     ?>
 				</select>
 

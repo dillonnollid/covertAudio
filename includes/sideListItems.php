@@ -266,31 +266,11 @@
 
 </ul>
 
-<!-- OLD LIST ITEMS
-<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('profile.php')" class="navItemLink">Your Profile</span>
-			</div>
-
-			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('create.php?id=song')" class="navItemLink">Add Songs</span>
-			</div>
-
-			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('create.php?id=artist')" class="navItemLink">Add Artist</span>
-			</div>
-
-			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('create.php?id=album')" class="navItemLink">Add Album</span>
-			</div>
-
-			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('create.php?id=genre')" class="navItemLink">Add Genre</span>
-			</div>
-
-			<div class="navItem">
-				<span role='link' tabindex='0' onclick='openPage("search.php")' class="navItemLink">
-					Search
-					<img src="assets/images/icons/search.png" class="icon" alt="Search">
-				</span>
-			</div>
+<!-- OLD LIST ITEM
+    <div class="navItem">
+        <span role='link' tabindex='0' onclick='openPage("search.php")' class="navItemLink">
+            Search
+            <img src="assets/images/icons/search.png" class="icon" alt="Search">
+        </span>
+    </div>
 -->

@@ -56,7 +56,6 @@
         $path=$uploadDir . $newTitle . ".jpg";
         $uploadedFile = $uploadDir . basename($path);
 
-        
         if(move_uploaded_file($_FILES['imgupload']['tmp_name'], $uploadedFile)) {
             echo '<br>Album Artwork was uploaded successfully.<br>';
             //$ThisFileInfo = $getID3->analyze($path);

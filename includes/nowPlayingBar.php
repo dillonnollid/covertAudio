@@ -246,7 +246,6 @@ function pauseSong() {
     <!-- Outer div that holds the left, center and right divs-->
 	<div id="nowPlayingBar" class="container mx-auto p-4 bg-green-100">
 
-        <!-- -->
 		<div id="nowPlayingLeft" class="">
 			<div class="content p-6 justify-center items-center mx-auto bg-orange-100 flex flex-col">
 				<span class="albumLink">

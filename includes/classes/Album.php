@@ -21,7 +21,6 @@
 			$this->genre = $album['genre'];
 			$this->artworkPath = $album['artworkPath'];
 
-
 		}
 
 		public function getTitle() {
@@ -58,9 +57,7 @@
 			while($row = mysqli_fetch_array($query)) {
 				array_push($array, $row['id']);
 			}
-
 			return $array;
-
 		}
 
 	}

@@ -1,7 +1,6 @@
 <?php
 include("../../config.php");
 
-
 if(isset($_POST['playlistId']) && isset($_POST['songId'])) {
 	$playlistId = $_POST['playlistId'];
 	$songId = $_POST['songId'];
@@ -12,11 +11,8 @@ if(isset($_POST['playlistId']) && isset($_POST['songId'])) {
 
 	$query = mysqli_query($con, "INSERT INTO playlistSongs VALUES('', '$songId', '$playlistId', '$order')");
 
-}
-else {
+} else {
 	echo "PlaylistId or songId was not passed into addToPlaylist.php";
 }
-
-
 
 ?>

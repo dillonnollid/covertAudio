@@ -11,8 +11,6 @@ include("includes/includedFiles.php");
 			<button class="button green" onclick="createPlaylist()">NEW PLAYLIST</button>
 		</div>
 
-
-
 		<?php
 			$username = $userLoggedIn->getUsername();
 
@@ -37,9 +35,7 @@ include("includes/includedFiles.php");
 						"</div>
 
 					</div>";
-
 			}
 		?>
-
 	</div>
 </div>

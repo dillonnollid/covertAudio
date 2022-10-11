@@ -10,8 +10,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
 
 	if(isset($_GET['userLoggedIn'])) {
 		$userLoggedIn = new User($con, $_GET['userLoggedIn']);
-	}
-	else {
+	} else {
 		echo "Username variable was not passed into page. Check the openPage JS function";
 		exit();
 	}
@@ -23,4 +22,5 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
 	//echo "<script>openPage('$url')</script>";
     include("includes/footer.php");
 	exit();
-} ?>
+}
+?>

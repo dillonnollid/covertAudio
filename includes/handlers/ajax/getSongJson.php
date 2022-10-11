@@ -5,12 +5,11 @@ include("../../config.php");
 if(isset($_POST['songId'])) {
 	$songId = $_POST['songId'];
 
-//we get our con variable after including the config file
+    //we get our con variable after including the config file
 	$query = mysqli_query($con, "SELECT * FROM songs WHERE id='$songId'");
 
 	$resultArray = mysqli_fetch_array($query);
 
 	echo json_encode($resultArray);
 }
-
 ?>

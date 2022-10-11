@@ -10,27 +10,23 @@ else {
 ?>
 
 <div class="searchContainer">
-
 	<h4>Search for something</h4>
 	<input type="text" class="searchInput" value="<?php echo $term; ?>" placeholder="Start typing..." onfocus="this.value = this.value">
-
 </div>
 
 <script>
+    $(".searchInput").focus();
 
-$(".searchInput").focus();
+    $(function() {
+        $(".searchInput").keyup(function() {
+            clearTimeout(timer);
 
-$(function() {
-	$(".searchInput").keyup(function() {
-		clearTimeout(timer);
-
-		timer = setTimeout(function() {
-			var val = $(".searchInput").val();
-			openPage("search.php?term=" + val);
-		}, 1500);
-	})
-})
-
+            timer = setTimeout(function() {
+                var val = $(".searchInput").val();
+                openPage("search.php?term=" + val);
+            }, 1500);
+        })
+    })
 </script>
 
 <?php if($term == "") exit(); ?>
@@ -96,7 +92,6 @@ $(function() {
 	</ul>
 </div>
 
-
 <div class="artistsContainer borderBottom">
 
 	<h2>ARTISTOS</h2>
@@ -124,9 +119,7 @@ $(function() {
 
 			</div>";
 	}
-
 	?>
-
 </div>
 
 <div class="gridViewContainer">
@@ -150,21 +143,11 @@ $(function() {
 					</span>
 
 				</div>";
-
 		}
 	?>
-
 </div>
 
 <nav class="optionsMenu">
 	<input type="hidden" class="songId">
 	<?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); ?>
 </nav>
-
-
-
-
-
-
-
-
