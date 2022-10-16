@@ -3,10 +3,12 @@
 
 		private $con;
 		private $username;
+        private $profilePicture;
 
 		public function __construct($con, $username) {
 			$this->con = $con;
 			$this->username = $username;
+            $this->profilePicture = "./assets/images/profile-pics/head_emerald.png";
 		}
 
 		public function getUsername() {
@@ -18,6 +20,10 @@
 			$row = mysqli_fetch_array($query);
 			return $row['name'];
 		}
+
+        public function getProfilePhotoPath() {
+            return $this->profilePicture;
+        }
 
 	}
 ?>
