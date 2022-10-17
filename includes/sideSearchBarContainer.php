@@ -152,8 +152,7 @@ include_once("mobileAside.php");
                         aria-haspopup="true">
                         <img
                             class="object-cover w-8 h-8 rounded-full"
-                            src="./assets/images/profile-pics/head_emerald.png"
-                            <?php //echo $userLoggedIn->getProfilePhotoPath();?>
+                            src="./assets/images/profile-pics/doom.jpg"
                             alt=""
                             aria-hidden="true"/>
                     </button>

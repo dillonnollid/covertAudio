@@ -5,7 +5,11 @@
     <?php include("includes/nowPlayingBar.php");?>
     <br>
     <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        Headin
+        Hello, <?php echo $userLoggedIn->getFirstAndLastName(); ?>
+        <br>
+        Username = <?php echo $userLoggedIn->getUsername(); ?>
+        <br>
+        ImagePath = <?php echo $userLoggedIn->getProfilePhotoPath(); ?>
     </h2>
     <br>
 
