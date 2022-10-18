@@ -242,22 +242,22 @@ function pauseSong() {
 </script>
 <!-- Now Playing Container zinc-->
 
-<div id="nowPlayingBarContainer" class="flex flex-col items-center justify-center bg-blue-100 md:flex-row"><!-- max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl -->
+<div id="nowPlayingBarContainer" class="flex flex-col items-center justify-center md:flex-row md:px-10 space-x-8"><!-- max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl -->
     <!-- Outer div that holds the left, center and right divs-->
-	<div id="nowPlayingBar" class="container mx-auto p-4 bg-green-100">
+	<div id="nowPlayingBar" class="container mx-auto my-auto p-4 bg-green-100 md:w-2/3">
 
 		<div id="nowPlayingLeft" class="">
 			<div class="content p-6 justify-center items-center mx-auto bg-orange-100 flex flex-col">
 				<span class="albumLink">
-					<img role="link" tabindex="0" src="" class="albumArtwork object-cover rounded-xl mx-auto hover:scale-105 duration-200">
+					<img role="link" tabindex="0" src="" class="albumArtwork sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-xl mx-auto hover:scale-105 duration-200">
 				</span>
 
-				<div class="trackInfo text-center p-4">
-					<span class="trackName">
+				<div class="trackInfo text-center p-4 flex flex-col">
+					<span class="trackName font-bold">
 						<span role="link" tabindex="0"></span>
 					</span>
-
-					<span class="artistName">
+                    <br>
+					<span class="artistName font-normal">
 						<span role="link" tabindex="0"></span>
 					</span>
 				</div>
@@ -271,27 +271,27 @@ function pauseSong() {
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>-->
 
-                    <button id="shuffle" title="Shuffle button" onclick="" class="controlButton shuffle w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
+                    <button id="shuffle" title="Shuffle button" onclick="" class="controlButton shuffle w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
                         <i class="fa fa-random fa-2x text-white" aria-hidden="true"></i>
                     </button>
 
-					<button id="previous" title="Previous button" onclick="" class="controlButton previous w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
+					<button id="previous" title="Previous button" onclick="" class="controlButton previous w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue" >
                         <i class="fa fa-backward fa-2x text-white"></i>
 					</button>
 
-					<button id="play" title="Play button" onclick="" class="controlButton play w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
+					<button id="play" title="Play button" onclick="" class="controlButton play w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue" >
                         <i class="fa fa-play fa-2x text-white" id="play-btn"></i>
 					</button>
 
-					<button id="pause" title="Pause button" onclick="" class="controlButton pause w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"  style="display: none;">
+					<button id="pause" title="Pause button" onclick="" class="controlButton pause w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue"  style="display: none;">
                         <i class="fa fa-pause fa-2x text-white" id="pause-btn"></i>
 					</button>
 
-					<button id="next" title="Next button" onclick="" class="controlButton next w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
+					<button id="next" title="Next button" onclick="" class="controlButton next w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue" >
                         <i class="fa fa-forward fa-2x text-white"></i>
 					</button>
 
-					<button id="repeat" title="Repeat button" onclick="" class="controlButton repeat w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue" >
+					<button id="repeat" title="Repeat button" onclick="" class="controlButton repeat w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue" >
                         <i class="fa fa-repeat fa-2x text-white" aria-hidden="true"></i>
 					</button>
 				</div>
@@ -314,7 +314,7 @@ function pauseSong() {
 		<div id="nowPlayingRight">
 			<div class="volumeBar">
 
-				<button id="volume" title="Volume button" onclick="setMute()" class="controlButton volume w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
+				<button id="volume" title="Volume button" onclick="setMute()" class="controlButton volume w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
                     <i class="fa  fa-volume-off fa-2x text-white" aria-hidden="true"></i>
 				</button>
 
@@ -329,18 +329,140 @@ function pauseSong() {
 
 	</div><!-- END NOW PLAYING BAR -->
 
-    <div class="container mx-auto p-4 bg-green-100 h-full">
-        TESTING RIGHT SIDE (UNDER ON MOBILE)
-        <div class="min-w-0 p-4 text-white bg-blue-600 rounded-lg shadow-xs">
+    <div class="grid gap-6 mb-8 md:grid-rows-2 mx-auto justify-center items-center xl:grid-rows-4 w-full md:w-1/3">
+        <!-- Song Card -->
+        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                            fill-rule="evenodd"
+                            d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                            clip-rule="evenodd">
+                    </path>
+                </svg>
+            </div>
+            <div>
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    Total Songs
+                </p>
+
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                    <?php
+                    //BEFORE PRINTING OUT COUNT TO SONGS, LOAD ALL SONG INFO FOR LATER USE
+                    $songs = mysqli_query($con, "SELECT * FROM songs");
+                    $amount = mysqli_num_rows($songs);
+                    echo $amount;
+                    ?>
+                </p>
+            </div>
+        </div>
+
+        <!-- Album Card -->
+        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                            fill-rule="evenodd"
+                            d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                            clip-rule="evenodd">
+                    </path>
+                </svg>
+            </div>
+            <div>
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    Total Albums
+                </p>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                    <?php
+                    //BEFORE PRINTING OUT COUNT TO SONGS, LOAD ALL SONG INFO FOR LATER USE
+                    $albums = mysqli_query($con, "SELECT * FROM albums");
+                    $albumCount = mysqli_num_rows($albums);
+                    echo $albumCount;
+                    ?>
+                </p>
+            </div>
+        </div>
+
+        <!-- Genre Card -->
+        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                            fill-rule="evenodd"
+                            d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                            clip-rule="evenodd">
+                    </path>
+                </svg>
+            </div>
+            <div>
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    Total Genres
+                </p>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                    <?php
+                    //BEFORE PRINTING OUT COUNT TO SONGS, LOAD ALL SONG INFO FOR LATER USE
+                    $genres = mysqli_query($con, "SELECT * FROM genres");
+                    $genreCount = mysqli_num_rows($genres);
+                    echo $genreCount;
+                    ?>
+                </p>
+            </div>
+        </div>
+
+        <!-- User Card -->
+        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                            fill-rule="evenodd"
+                            d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                            clip-rule="evenodd">
+                    </path>
+                </svg>
+            </div>
+            <div>
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    Total Users
+                </p>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                    <?php
+                    //BEFORE PRINTING OUT COUNT TO SONGS, LOAD ALL SONG INFO FOR LATER USE
+                    $users = mysqli_query($con, "SELECT * FROM users");
+                    $userCount = mysqli_num_rows($users);
+                    echo $userCount;
+                    ?>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!--<div class="container mx-auto p-4 bg-green-100 h-full space-y-4">
+
+        <div class="min-w-0 p-4 text-white bg-blue-600 rounded-lg shadow-xs h-auto">
             <h4 class="mb-4 font-semibold">
-                Colored card
+                Placeholder for something new!
             </h4>
             <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Fuga, cum commodi a omnis numquam quod? Totam exercitationem
-                quos hic ipsam at qui cum numquam, sed amet ratione! Ratione,
-                nihil dolorum.
+                Here's some text that should help fill up space!<br>
+                It's not really doing anything, but that's OK too...<br>
+                I'll eventually find something meaningfull to fill this void!<br>
+                Could be anything, who knows? <br>
+                Maybe some buttons or a list of sorts.
             </p>
         </div>
-    </div>
+
+        <div class="min-w-0 p-4 text-white bg-green-600 rounded-lg shadow-xs h-auto">
+            <h4 class="mb-4 font-semibold">
+                Placeholder 2, what can ya do?!
+            </h4>
+            <p>
+                Bit more text to fill the void<br>
+                Nothing to see here folks, scroll down for tunes...<br>
+                Click a song to play it, click an artist to see more<br>
+                Click an album or a genre and you'll figure the rest out!<br>
+            </p>
+        </div>
+
+    </div>-->
 </div>
