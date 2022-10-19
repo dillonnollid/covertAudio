@@ -1,5 +1,6 @@
 <?php
 include("includes/config.php");
+include("includes/classes/User.php");
 include("includes/classes/Artist.php");
 include("includes/classes/Album.php");
 include("includes/classes/Song.php");
@@ -8,8 +9,9 @@ include("includes/classes/Song.php");
 
 //If user's not logged in, redirect them to login+register page
 if(isset($_SESSION['userLoggedIn'])) {
-    $userLoggedIn = $_SESSION['userLoggedIn'];
-    echo "<script>userLoggedIn = '$userLoggedIn';</script>";
+    $userLoggedIn = new User($con, $_SESSION['userLoggedIn']);
+    //$userLoggedIn = $_SESSION['userLoggedIn'];//echo "<script>userLoggedIn = '$userLoggedIn';</script>";
+    echo $userLoggedIn->getProfilePhotoPath();
 }
 else {
     header("Location: newRegister.php");

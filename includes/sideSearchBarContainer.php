@@ -152,10 +152,11 @@ include_once("mobileAside.php");
                         aria-haspopup="true">
                         <img
                             class="object-cover w-8 h-8 rounded-full"
-                            src="./assets/images/profile-pics/doom.jpg"
+                            src="./<?php echo $userLoggedIn->getProfilePhotoPath();?>"
                             alt=""
                             aria-hidden="true"/>
                     </button>
+                    <?php echo $userLoggedIn->getName();?>
                     <template x-if="isProfileMenuOpen">
                         <ul
                             x-transition:leave="transition ease-in duration-150"
