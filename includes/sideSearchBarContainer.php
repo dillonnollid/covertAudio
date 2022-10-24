@@ -156,7 +156,7 @@ include_once("mobileAside.php");
                             alt=""
                             aria-hidden="true"/>
                     </button>
-                    <?php echo $userLoggedIn->getName();?>
+                    <?php //echo $userLoggedIn->getName();?>
                     <template x-if="isProfileMenuOpen">
                         <ul
                             x-transition:leave="transition ease-in duration-150"

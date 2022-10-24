@@ -10,7 +10,7 @@ include("includes/classes/Song.php");
 //If user's not logged in, redirect them to login+register page
 if(isset($_SESSION['userLoggedIn'])) {
     $userLoggedIn = new User($con, $_SESSION['userLoggedIn']);
-    echo $userLoggedIn->getName();
+    echo "<div></div>";//$userLoggedIn->getName();
     $_SESSION["name"] = $userLoggedIn->getName();
     $_SESSION["profilePic"] = $userLoggedIn->getProfilePhotoPath();
 }
@@ -39,6 +39,7 @@ else {
 </head>
 
 <body class="min-h-screen">
+
     <div id="mainContainer" class="flex bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
 
         <?php include("includes/sideSearchBarContainer.php"); ?>

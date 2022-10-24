@@ -1,6 +1,6 @@
 <?php
 //Select 10 random songs from the DB, random playlist
-$songQuery = mysqli_query($con, "SELECT id FROM songs ORDER BY RAND() LIMIT 10");
+$songQuery = mysqli_query($con, "SELECT id FROM songs ORDER BY RAND() LIMIT 100");
 
 $resultArray = array();
 
@@ -11,7 +11,6 @@ while($row = mysqli_fetch_array($songQuery)) {
 //Convert array to JSON (Javascript Object Notation), so we can use it in our JS code
 $jsonArray = json_encode($resultArray);
 ?>
-
 <script>
 $(document).ready(function() {
 	//output json array into our newPlaylist object, create an Audio element (call func in script.js)
@@ -297,30 +296,30 @@ function pauseSong() {
 				</div>
 
 				<!-- PBB has text for current and remaining time, which we manupulate using JS -->
-				<div class="playbackBar flex items-center justify-between">
-					<span class="progressTime current p-6">0.00</span>
+				<div class="playbackBar flex items-center justify-between text-lg">
+					<span class="progressTime current p-6 text-center">0.00</span>
 
-					<div class="progressBar">
-						<div class="progressBarBg">
-							<div class="progress"></div>
+					<div class="progressBar inline-flex items-center w-full cursor-pointer h-2 ">
+						<div class="progressBarBg bg-blue-100 h-2 w-full rounded-lg border-2">
+							<div class="progress h-full bg-blue-500"></div>
 						</div>
 					</div>
 
-					<span class="progressTime remaining p-6">0.00</span>
+					<span class="progressTime remaining p-6 text-center">0.00</span>
 				</div>
 			</div>
 		</div>
 
 		<div id="nowPlayingRight">
-			<div class="volumeBar">
+			<div class="volumeBar flex items-center justify-between text-lg p-4">
 
 				<button id="volume" title="Volume button" onclick="setMute()" class="controlButton volume w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
                     <i class="fa  fa-volume-off fa-2x text-white" aria-hidden="true"></i>
 				</button>
 
-				<div class="progressBar">
-					<div class="progressBarBg">
-						<div class="progress"></div>
+				<div class="progressBar inline-flex items-center w-full cursor-pointer h-2 p-4">
+					<div class="progressBarBg bg-blue-100 h-2 w-full rounded-lg border-2">
+						<div class="progress h-full bg-blue-500"></div>
 					</div>
 				</div>
 
