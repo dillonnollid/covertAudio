@@ -10,8 +10,9 @@ include("includes/classes/Song.php");
 //If user's not logged in, redirect them to login+register page
 if(isset($_SESSION['userLoggedIn'])) {
     $userLoggedIn = new User($con, $_SESSION['userLoggedIn']);
-    //$userLoggedIn = $_SESSION['userLoggedIn'];//echo "<script>userLoggedIn = '$userLoggedIn';</script>";
-    echo $userLoggedIn->getProfilePhotoPath();
+    echo $userLoggedIn->getName();
+    $_SESSION["name"] = $userLoggedIn->getName();
+    $_SESSION["profilePic"] = $userLoggedIn->getProfilePhotoPath();
 }
 else {
     header("Location: newRegister.php");
