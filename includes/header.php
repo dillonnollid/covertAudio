@@ -13,6 +13,7 @@ if(isset($_SESSION['userLoggedIn'])) {
     echo "<div></div>";//$userLoggedIn->getName();
     $_SESSION["name"] = $userLoggedIn->getName();
     $_SESSION["profilePic"] = $userLoggedIn->getProfilePhotoPath();
+    $_SESSION["role"] = $userLoggedIn->getRoleName();
 }
 else {
     header("Location: newRegister.php");

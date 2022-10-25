@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(32) NOT NULL,
   `signUpDate` datetime NOT NULL,
   `profilePic` varchar(500) NOT NULL
+  `role` int(3) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 
