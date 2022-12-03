@@ -15,12 +15,12 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
 		exit();
 	}
 } else {
-	include("includes/header.php");
+	include("views/components/header.php");
 
 	$url = $_SERVER['REQUEST_URI'];
 	echo '<script>openPage("browse.php");</script>';
 	//echo "<script>openPage('$url')</script>";
-    include("includes/footer.php");
+    include("views/components/footer.php");
 	exit();
 }
 ?>

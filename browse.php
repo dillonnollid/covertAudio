@@ -2,7 +2,7 @@
 
 <div class="container p-6 mx-auto grid h-full">
 
-    <?php include("includes/nowPlayingBar.php");?>
+    <?php include("views/components/nowPlayingBar.php");?>
     <br>
 
     <!-- CTA GOOD FOR LATER
