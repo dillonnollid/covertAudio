@@ -30,8 +30,6 @@
     <script src="assets/js/init-alpine.js"></script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- JS, we use JQuery in our very simple register.js file. -->
-	<!--<script src="assets/js/register.js"></script>-->
 </head>
 <body>
 	<?php

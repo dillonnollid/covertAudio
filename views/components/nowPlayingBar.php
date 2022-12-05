@@ -241,12 +241,12 @@ function pauseSong() {
 </script>
 <!-- Now Playing Container zinc-->
 
-<div id="nowPlayingBarContainer" class="flex flex-col items-center justify-center md:flex-row md:px-10 space-x-8"><!-- max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl -->
+<div id="nowPlayingBarContainer" class="flex flex-col items-center justify-center font-semibold transition-colors text-black dark:text-white md:flex-row md:px-10">
     <!-- Outer div that holds the left, center and right divs-->
-	<div id="nowPlayingBar" class="container mx-auto my-auto p-4 bg-green-100 md:w-2/3">
+	<div id="nowPlayingBar" class="container mx-auto my-auto p-4 md:w-2/3">
 
 		<div id="nowPlayingLeft" class="">
-			<div class="content p-6 justify-center items-center mx-auto bg-orange-100 flex flex-col">
+			<div class="content p-6 justify-center items-center mx-auto flex flex-col">
 				<span class="albumLink">
 					<img role="link" tabindex="0" src="" class="albumArtwork sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-xl mx-auto hover:scale-105 duration-200">
 				</span>
@@ -328,7 +328,7 @@ function pauseSong() {
 
 	</div><!-- END NOW PLAYING BAR -->
 
-    <div class="container mx-auto p-4 bg-green-100 h-full space-y-4 justify-between">
+    <div class="container mx-auto p-4 h-full justify-center space-y-8">
 
         <div class="min-w-0 p-4 text-white bg-blue-600 rounded-lg shadow-xs h-1/3">
             <h2 class="mb-4 font-semibold">
