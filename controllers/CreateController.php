@@ -41,7 +41,7 @@ class CreateController{
         } else {
             echo '<br>There was a problem saving the uploaded file<br>';
         }
-        echo '<br/><a href="album.php?id=' . $albumID . '">Go To Album</a>';
+        echo '<br/><a href="albumView.php?id=' . $albumID . '">Go To Album</a>';
     }
 
     public function addAlbum(){

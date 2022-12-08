@@ -210,8 +210,8 @@ function setTrack(trackId, newPlaylist, play) {
 		$.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data) {
 			var album = JSON.parse(data);
 			$(".content .albumLink img").attr("src", album.artworkPath);
-			$(".content .albumLink img").attr("onclick", "openPage('album.php?id=" + album.id + "')");
-			$(".trackInfo .trackName span").attr("onclick", "openPage('album.php?id=" + album.id + "')");
+			$(".content .albumLink img").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
+			$(".trackInfo .trackName span").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
 		});
 
 		audioElement.setTrack(track);
@@ -248,15 +248,15 @@ function pauseSong() {
 		<div id="nowPlayingLeft" class="">
 			<div class="content p-6 justify-center items-center mx-auto flex flex-col">
 				<span class="albumLink">
-					<img role="link" tabindex="0" src="" class="albumArtwork sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-xl mx-auto hover:scale-105 duration-200">
+					<img role="link" tabindex="0" src="" class="albumArtwork sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-xl mx-auto hover:scale-105 duration-200 cursor-pointer">
 				</span>
 
 				<div class="trackInfo text-center p-4 flex flex-col">
-					<span class="trackName font-bold">
+					<span class="trackName font-bold cursor-pointer">
 						<span role="link" tabindex="0"></span>
 					</span>
                     <br>
-					<span class="artistName font-normal">
+					<span class="artistName font-normal cursor-pointer">
 						<span role="link" tabindex="0"></span>
 					</span>
 				</div>

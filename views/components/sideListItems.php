@@ -4,7 +4,6 @@
     2. Library (yourMusic)
     3. Gallery (gallery)
     4. Metrics
-    5. Interact
     6. About
     7. Settings
     8. Contribute (Dropdown)
@@ -31,7 +30,7 @@
     </li>
     <!-- LIST ITEM 2 -->
     <li class="relative px-6 py-3">
-        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
             <svg
                 class="w-5 h-5"
                 aria-hidden="true"
@@ -50,7 +49,7 @@
     </li>
     <!-- LIST ITEM 3 -->
     <li class="relative px-6 py-3">
-        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
             <svg
                 class="w-5 h-5"
                 aria-hidden="true"
@@ -93,29 +92,9 @@
         </a>
     </li>-->
 
-    <!-- LIST ITEM 5 -->
-    <!--<li class="relative px-6 py-3">
-        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-            <svg
-                class="w-5 h-5"
-                aria-hidden="true"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor">
-
-                    <path
-                        d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122">
-                    </path>
-                </svg>
-            <span class="ml-4" role="link" tabindex="0" onclick="openPage('interact.php')">Interact</span>
-        </a>
-    </li>-->
     <!-- LIST ITEM 6 -->
     <li class="relative px-6 py-3">
-        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
             <svg
                 class="w-5 h-5"
                 aria-hidden="true"
@@ -135,7 +114,7 @@
     </li>
     <!-- LIST ITEM 7 -->
     <li class="relative px-6 py-3">
-        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
             <svg
                 class="w-5 h-5"
                 aria-hidden="true"
@@ -154,7 +133,7 @@
 
     <!-- LIST ITEM TEST -->
     <li class="relative px-6 py-3">
-        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
             <svg
                     class="w-5 h-5"
                     aria-hidden="true"
@@ -176,7 +155,7 @@
     <!-- LIST ITEM 8 WITH DROPPER -->
     <li class="relative px-6 py-3">
         <button
-            class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+            class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer"
             @click="togglePagesMenu"
             aria-haspopup="true">
 
@@ -220,26 +199,23 @@
                 class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                 aria-label="submenu">
 
-                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
                     <a class="w-full" onclick="openPage('create.php?id=song')">Add Song</a>
                 </li>
 
-                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
                     <a class="w-full" onclick="openPage('create.php?id=album')">Add Album</a>
                 </li>
 
-                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
                     <a class="w-full" onclick="openPage('create.php?id=artist')">Add Artist</a>
                 </li>
 
-                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
                     <a class="w-full" onclick="openPage('create.php?id=genre')">Add Genre</a>
                 </li>
 
-                <!--<li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                    <a class="w-full" href="pages/login.html">Login</a>
-                </li>
-
+                <!--
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                     <a class="w-full" href="pages/create-account.html">
                         Create account
@@ -251,26 +227,10 @@
                         Forgot password
                     </a>
                 </li>
-
-                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                    <a class="w-full" href="pages/404.html">404</a>
-                </li>
-
-                <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                    <a class="w-full" href="pages/blank.html">Blank</a>
-                </li>-->
+                -->
 
             </ul>
         </template>
     </li>
 
 </ul>
-
-<!-- OLD LIST ITEM
-    <div class="navItem">
-        <span role='link' tabindex='0' onclick='openPage("search.php")' class="navItemLink">
-            Search
-            <img src="assets/images/icons/search.png" class="icon" alt="Search">
-        </span>
-    </div>
--->

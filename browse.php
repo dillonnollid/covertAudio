@@ -156,13 +156,13 @@
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                     </div>
                                     <div>
-                                        <a class="font-semibold" onclick="setTrack(<?php echo $row['id'] ?>, tempPlaylist, true)"><?php echo $row['title'] ?></a><br>
-                                        <a class="text-xs text-gray-600 dark:text-gray-400" onclick='openPage("artist.php?id=" + <?php echo $tempArtist->getID();?>)'><?php echo $tempArtist->getName(); ?></a>
+                                        <a class="font-semibold cursor-pointer" onclick="setTrack(<?php echo $row['id'] ?>, tempPlaylist, true)"><?php echo $row['title'] ?></a><br>
+                                        <a class="text-xs text-gray-600 dark:text-gray-400 cursor-pointer" onclick='openPage("artist.php?id=" + <?php echo $tempArtist->getID();?>)'><?php echo $tempArtist->getName(); ?></a>
                                     </div>
                                 </div>
                             </td>
 
-                            <td class="px-4 py-3 text-sm"><a onclick='openPage("albumView.php?id=" + <?php echo $tempAlbum->getID();?>)'><?php echo $tempAlbum->getTitle(); ?></a></td>
+                            <td class="px-4 py-3 text-sm cursor-pointer"><a onclick='openPage("albumView.php?id=" + <?php echo $tempAlbum->getID();?>)'><?php echo $tempAlbum->getTitle(); ?></a></td>
                             <td class="px-4 py-3 text-xs"><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"><?php echo $tempGenre->getName();?></span></td>
                             <td class="px-4 py-3 text-sm"><?php echo $row['duration'] ?></td>
                         </tr>

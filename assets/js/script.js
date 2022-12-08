@@ -1,4 +1,4 @@
-//Create arrays for current, shuffle and temp playlists, 
+//Create arrays for current, shuffle and temp playlists. Declaring various variables.
 var currentPlaylist = [];
 var shufflePlaylist = [];
 var tempPlaylist = [];
@@ -10,7 +10,7 @@ var shuffle = false;
 var userLoggedIn;
 var timer;
 
-$(document).click(function(click) {
+/*$(document).click(function(click) {
 	var target = $(click.target);
 
 	if(!target.hasClass("item") && !target.hasClass("optionsButton")) {
@@ -20,7 +20,7 @@ $(document).click(function(click) {
 
 $(window).scroll(function() {
 	hideOptionsMenu();
-});
+});*/
 
 $(document).on("change", "select.playlist", function() {
 	var select = $(this);
