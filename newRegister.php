@@ -1,10 +1,4 @@
 <?php
-if(isset($_SESSION['userLoggedIn'])) {
-
-} else {
-
-}
-
 //config connects us to the database. Gives us a $con object including the connection. Connection is required to create Account object like shown below! Constants does exactly what it says on the tin, just contains our String constants.
 include("includes/config.php");
 include("includes/classes/Account.php");
@@ -12,8 +6,6 @@ include("includes/classes/Constants.php");
 
 $account = new Account($con);
 
-//We need the request and login handlers to use their functions, basically pasting the code onto my page.
-//above we include some object classes, but the handlers also interact with these Object Classes.
 include("includes/handlers/register-handler.php");
 include("includes/handlers/login-handler.php");
 
@@ -34,14 +26,15 @@ function getInputValue($name) {
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="./assets/js/init-alpine.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/js/register.js"></script>
 
 </head>
 <body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <?php
 if(isset($_POST['registerButton'])) {
     echo '<script>
@@ -68,37 +61,44 @@ if(isset($_POST['registerButton'])) {
                 <img
                     aria-hidden="true"
                     class="object-cover w-full h-full dark:hidden"
-                    src="./assets/images/create-account-office.jpeg"
+                    src="./assets/images/wave.jpeg"
                     alt=""
                 />
                 <img
                     aria-hidden="true"
                     class="hidden object-cover w-full h-full dark:block"
-                    src="./assets/images/create-account-office-dark.jpeg"
+                    src="./assets/images/ufo.jpeg"
                     alt=""
                 />
             </div>
 
             <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+
                 <!-- Register Form -->
                 <form id="registerForm" action="newRegister.php" method="POST" class="w-full">
                     <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                        Create account
+                        covertAuth - Register
                     </h1>
 
-                    <!-- Username done -->
+                    <!-- Username -->
                     <label for="username" class="block text-sm">
-                        <?php echo $account->getError(Constants::$usernameCharacters); ?>
-                        <?php echo $account->getError(Constants::$usernameTaken); ?>
+                        <span class="text-red-700 dark:text-red-400">
+                            <?php echo $account->getError(Constants::$usernameCharacters);?>
+                        </span>
+                        <span class="text-red-700 dark:text-red-400">
+                            <?php echo $account->getError(Constants::$usernameTaken);?>
+                        </span>
                         <span class="text-gray-700 dark:text-gray-400">Username</span>
                         <input
                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             id="username" name="username" type="text" placeholder="e.g. bartSimpson" value="<?php getInputValue('username') ?>" required/>
                     </label>
 
-                    <!-- First Name done -->
+                    <!-- First Name -->
                     <label for="firstName" class="block text-sm">
-                        <?php echo $account->getError(Constants::$firstNameCharacters); ?>
+                        <span class="text-red-700 dark:text-red-400">
+                            <?php echo $account->getError(Constants::$firstNameCharacters);?>
+                        </span>
                         <span class="text-gray-700 dark:text-gray-400">First name</span>
                         <input
                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
@@ -107,45 +107,58 @@ if(isset($_POST['registerButton'])) {
 
                     <!-- Last Name -->
                     <label for="lastName" class="block text-sm">
-                        <?php echo $account->getError(Constants::$lastNameCharacters); ?>
+                        <span class="text-red-700 dark:text-red-400">
+                            <?php echo $account->getError(Constants::$lastNameCharacters);?>
+                        </span>
                         <span class="text-gray-700 dark:text-gray-400">Last name</span>
                         <input
                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             id="lastName" name="lastName" type="text" placeholder="e.g. Simpson" value="<?php getInputValue('lastName') ?>" required/>
                     </label>
 
-                    <!-- Email 1 done -->
+                    <!-- Email 1 -->
                     <label for="email" class="block text-sm">
-                        <?php echo $account->getError(Constants::$emailsDoNotMatch); ?>
-                        <?php echo $account->getError(Constants::$emailInvalid); ?>
-                        <?php echo $account->getError(Constants::$emailTaken); ?>
+                        <span class="text-red-700 dark:text-red-400">
+                            <?php echo $account->getError(Constants::$emailsDoNotMatch);?>
+                        </span>
+                        <span class="text-red-700 dark:text-red-400">
+                            <?php echo $account->getError(Constants::$emailInvalid);?>
+                        </span>
+                        <span class="text-red-700 dark:text-red-400">
+                            <?php echo $account->getError(Constants::$emailTaken);?>
+                        </span>
                         <span class="text-gray-700 dark:text-gray-400">Email</span>
                         <input
                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             id="email" name="email" type="email" placeholder="e.g. bart@gmail.com" value="<?php getInputValue('email'); ?>" required/>
                     </label>
 
-                    <!-- Email 2 -->
+                    <!-- Repeat Email -->
                     <label for="email2" class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Email</span>
+                        <span class="text-gray-700 dark:text-gray-400">Repeat Email</span>
                         <input
                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             id="email2" name="email2" type="email" placeholder="e.g. Same as above" value="<?php getInputValue('email2'); ?>" required/>
                     </label>
 
-                    <!-- Password 1 done -->
+                    <!-- Password -->
                     <label for="password" class="block mt-4 text-sm">
-                        <?php echo $account->getError(Constants::$passwordsDoNoMatch); ?>
-                        <?php echo $account->getError(Constants::$passwordNotAlphanumeric); ?>
-                        <?php echo $account->getError(Constants::$passwordCharacters); ?>
+                        <span class="text-red-700 dark:text-red-400">
+                            <?php echo $account->getError(Constants::$passwordsDoNoMatch);?>
+                        </span>
+                        <span class="text-red-700 dark:text-red-400">
+                            <?php echo $account->getError(Constants::$passwordNotAlphanumeric);?>
+                        </span>
+                        <span class="text-red-700 dark:text-red-400">
+                            <?php echo $account->getError(Constants::$passwordCharacters);?>
+                        </span>
                         <span class="text-gray-700 dark:text-gray-400">Password</span>
                         <input
                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             id="password" name="password" type="password" placeholder="Your password" required
                         />
                     </label>
-
-                    <!-- Password 2 done -->
+                    <!-- Repeat Password -->
                     <label for="password2" class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400">
                           Confirm password
@@ -156,6 +169,7 @@ if(isset($_POST['registerButton'])) {
                         />
                     </label>
 
+                    <!-- Privacy Policy -->
                     <div class="flex mt-6 text-sm">
                         <label class="flex items-center dark:text-gray-400">
                             <input
@@ -174,20 +188,22 @@ if(isset($_POST['registerButton'])) {
                         Create account
                     </button>
 
-                    <!-- Switch to login form-->
+                    <!-- Switch to Login form-->
                     <p class="mt-4 hasAccountText">
                         <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" id="hideRegister">
-                            Already have an account? Login
+                            Already have an account? Click here!
                         </a>
                     </p>
                 </form>
 
-                <!-- INSERT LOGIN FORM HERE -->
+                <!-- Login Form -->
                 <form id="loginForm" action="newRegister.php" method="POST" class="w-full">
-                    <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">Login to your account</h1>
+                    <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">covertAuth - Login</h1>
                     <p>
-                        <!-- These errors will only print if they exist obviously, getError checks if the error exists in our log array, if it exists in the array then it returns the error text!  -->
-                        <?php echo $account->getError(Constants::$loginFailed); ?>
+                        <!-- These errors will only print if they exist obviously, getError checks if the error exists in our log array, if it exists in the array then it returns the error text! -->
+                        <span class="text-red-700 dark:text-red-400">
+                            <?php echo $account->getError(Constants::$loginFailed);?>
+                        </span>
                         <label for="loginUsername" class="block text-sm text-gray-700 dark:text-gray-400" >Username</label>
                         <input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. bartSimpson" value="<?php getInputValue('loginUsername') ?>" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:text-gray-300 dark:focus:shadow-outline-gray form-input" required>
                     </p>
@@ -205,7 +221,7 @@ if(isset($_POST['registerButton'])) {
 
                     <br>
 
-                    <div class="hasAccountText" >
+                    <div class="hasAccountText">
                         <span id="hideLogin" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
                             Don't have an account yet? Signup here.
                         </span>
