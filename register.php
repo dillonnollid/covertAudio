@@ -1,8 +1,8 @@
 <?php
 	//config connects us to the database. Gives us a $con object including the connection. Connection is required to create Account object like shown below! Constants does exactly what it says on the tin, just contains our String constants.  
 	include("includes/config.php");
-	include("includes/classes/Account.php");
-	include("includes/classes/Constants.php");
+	include("models/Account.php");
+	include("models/Constants.php");
 
 	$account = new Account($con);
 

@@ -264,7 +264,7 @@ function pauseSong() {
 		</div>
 
 		<div id="nowPlayingCenter">
-			<div class="content playerControls p-4">
+			<div class="content playerControls px-4 py-2">
 				<div class="buttons flex justify-between items-center md:px-4">
 					<!--<button class="controlButton shuffle flex-auto w-14" title="Shuffle button" onclick="setShuffle()">
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
@@ -295,25 +295,26 @@ function pauseSong() {
 					</button>
 				</div>
 
+                <br>
 				<!-- PBB has text for current and remaining time, which we manupulate using JS -->
-				<div class="playbackBar flex items-center justify-between text-lg">
-					<span class="progressTime current p-6 text-center">0.00</span>
+				<div class="playbackBar flex items-center justify-between text-md">
+					<span class="progressTime current text-center">0.00</span>
 
-					<div class="progressBar inline-flex items-center w-full cursor-pointer h-2 ">
+					<div class="progressBar inline-flex items-center w-full cursor-pointer h-2">
 						<div class="progressBarBg bg-blue-100 h-2 w-full rounded-lg border-2">
 							<div class="progress h-full bg-blue-500"></div>
 						</div>
 					</div>
 
-					<span class="progressTime remaining p-6 text-center">0.00</span>
+					<span class="progressTime remaining text-center">0.00</span>
 				</div>
 			</div>
 		</div>
 
 		<div id="nowPlayingRight">
-			<div class="volumeBar flex items-center justify-between text-lg p-4">
+			<div class="volumeBar flex items-center justify-between text-lg p-2">
 
-				<button id="volume" title="Volume button" onclick="setMute()" class="controlButton volume w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+				<button id="volume" title="Volume button" onclick="setMute()" class="controlButton volume w-12 h-12 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
                     <i class="fa  fa-volume-off fa-2x text-white" aria-hidden="true"></i>
 				</button>
 

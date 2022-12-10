@@ -1,12 +1,12 @@
 <?php
 if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
 	include("includes/config.php");
-	include("includes/classes/User.php");
-	include("includes/classes/Artist.php");
-	include("includes/classes/Album.php");
-	include("includes/classes/Song.php");
-	include("includes/classes/Playlist.php");
-	include("includes/classes/Genre.php");
+	include("models/User.php");
+	include("models/Artist.php");
+	include("models/Album.php");
+	include("models/Song.php");
+	include("models/Playlist.php");
+	include("models/Genre.php");
 
 	if(isset($_GET['userLoggedIn'])) {
 		$userLoggedIn = new User($con, $_GET['userLoggedIn']);

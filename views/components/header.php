@@ -1,9 +1,9 @@
 <?php
 include("includes/config.php");
-include("includes/classes/User.php");
-include("includes/classes/Artist.php");
-include("includes/classes/Album.php");
-include("includes/classes/Song.php");
+include("models/User.php");
+include("models/Artist.php");
+include("models/Album.php");
+include("models/Song.php");
 
 //session_destroy(); LOGOUT
 
