@@ -1,6 +1,10 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+--
+-- Database: `covertAudio`
+--
+
 CREATE TABLE IF NOT EXISTS `albums` (
 `id` int(11) NOT NULL,
   `title` varchar(250) NOT NULL,
@@ -53,12 +57,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(200) NOT NULL,
   `password` varchar(32) NOT NULL,
   `signUpDate` datetime NOT NULL,
-  `profilePic` varchar(500) NOT NULL
+  `profilePic` varchar(500) NOT NULL,
   `role` int(3) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 
-INSERT INTO `albums` 
+INSERT INTO `albums`
 (`id`, `title`, `artist`, `genre`, `artworkPath`) VALUES
 (1, 'Unknown', 100, 15, 'assets/images/artwork/unknown.jpg'),
 (2, 'Chill Dance', 100, 2, 'assets/images/artwork/slowDance.jpg'),
@@ -68,36 +72,36 @@ INSERT INTO `albums`
 (6, 'Other Rap/Hip-Hop', 100, 1, 'assets/images/artwork/mosQuest.jpg'),
 (7, 'Focus Tunes', 100, 15, 'assets/images/artwork/focus.jpg'),
 (8, 'Sleep Tunes', 100, 7, 'assets/images/artwork/sleep.jpg'),
-(9, 'Off the Rocker', 100, 15, 'assets/images/artwork/beatles.jpg'),
-(10, 'Dont have a fuckin clue!', 100, 7, 'assets/images/artwork/earl.jpg'),
+(9, 'Mindfulness', 100, 15, 'assets/images/artwork/beatles.jpg'),
+(10, 'Indescribable', 100, 7, 'assets/images/artwork/earl.jpg'),
 (11, 'Glow In The Dark Tour', 10, 1, 'assets/images/artwork/gitd.jpg');
 
 INSERT INTO `artists` (`id`, `name`) VALUES
-(1, 'Kanye West'),
-(2, 'Kendrick Lamar'),
-(3, 'Travis Scott'),
-(4, 'Don Toliver'),
-(5, 'BROCKHAMPTON'),
-(6, 'Kid Cudi'),
+(1, 'Brock'),
+(2, 'Kendrick'),
+(3, 'Travis'),
+(4, 'DOOM'),
+(5, 'Ye'),
+(6, 'Cudi'),
 (7, 'Drake'),
-(8, 'MF DOOM'),
-(9, 'Biggie Smalls'),
-(10, 'Freddie Gibbs'),
-(11, 'Playboi Carti'),
-(12, 'Denzel Curry'),
-(13, 'Frank Ocean'),
-(14, 'JPEGMAFIA'),
-(15, 'Meek Mill'),
-(16, 'Tupac'),
+(8, 'Don'),
+(9, 'Biggie'),
+(10, 'Freddie'),
+(11, 'Playboi'),
+(12, 'Denz'),
+(13, 'Frank'),
+(14, 'JPEG'),
+(15, 'Meek'),
+(16, 'Pac'),
 (17, 'DMX'),
 (18, 'Souls Of Mischief'),
 (19, 'Nujabes'),
-(20, 'Joey Badass'),
+(20, 'Joey'),
 (21, 'Nas'),
-(22, 'Post Malone'),
-(23, 'Isaiah Rashad'),
-(24, 'XXXTentacion'),
-(25, 'S.T.E.E.L'),
+(22, 'Posty'),
+(23, 'Isaiah'),
+(24, 'XXX'),
+(25, 'empe3'),
 (26, 'KNXWLEDGE'),
 (27, 'Erick The Architect'),
 (28, 'Kings Of Leon'),
@@ -123,15 +127,6 @@ INSERT INTO `genres` (`id`, `name`) VALUES
 (14, 'Podcasts'),
 (15, 'Other');
 
-INSERT INTO `Songs` (`id`, `title`, `artist`, `album`, `genre`, `duration`, `path`, `albumOrder`, `plays`) VALUES
-(32, 'Flashing Lights (GITD VERSION)', 1, 11, 4, '4:43', 'assets/music/flashing.mp3', 4, 0),
-(33, 'Good Life (GITD VERSION)', 1, 11, 4, '4:30', 'assets/music/goodlife.mp3 ', 3, 0),
-(34, 'I Wonder/Heard Em Say (GITD VERSION)', 1, 11, 4, '4:30', 'assets/music/wonder.mp3 ', 2, 0),
-(35, 'Stronger (GITD VERSION)', 1, 11, 4, '6:17', 'assets/music/stronger.mp3 ', 1, 0);
-
-INSERT INTO `users` (`id`, `username`, `firstName`, `lastName`, `email`, `password`, `signUpDate`, `profilePic`) VALUES
-(1, 'dillo', 'Dillo', 'Kello', 'dillonnollid@gmail.com', 'XX', '2022-02-02 00:00:00', 'assets/images/profile-pics/head_emerald.png'),
-(2, 'donkey-kong', 'Donkey', 'Kong', 'Dk@yahoo.com', '7c6a180b36896a0a8c02787eeafb0e4c', '2017-06-28 00:00:00', 'assets/images/profile-pics/head_emerald.png');
 
 ALTER TABLE `albums` ADD PRIMARY KEY (`id`);
 ALTER TABLE `artists` ADD PRIMARY KEY (`id`);

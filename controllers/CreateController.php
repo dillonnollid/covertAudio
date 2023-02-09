@@ -4,7 +4,7 @@ class CreateController{
     private $con;
 
     public function __construct(){
-        $this->con = mysqli_connect("localhost", "root", "", "slotify");
+        $this->con = mysqli_connect("localhost", "root", "", "covertAudio");
         include_once("getID3/getid3/getid3.php");
         $this->getID3 = new getID3;
     }
