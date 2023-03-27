@@ -1,57 +1,58 @@
 <?php
-	class User {
 
-		private $con;
-		private $username;
-        private $name;
-        private $profilePicture;
-        private $role;
+class User {
+    private $con;
+    private $username;
+    private $userData;
 
-		public function __construct($con, $username) {
-			$this->con = $con;
-			$this->username = $username;
-            $query = mysqli_query($con, "SELECT firstName, lastName, email, profilePic, role FROM users WHERE username='$this->username' LIMIT 1");
-            $user = mysqli_fetch_array($query);
-            $this->setUserData($user);
-		}
+    public function __construct($con, $username) {
+        $this->con = $con;
+        $this->username = $username;
+        $query = "SELECT firstName, lastName, email, profilePic, role FROM users WHERE username = ?";
+        $stmt = $this->con->prepare($query);
+        $stmt->bind_param("s", $this->username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $this->userData = $result->fetch_assoc();
+        $stmt->close();
+    }
 
-        public function setUserData($user){
-            if(isset($user[0])){
-                $this->name = $user['firstName'] . " " . $user['lastName'];
-                $this->profilePicture = $user['profilePic'];
-                $this->role = $user['role'];
-            }
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function getName() {
+        return $this->userData['firstName'] . ' ' . $this->userData['lastName'];
+    }
+
+    public function getProfilePhotoPath() {
+        return $this->userData['profilePic'];
+    }
+
+    public function getRole() {
+        return $this->userData['role'];
+    }
+
+    public function getRoleName() {
+        switch ($this->getRole()) {
+            case UserRole::SUPER:
+                return 'SuperUser';
+            case UserRole::ADMIN:
+                return 'Administrator';
+            case UserRole::USER:
+                return 'User';
+            default:
+                return 'None';
         }
+    }
 
-		public function getUsername() {
-			return $this->username;
-		}
+}
 
-        public function getName() {
-            return $this->name;
-        }
-
-        public function getRoleName() {
-            if($this->role==1){
-                return 'super';
-            } elseif($this->role==2){
-                return 'admin';
-            } elseif($this->role>=3){
-                return 'user';
-            } else {
-                return false;
-            }
-        }
-
-        public function getProfilePhotoPath() {
-            return $this->profilePicture;
-        }
-
-        public function getFirstAndLastName() {
-            $query = mysqli_query($this->con, "SELECT concat(firstName, ' ', lastName) as 'name'  FROM users WHERE username='$this->username'");
-            $row = mysqli_fetch_array($query);
-            return $row['name'];
-        }
-
-	}
+class UserRole {
+    const NONE = 0;
+    const SUPER = 1;
+    const ADMIN = 2;
+    const USER = 3;
+    
+}
 ?>

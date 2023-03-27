@@ -5,257 +5,259 @@ $songQuery = mysqli_query($con, "SELECT id FROM songs ORDER BY RAND() LIMIT 100"
 $resultArray = array();
 
 //Loop through array using a while loop, then push song IDs onto our array
-while($row = mysqli_fetch_array($songQuery)) {
+while ($row = mysqli_fetch_array($songQuery)) {
 	array_push($resultArray, $row['id']);
 }
 //Convert array to JSON (Javascript Object Notation), so we can use it in our JS code
 $jsonArray = json_encode($resultArray);
 ?>
 <script>
-$(document).ready(function() {
-	//output json array into our newPlaylist object, create an Audio element (call func in script.js)
-	var newPlaylist = <?php echo $jsonArray; ?>;
-	audioElement = new Audio();
+	$(document).ready(function () {
+		//output json array into our newPlaylist object, create an Audio element (call func in script.js)
+		var newPlaylist = <?php echo $jsonArray; ?>;
+		audioElement = new Audio();
 
-	//Set track
-	setTrack(newPlaylist[0], newPlaylist, false);
-	updateVolumeProgressBar(audioElement.audio);//Volume bar not yet implemented with tailwind player
+		//Set track
+		setTrack(newPlaylist[0], newPlaylist, false);
+		updateVolumeProgressBar(audioElement.audio);//Volume bar not yet implemented with tailwind player
 
-	$("#nowPlayingBarContainer").on("mousedown touchstart mousemove touchmove", function(e) {
-		e.preventDefault();//prevents default behaviour for these events. Since we are coding their behaviour. Cannot highlight the buttons and stuff in now playing.
-	});
+		$("#nowPlayingBarContainer").on("mousedown touchstart mousemove touchmove", function (e) {
+			e.preventDefault();//prevents default behaviour for these events. Since we are coding their behaviour. Cannot highlight the buttons and stuff in now playing.
+		});
 
-	//When the mouse is being clicked down on those elements, then we turn on mouseDown.
-	$(".playbackBar .progressBar").mousedown(function() {
-		mouseDown = true;
-	});
+		//When the mouse is being clicked down on those elements, then we turn on mouseDown.
+		$(".playbackBar .progressBar").mousedown(function () {
+			mouseDown = true;
+		});
 
-	//pass in e to mousemove, e is event, passing whatever called it in aswell, it'll pass in the mouse click object
-	$(".playbackBar .progressBar").mousemove(function(e) {
-		if(mouseDown == true) {
-			//Set time of song, depending on position of mouse
+		//pass in e to mousemove, e is event, passing whatever called it in aswell, it'll pass in the mouse click object
+		$(".playbackBar .progressBar").mousemove(function (e) {
+			if (mouseDown == true) {
+				//Set time of song, depending on position of mouse
+				timeFromOffset(e, this);
+			}
+		});
+
+		$(".playbackBar .progressBar").mouseup(function (e) {
 			timeFromOffset(e, this);
-		}
-	});
+		});
 
-	$(".playbackBar .progressBar").mouseup(function(e) {
-		timeFromOffset(e, this);
-	});
+		$(".volumeBar .progressBar").mousedown(function () {
+			mouseDown = true;
+		});
 
-	$(".volumeBar .progressBar").mousedown(function() {
-		mouseDown = true;
-	});
+		$(".volumeBar .progressBar").mousemove(function (e) {
+			if (mouseDown == true) {
+				var percentage = e.offsetX / $(this).width();
 
-	$(".volumeBar .progressBar").mousemove(function(e) {
-		if(mouseDown == true) {
+				if (percentage >= 0 && percentage <= 1) {
+					audioElement.audio.volume = percentage;
+				}
+			}
+		});
+
+		$(".volumeBar .progressBar").mouseup(function (e) {
 			var percentage = e.offsetX / $(this).width();
 
-			if(percentage >= 0 && percentage <= 1) {
+			if (percentage >= 0 && percentage <= 1) {
 				audioElement.audio.volume = percentage;
 			}
-		}
-	});
-
-	$(".volumeBar .progressBar").mouseup(function(e) {
-		var percentage = e.offsetX / $(this).width();
-
-		if(percentage >= 0 && percentage <= 1) {
-			audioElement.audio.volume = percentage;
-		}
-	});
-
-    $(document).mouseup(function() {
-        mouseDown = false;
-    });
-
-    $("#play").on('click touchstart',function(){
-        playSong();
-        console.log("Play");
-    });
-
-    $("#pause").on('click touchstart',function(){
-        pauseSong();
-        console.log("Pause");
-    });
-
-    $("#previous").on('click touchstart',function(){
-        prevSong();
-        console.log("Previous");
-    });
-
-    $("#next").on('click touchstart',function(){
-        nextSong();
-        console.log("Next");
-    });
-
-    $("#shuffle").on('click touchstart',function(){
-        setShuffle();
-        console.log("Shuffle");
-    });
-
-    $("#repeat").on('click touchstart',function(){
-        setRepeat();
-        console.log("Repeat");
-    });
-});
-
-//Calculate time using the offset (where on the progress bar they clicked)
-function timeFromOffset(mouse, progressBar) {
-	var percentage = mouse.offsetX / $(progressBar).width() * 100;
-	var seconds = audioElement.audio.duration * (percentage / 100);
-	audioElement.setTime(seconds);
-}
-
-function prevSong() {
-	if(audioElement.audio.currentTime >= 3 || currentIndex == 0) {
-		audioElement.setTime(0);
-	}
-	else {
-		currentIndex = currentIndex - 1;
-		setTrack(currentPlaylist[currentIndex], currentPlaylist, true);
-	}
-}
-
-function nextSong() {
-	if(repeat == true) {
-		audioElement.setTime(0);
-		playSong();
-		return;
-	}
-
-	if(currentIndex == currentPlaylist.length - 1) {
-		currentIndex = 0;
-	}
-	else {
-		currentIndex++;
-	}
-
-	var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
-	setTrack(trackToPlay, currentPlaylist, true);
-}
-
-//Buttons/Icons not yet implemented on tailwind player
-function setRepeat() {
-	repeat = !repeat;
-	var imageName = repeat ? "repeat-active.png" : "repeat.png";
-	$(".controlButton.repeat img").attr("src", "assets/images/icons/" + imageName);
-}
-
-function setMute() {
-	audioElement.audio.muted = !audioElement.audio.muted;
-	var imageName = audioElement.audio.muted ? "volume-mute.png" : "volume.png";
-	$(".controlButton.volume img").attr("src", "assets/images/icons/" + imageName);
-}
-
-function setShuffle() {
-	shuffle = !shuffle;
-	var imageName = shuffle ? "shuffle-active.png" : "shuffle.png";
-	$(".controlButton.shuffle img").attr("src", "assets/images/icons/" + imageName);
-
-	if(shuffle == true) {
-		//Randomize playlist
-		shuffleArray(shufflePlaylist);
-		currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
-	}
-	else {
-		//shuffle has been deactivated
-		//go back to regular playlist
-		currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
-	}
-}
-
-function shuffleArray(a) {
-    var j, x, i;
-    for (i = a.length; i; i--) {
-        j = Math.floor(Math.random() * i);
-        x = a[i - 1];
-        a[i - 1] = a[j];
-        a[j] = x;
-    }
-}
-
-
-function setTrack(trackId, newPlaylist, play) {
-
-	if(newPlaylist != currentPlaylist) {
-		currentPlaylist = newPlaylist;
-		shufflePlaylist = currentPlaylist.slice();
-		shuffleArray(shufflePlaylist);
-	}
-
-	if(shuffle == true) {
-		currentIndex = shufflePlaylist.indexOf(trackId);
-	}
-	else {
-		currentIndex = currentPlaylist.indexOf(trackId);
-	}
-	pauseSong();
-
-	//Ajax call, pass in handler location, function is what we wanna do with result!
-	//This is so we can change the song without refreshing the page, PHP won't allow us to do it since server-side
-	$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
-
-		//Create an object for this song/track using the data returned from Ajax call, set our trackname.
-		var track = JSON.parse(data);
-		$(".trackName span").text(track.title);//Title is the var name in our track object
-
-		//nested ajax call to get Artist info, send in Artist ID encapsulated in track,
-		$.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data) {
-			var artist = JSON.parse(data);
-			$(".trackInfo .artistName span").text(artist.name);
-			$(".trackInfo .artistName span").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
 		});
 
-		//Another nested Ajax call, uses getAlbumJson ajax handler file, find album using track.album, then apply the data!
-		$.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data) {
-			var album = JSON.parse(data);
-			$(".content .albumLink img").attr("src", album.artworkPath);
-			$(".content .albumLink img").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
-			$(".trackInfo .trackName span").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
+		$(document).mouseup(function () {
+			mouseDown = false;
 		});
 
-		audioElement.setTrack(track);
-
-		if(play == true) {
+		$("#play").on('click touchstart', function () {
 			playSong();
-		}
+			console.log("Play");
+		});
+
+		$("#pause").on('click touchstart', function () {
+			pauseSong();
+			console.log("Pause");
+		});
+
+		$("#previous").on('click touchstart', function () {
+			prevSong();
+			console.log("Previous");
+		});
+
+		$("#next").on('click touchstart', function () {
+			nextSong();
+			console.log("Next");
+		});
+
+		$("#shuffle").on('click touchstart', function () {
+			setShuffle();
+			console.log("Shuffle");
+		});
+
+		$("#repeat").on('click touchstart', function () {
+			setRepeat();
+			console.log("Repeat");
+		});
 	});
 
-}
-
-function playSong() {
-	//Only wanna update playCount is the time is 0, otherwise pause/plays will cause increments.
-	if(audioElement.audio.currentTime == 0) {
-		$.post("includes/handlers/ajax/updatePlays.php", { songId: audioElement.currentlyPlaying.id });
+	//Calculate time using the offset (where on the progress bar they clicked)
+	function timeFromOffset(mouse, progressBar) {
+		var percentage = mouse.offsetX / $(progressBar).width() * 100;
+		var seconds = audioElement.audio.duration * (percentage / 100);
+		audioElement.setTime(seconds);
 	}
-	$(".controlButton.play").hide();
-	$(".controlButton.pause").show();
-	audioElement.play();
-}
 
-function pauseSong() {
-	$(".controlButton.play").show();
-	$(".controlButton.pause").hide();
-	audioElement.pause();
-}
+	function prevSong() {
+		if (audioElement.audio.currentTime >= 3 || currentIndex == 0) {
+			audioElement.setTime(0);
+		}
+		else {
+			currentIndex = currentIndex - 1;
+			setTrack(currentPlaylist[currentIndex], currentPlaylist, true);
+		}
+	}
+
+	function nextSong() {
+		if (repeat == true) {
+			audioElement.setTime(0);
+			playSong();
+			return;
+		}
+
+		if (currentIndex == currentPlaylist.length - 1) {
+			currentIndex = 0;
+		}
+		else {
+			currentIndex++;
+		}
+
+		var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
+		setTrack(trackToPlay, currentPlaylist, true);
+	}
+
+	//Buttons/Icons not yet implemented on tailwind player
+	function setRepeat() {
+		repeat = !repeat;
+		var imageName = repeat ? "repeat-active.png" : "repeat.png";
+		$(".controlButton.repeat img").attr("src", "assets/images/icons/" + imageName);
+	}
+
+	function setMute() {
+		audioElement.audio.muted = !audioElement.audio.muted;
+		var imageName = audioElement.audio.muted ? "volume-mute.png" : "volume.png";
+		$(".controlButton.volume img").attr("src", "assets/images/icons/" + imageName);
+	}
+
+	function setShuffle() {
+		shuffle = !shuffle;
+		var imageName = shuffle ? "shuffle-active.png" : "shuffle.png";
+		$(".controlButton.shuffle img").attr("src", "assets/images/icons/" + imageName);
+
+		if (shuffle == true) {
+			//Randomize playlist
+			shuffleArray(shufflePlaylist);
+			currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
+		}
+		else {
+			//shuffle has been deactivated
+			//go back to regular playlist
+			currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
+		}
+	}
+
+	function shuffleArray(a) {
+		var j, x, i;
+		for (i = a.length; i; i--) {
+			j = Math.floor(Math.random() * i);
+			x = a[i - 1];
+			a[i - 1] = a[j];
+			a[j] = x;
+		}
+	}
+
+
+	function setTrack(trackId, newPlaylist, play) {
+
+		if (newPlaylist != currentPlaylist) {
+			currentPlaylist = newPlaylist;
+			shufflePlaylist = currentPlaylist.slice();
+			shuffleArray(shufflePlaylist);
+		}
+
+		if (shuffle == true) {
+			currentIndex = shufflePlaylist.indexOf(trackId);
+		}
+		else {
+			currentIndex = currentPlaylist.indexOf(trackId);
+		}
+		pauseSong();
+
+		//Ajax call, pass in handler location, function is what we wanna do with result!
+		//This is so we can change the song without refreshing the page, PHP won't allow us to do it since server-side
+		$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function (data) {
+
+			//Create an object for this song/track using the data returned from Ajax call, set our trackname.
+			var track = JSON.parse(data);
+			$(".trackName span").text(track.title);//Title is the var name in our track object
+
+			//nested ajax call to get Artist info, send in Artist ID encapsulated in track,
+			$.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function (data) {
+				var artist = JSON.parse(data);
+				$(".trackInfo .artistName span").text(artist.name);
+				$(".trackInfo .artistName span").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
+			});
+
+			//Another nested Ajax call, uses getAlbumJson ajax handler file, find album using track.album, then apply the data!
+			$.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function (data) {
+				var album = JSON.parse(data);
+				$(".content .albumLink img").attr("src", album.artworkPath);
+				$(".content .albumLink img").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
+				$(".trackInfo .trackName span").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
+			});
+
+			audioElement.setTrack(track);
+
+			if (play == true) {
+				playSong();
+			}
+		});
+
+	}
+
+	function playSong() {
+		//Only wanna update playCount is the time is 0, otherwise pause/plays will cause increments.
+		if (audioElement.audio.currentTime == 0) {
+			$.post("includes/handlers/ajax/updatePlays.php", { songId: audioElement.currentlyPlaying.id });
+		}
+		$(".controlButton.play").hide();
+		$(".controlButton.pause").show();
+		audioElement.play();
+	}
+
+	function pauseSong() {
+		$(".controlButton.play").show();
+		$(".controlButton.pause").hide();
+		audioElement.pause();
+	}
 </script>
 <!-- Now Playing Container zinc-->
 
-<div id="nowPlayingBarContainer" class="flex flex-col items-center justify-center font-semibold transition-colors text-black dark:text-white md:flex-row md:px-10">
-    <!-- Outer div that holds the left, center and right divs-->
+<div id="nowPlayingBarContainer"
+	class="flex flex-col items-center justify-center font-semibold transition-colors text-black dark:text-white md:flex-row md:px-10">
+	<!-- Outer div that holds the left, center and right divs-->
 	<div id="nowPlayingBar" class="container mx-auto my-auto p-4 md:w-2/3">
 
 		<div id="nowPlayingLeft" class="">
 			<div class="content p-6 justify-center items-center mx-auto flex flex-col">
 				<span class="albumLink">
-					<img role="link" tabindex="0" src="" class="albumArtwork sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-xl mx-auto hover:scale-105 duration-200 cursor-pointer">
+					<img role="link" tabindex="0" src=""
+						class="albumArtwork sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-xl mx-auto hover:scale-105 duration-200 cursor-pointer">
 				</span>
 
 				<div class="trackInfo text-center p-4 flex flex-col">
 					<span class="trackName font-bold cursor-pointer">
 						<span role="link" tabindex="0"></span>
 					</span>
-                    <br>
+					<br>
 					<span class="artistName font-normal cursor-pointer">
 						<span role="link" tabindex="0"></span>
 					</span>
@@ -270,57 +272,71 @@ function pauseSong() {
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>-->
 
-                    <button id="shuffle" title="Shuffle button" onclick="" class="controlButton shuffle w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
-                        <i class="fa fa-random fa-2x text-white" aria-hidden="true"></i>
-                    </button>
-
-					<button id="previous" title="Previous button" onclick="" class="controlButton previous w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue" >
-                        <i class="fa fa-backward fa-2x text-white"></i>
+					<button id="shuffle" title="Shuffle button" onclick=""
+						class="controlButton shuffle w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+						<i class="fa fa-random fa-2x text-white" aria-hidden="true"></i>
 					</button>
 
-					<button id="play" title="Play button" onclick="" class="controlButton play w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue" >
-                        <i class="fa fa-play fa-2x text-white" id="play-btn"></i>
+					<button id="previous" title="Previous button" onclick=""
+						class="controlButton previous w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+						<i class="fa fa-backward fa-2x text-white"></i>
 					</button>
 
-					<button id="pause" title="Pause button" onclick="" class="controlButton pause w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue"  style="display: none;">
-                        <i class="fa fa-pause fa-2x text-white" id="pause-btn"></i>
+					<button id="play" title="Play button" onclick=""
+						class="controlButton play w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+						<i class="fa fa-play fa-2x text-white" id="play-btn"></i>
 					</button>
 
-					<button id="next" title="Next button" onclick="" class="controlButton next w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue" >
-                        <i class="fa fa-forward fa-2x text-white"></i>
+					<button id="pause" title="Pause button" onclick=""
+						class="controlButton pause w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue"
+						style="display: none;">
+						<i class="fa fa-pause fa-2x text-white" id="pause-btn"></i>
 					</button>
 
-					<button id="repeat" title="Repeat button" onclick="" class="controlButton repeat w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue" >
-                        <i class="fa fa-repeat fa-2x text-white" aria-hidden="true"></i>
+					<button id="next" title="Next button" onclick=""
+						class="controlButton next w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+						<i class="fa fa-forward fa-2x text-white"></i>
+					</button>
+
+					<button id="repeat" title="Repeat button" onclick=""
+						class="controlButton repeat w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+						<i class="fa fa-repeat fa-2x text-white" aria-hidden="true"></i>
 					</button>
 				</div>
 
-                <br>
-				<!-- PBB has text for current and remaining time, which we manupulate using JS -->
-				<div class="playbackBar flex items-center justify-between text-md">
-					<span class="progressTime current text-center">0.00</span>
+				<br>
+				
+				<div class="playbackBar flex flex-nowrap w-full gap-4 items-center justify-between text-md">
+					<span class="progressTime current text-center w-8">0.00</span>
 
-					<div class="progressBar inline-flex items-center w-full cursor-pointer h-2">
-						<div class="progressBarBg bg-blue-100 h-2 w-full rounded-lg border-2">
-							<div class="progress h-full bg-blue-500"></div>
+					<div class="progressBar inline-flex items-center w-full cursor-pointer h-2.5">
+						<div class="progressBarBg bg-blue-gray-50 h-full w-full overflow-hidden rounded-md border-2">
+							<div
+								class="progress flex h-full items-baseline justify-center overflow-hidden break-all bg-gradient-to-tr from-purple-600 to-purple-400 text-white">
+							</div>
 						</div>
 					</div>
 
-					<span class="progressTime remaining text-center">0.00</span>
+					<span class="progressTime remaining text-center w-8">0.00</span>
 				</div>
+
+
 			</div>
 		</div>
 
 		<div id="nowPlayingRight">
-			<div class="volumeBar flex items-center justify-between text-lg p-2">
+			<div class="volumeBar flex flex-row w-full gap-4 items-center justify-between text-md">
 
-				<button id="volume" title="Volume button" onclick="setMute()" class="controlButton volume w-12 h-12 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
-                    <i class="fa  fa-volume-off fa-2x text-white" aria-hidden="true"></i>
+				<button id="volume" title="Volume button" onclick="setMute()"
+					class="controlButton volume w-12 h-12 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+					<i class="fa  fa-volume-off fa-2x text-white" aria-hidden="true"></i>
 				</button>
 
-				<div class="progressBar inline-flex items-center w-full cursor-pointer h-2 p-4">
-					<div class="progressBarBg bg-blue-100 h-2 w-full rounded-lg border-2">
-						<div class="progress h-full bg-blue-500"></div>
+				<div class="progressBar h-full w-full overflow-hidden rounded-md">
+					<div class="progressBarBg h-2 w-full rounded-lg border-2">
+						<div
+							class="progress flex h-full items-baseline justify-center overflow-hidden break-all bg-gradient-to-tr from-purple-600 to-purple-400 text-white">
+						</div>
 					</div>
 				</div>
 
@@ -329,33 +345,37 @@ function pauseSong() {
 
 	</div><!-- END NOW PLAYING BAR -->
 
-    <div class="container mx-auto p-4 h-full justify-center space-y-8">
+	<div class="container mx-auto p-4 h-full justify-center space-y-8">
 
-        <div class="min-w-0 p-4 text-white bg-blue-600 rounded-lg shadow-xs h-1/3">
-            <h2 class="mb-4 font-semibold">
-                Hello, <?php echo $_SESSION['name']; ?>
-            </h2>
-            <h4 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                Username = <?php echo $_SESSION['userLoggedIn'];?>
-                <br>
-                ImagePath = <?php echo $_SESSION['profilePic'];?>
-                <br>
-                Role = <?php echo $_SESSION['role'];?>
-            </h4>
-        </div>
+		<div class="min-w-0 p-4 text-white bg-blue-600 rounded-lg shadow-xs h-1/3">
+			<h2 class="mb-4 font-semibold">
+				Hello,
+				<?php echo $_SESSION['name']; ?>
+			</h2>
+			<h4 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+				Username =
+				<?php echo $_SESSION['userLoggedIn']; ?>
+				<br>
+				ImagePath =
+				<?php echo $_SESSION['profilePic']; ?>
+				<br>
+				Role =
+				<?php echo $_SESSION['role']; ?>
+			</h4>
+		</div>
 
-        <div class="min-w-0 p-4 text-white bg-green-600 rounded-lg shadow-xs h-1/3">
-            <h4 class="mb-4 font-semibold">
-                Placeholder 2, what can ya do?!
-            </h4>
-            <p>
-                Bit more text to fill the void<br>
-                Nothing to see here folks, scroll down for tunes...<br>
-                Click a song to play it, click an artist to see more<br>
-                Click an album or a genre and you'll figure the rest out!<br>
-            </p>
-        </div>
+		<div class="min-w-0 p-4 text-white bg-green-600 rounded-lg shadow-xs h-1/3">
+			<h4 class="mb-4 font-semibold">
+				Placeholder 2, what can ya do?!
+			</h4>
+			<p>
+				Bit more text to fill the void<br>
+				Nothing to see here folks, scroll down for tunes...<br>
+				Click a song to play it, click an artist to see more<br>
+				Click an album or a genre and you'll figure the rest out!<br>
+			</p>
+		</div>
 
-    </div>
+	</div>
 
 </div>
