@@ -157,7 +157,7 @@
                                     </div>
                                     <div>
                                         <a class="font-semibold cursor-pointer" onclick="setTrack(<?php echo $row['id'] ?>, tempPlaylist, true)"><?php echo $row['title'] ?></a><br>
-                                        <a class="text-xs text-gray-600 dark:text-gray-400 cursor-pointer" onclick='openPage("artist.php?id=" + <?php echo $tempArtist->getID();?>)'><?php echo $tempArtist->getName(); ?></a>
+                                        <a class="text-xs text-gray-600 dark:text-gray-400 cursor-pointer" onclick='openPage("artistView.php?id=" + <?php echo $tempArtist->getID();?>)'><?php echo $tempArtist->getName(); ?></a>
                                     </div>
                                 </div>
                             </td>

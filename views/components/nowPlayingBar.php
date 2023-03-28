@@ -100,146 +100,8 @@ $jsonArray = json_encode($resultArray);
 	});
 
 	//Calculate time using the offset (where on the progress bar they clicked)
-	function timeFromOffset(mouse, progressBar) {
-		var percentage = mouse.offsetX / $(progressBar).width() * 100;
-		var seconds = audioElement.audio.duration * (percentage / 100);
-		audioElement.setTime(seconds);
-	}
-
-	function prevSong() {
-		if (audioElement.audio.currentTime >= 3 || currentIndex == 0) {
-			audioElement.setTime(0);
-		}
-		else {
-			currentIndex = currentIndex - 1;
-			setTrack(currentPlaylist[currentIndex], currentPlaylist, true);
-		}
-	}
-
-	function nextSong() {
-		if (repeat == true) {
-			audioElement.setTime(0);
-			playSong();
-			return;
-		}
-
-		if (currentIndex == currentPlaylist.length - 1) {
-			currentIndex = 0;
-		}
-		else {
-			currentIndex++;
-		}
-
-		var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
-		setTrack(trackToPlay, currentPlaylist, true);
-	}
-
-	//Buttons/Icons not yet implemented on tailwind player
-	function setRepeat() {
-		repeat = !repeat;
-		var imageName = repeat ? "repeat-active.png" : "repeat.png";
-		$(".controlButton.repeat img").attr("src", "assets/images/icons/" + imageName);
-	}
-
-	function setMute() {
-		audioElement.audio.muted = !audioElement.audio.muted;
-		var imageName = audioElement.audio.muted ? "volume-mute.png" : "volume.png";
-		$(".controlButton.volume img").attr("src", "assets/images/icons/" + imageName);
-	}
-
-	function setShuffle() {
-		shuffle = !shuffle;
-		var imageName = shuffle ? "shuffle-active.png" : "shuffle.png";
-		$(".controlButton.shuffle img").attr("src", "assets/images/icons/" + imageName);
-
-		if (shuffle == true) {
-			//Randomize playlist
-			shuffleArray(shufflePlaylist);
-			currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
-		}
-		else {
-			//shuffle has been deactivated
-			//go back to regular playlist
-			currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
-		}
-	}
-
-	function shuffleArray(a) {
-		var j, x, i;
-		for (i = a.length; i; i--) {
-			j = Math.floor(Math.random() * i);
-			x = a[i - 1];
-			a[i - 1] = a[j];
-			a[j] = x;
-		}
-	}
-
-
-	function setTrack(trackId, newPlaylist, play) {
-
-		if (newPlaylist != currentPlaylist) {
-			currentPlaylist = newPlaylist;
-			shufflePlaylist = currentPlaylist.slice();
-			shuffleArray(shufflePlaylist);
-		}
-
-		if (shuffle == true) {
-			currentIndex = shufflePlaylist.indexOf(trackId);
-		}
-		else {
-			currentIndex = currentPlaylist.indexOf(trackId);
-		}
-		pauseSong();
-
-		//Ajax call, pass in handler location, function is what we wanna do with result!
-		//This is so we can change the song without refreshing the page, PHP won't allow us to do it since server-side
-		$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function (data) {
-
-			//Create an object for this song/track using the data returned from Ajax call, set our trackname.
-			var track = JSON.parse(data);
-			$(".trackName span").text(track.title);//Title is the var name in our track object
-
-			//nested ajax call to get Artist info, send in Artist ID encapsulated in track,
-			$.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function (data) {
-				var artist = JSON.parse(data);
-				$(".trackInfo .artistName span").text(artist.name);
-				$(".trackInfo .artistName span").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
-			});
-
-			//Another nested Ajax call, uses getAlbumJson ajax handler file, find album using track.album, then apply the data!
-			$.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function (data) {
-				var album = JSON.parse(data);
-				$(".content .albumLink img").attr("src", album.artworkPath);
-				$(".content .albumLink img").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
-				$(".trackInfo .trackName span").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
-			});
-
-			audioElement.setTrack(track);
-
-			if (play == true) {
-				playSong();
-			}
-		});
-
-	}
-
-	function playSong() {
-		//Only wanna update playCount is the time is 0, otherwise pause/plays will cause increments.
-		if (audioElement.audio.currentTime == 0) {
-			$.post("includes/handlers/ajax/updatePlays.php", { songId: audioElement.currentlyPlaying.id });
-		}
-		$(".controlButton.play").hide();
-		$(".controlButton.pause").show();
-		audioElement.play();
-	}
-
-	function pauseSong() {
-		$(".controlButton.play").show();
-		$(".controlButton.pause").hide();
-		audioElement.pause();
-	}
+	
 </script>
-<!-- Now Playing Container zinc-->
 
 <div id="nowPlayingBarContainer"
 	class="flex flex-col items-center justify-center font-semibold transition-colors text-black dark:text-white md:flex-row md:px-10">
@@ -305,7 +167,6 @@ $jsonArray = json_encode($resultArray);
 				</div>
 
 				<br>
-				
 				<div class="playbackBar flex flex-nowrap w-full gap-4 items-center justify-between text-md">
 					<span class="progressTime current text-center w-8">0.00</span>
 
@@ -348,31 +209,28 @@ $jsonArray = json_encode($resultArray);
 	<div class="container mx-auto p-4 h-full justify-center space-y-8">
 
 		<div class="min-w-0 p-4 text-white bg-blue-600 rounded-lg shadow-xs h-1/3">
-			<h2 class="mb-4 font-semibold">
-				Hello,
-				<?php echo $_SESSION['name']; ?>
-			</h2>
-			<h4 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
-				Username =
-				<?php echo $_SESSION['userLoggedIn']; ?>
-				<br>
-				ImagePath =
-				<?php echo $_SESSION['profilePic']; ?>
-				<br>
-				Role =
-				<?php echo $_SESSION['role']; ?>
+			<h4 class="mb-4 font-semibold">
+				Hello, <?php echo $_SESSION['name']; ?>
 			</h4>
+			<p class="font-semibold">
+				Username = <?php echo $_SESSION['userLoggedIn'];?>
+				<br>
+				ImagePath = <?php echo $_SESSION['profilePic']; ?>
+				<br>
+				Role = <?php echo $_SESSION['role']; ?>
+			</p>
 		</div>
 
 		<div class="min-w-0 p-4 text-white bg-green-600 rounded-lg shadow-xs h-1/3">
 			<h4 class="mb-4 font-semibold">
-				Placeholder 2, what can ya do?!
+				Rules and Regulations
 			</h4>
 			<p>
-				Bit more text to fill the void<br>
-				Nothing to see here folks, scroll down for tunes...<br>
-				Click a song to play it, click an artist to see more<br>
-				Click an album or a genre and you'll figure the rest out!<br>
+				You can upload your own music to this website!<br>
+				Click the 'Contribute' button in the menu to start.<br>
+				Be aware, you must only upload Copyright free music. <br>
+				This site is for sharing royalty free tunes<br>
+				If it's on Spotify, it doesn't belong here!<br>
 			</p>
 		</div>
 

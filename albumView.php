@@ -24,7 +24,7 @@ $artistId = $artist->getId();
 
 	<div class="rightSection bg-blue-400 w-3/4 m-8 justify-center items-center text-center"><br>
 		<h2 class="text-2xl"><?php echo $album->getTitle(); ?></h2><br>
-		<p role="link" tabindex="0" onclick="openPage('artist.php?id=$artistId')">By <?php echo $artist->getName(); ?></p><br>
+		<p role="link" tabindex="0" onclick="openPage('artistView.php?id=$artistId')">By <?php echo $artist->getName(); ?></p><br>
 		<p class="text-xl"><?php echo $album->getNumberOfSongs(); ?> songs</p><br>
 	</div>
 
