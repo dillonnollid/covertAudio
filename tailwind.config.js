@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 
 /** npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/tailwind.output.css --watch */
-module.exports = {
+module.exports = {  
+  darkMode: 'class',
   content: [
     './*.php',
     './assets/**/*.{js,php}',
@@ -13,5 +14,6 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  purge: ['./**/*.html', './**/*.php', './**/*.js'],
 }
 

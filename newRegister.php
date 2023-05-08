@@ -26,14 +26,13 @@ function getInputValue($name) {
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <script src="./assets/js/init-alpine.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/js/register.js"></script>
 
 </head>
-<body>
+<body x-data="data()" x-init="$watch('dark', value => document.documentElement.classList.toggle('dark', value))">
 
 <?php
 if(isset($_POST['registerButton'])) {

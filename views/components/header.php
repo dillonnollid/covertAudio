@@ -19,7 +19,7 @@ else {
 }
 ?>
 <!DOCTYPE html>
-<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+<html lang="en" :class="{ 'theme-dark': dark }" >
 <head>
     <title>covertAudio</title>
     <meta charset="UTF-8" />
@@ -37,7 +37,7 @@ else {
     <link rel="stylesheet" href="assets/css/tailwind.output.css" />
 </head>
 
-<body class="min-h-screen">
+<body x-data="data()" x-init="$watch('dark', value => document.documentElement.classList.toggle('dark', value))">
 
     <div id="mainContainer" class="flex bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
 

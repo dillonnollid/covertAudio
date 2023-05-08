@@ -1,6 +1,7 @@
 function data() {
   function getThemeFromLocalStorage() {
     // if user already changed the theme, use it
+    //console.log("Getting theme from Local Storage");
     if (window.localStorage.getItem('dark')) {
       return JSON.parse(window.localStorage.getItem('dark'))
     }
@@ -13,18 +14,23 @@ function data() {
   }
 
   function setThemeToLocalStorage(value) {
+    //console.log("Setting Local Storage theme to dark = " + value);
     window.localStorage.setItem('dark', value)
   }
 
   return {
     dark: getThemeFromLocalStorage(),
     toggleTheme() {
-      this.dark = !this.dark
-      setThemeToLocalStorage(this.dark)
+      this.dark = !this.dark;
+      console.log("Toggling theme to dark=" + this.dark);
+      setThemeToLocalStorage(this.dark);
+      //document.documentElement.classList.toggle("dark", this.dark);
     },
+    
     isSideMenuOpen: false,
     toggleSideMenu() {
       this.isSideMenuOpen = !this.isSideMenuOpen
+      //console.log("Toggling side menu");
     },
     closeSideMenu() {
       this.isSideMenuOpen = false
