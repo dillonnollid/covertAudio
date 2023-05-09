@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/tailwind.output.css --watch"
+  },
   "devDependencies": {
     "tailwindcss": "^3.3.2"
   }

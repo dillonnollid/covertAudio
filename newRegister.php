@@ -1,19 +1,19 @@
 <?php
-//config connects us to the database. Gives us a $con object including the connection. Connection is required to create Account object like shown below! Constants does exactly what it says on the tin, just contains our String constants.
-include("includes/config.php");
-include("models/Account.php");
-include("models/Constants.php");
+    //config connects us to the database. Gives us a $con object including the connection. Connection is required to create Account object like shown below! Constants does exactly what it says on the tin, just contains our String constants.
+    include("includes/config.php");
+    include("models/Account.php");
+    include("models/Constants.php");
 
-$account = new Account($con);
+    $account = new Account($con);
 
-include("includes/handlers/register-handler.php");
-include("includes/handlers/login-handler.php");
+    include("includes/handlers/register-handler.php");
+    include("includes/handlers/login-handler.php");
 
-function getInputValue($name) {
-    if(isset($_POST[$name])) {
-        echo $_POST[$name];
+    function getInputValue($name) {
+        if(isset($_POST[$name])) {
+            echo $_POST[$name];
+        }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@ function getInputValue($name) {
     <script src="./assets/js/init-alpine.js" defer></script>
 </head>
 
-<body x-data="data()" x-init="$watch('dark', value => document.documentElement.classList.toggle('dark', value))">
+<body x-data="data()" x-init="$watch('dark', value => document.documentElement.classList.toggle('dark', value))" class="bg-gradient-to-r from-gray-900 to-purple-900 animate-gradient-x antialiased">
 
 <?php
 if(isset($_POST['registerButton'])) {
@@ -54,7 +54,7 @@ if(isset($_POST['registerButton'])) {
 }
 ?>
 
-<div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+<div class="flex items-center min-h-screen p-6">
     <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <div class="flex flex-col overflow-y-auto md:flex-row">
 

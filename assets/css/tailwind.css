@@ -2,22 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    h1 {
-        @apply text-3xl;
-    }
-
-    h2 {
-        @apply text-xl;
-    }
+.buttons {
+    @apply flex justify-between items-center md:px-4;
+}
+.controlButton {
+    @apply w-14 h-14 bg-red-400 text-sm font-medium leading-5 text-white transition-colors duration-150 border border-transparent rounded-lg active:bg-blue-600 focus:outline-none;
+}
+  
+.controlButton:hover {
+    @apply bg-blue-700 shadow-lg;
 }
 
-@layer components {
-    .btn-blue {
-        /*@apply bg-blue-500 py-2 px-4 rounded-xl font-bold hover:bg-blue-700;*/
-    }
+.playbackBar {
+    @apply flex flex-nowrap w-full gap-4 items-center justify-between;
 }
 
-@layer utilities {
+.progressBar {
+    @apply overflow-hidden rounded-md inline-flex items-center w-full cursor-pointer h-2.5;
+}
 
+.volumeBar {
+    @apply flex flex-row w-full gap-4 items-center justify-between;
+}
+
+.progressBarBg {
+    @apply h-full w-full overflow-hidden rounded-md border-2;
+}
+
+.progress {
+    @apply flex h-full items-baseline justify-center overflow-hidden break-all bg-gradient-to-tr from-purple-600 to-purple-400 text-white;
+}
+
+.progressTime {
+    @apply text-center w-8;
 }

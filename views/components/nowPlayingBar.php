@@ -129,56 +129,56 @@ $jsonArray = json_encode($resultArray);
 
 		<div id="nowPlayingCenter">
 			<div class="content playerControls px-4 py-2">
-				<div class="buttons flex justify-between items-center md:px-4">
+				<div class="buttons">
 					<!--<button class="controlButton shuffle flex-auto w-14" title="Shuffle button" onclick="setShuffle()">
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>-->
 
 					<button id="shuffle" title="Shuffle button" onclick=""
-						class="controlButton shuffle w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+						class="controlButton shuffle">
 						<i class="fa fa-random fa-2x text-white" aria-hidden="true"></i>
 					</button>
 
 					<button id="previous" title="Previous button" onclick=""
-						class="controlButton previous w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+						class="controlButton previous">
 						<i class="fa fa-backward fa-2x text-white"></i>
 					</button>
 
 					<button id="play" title="Play button" onclick=""
-						class="controlButton play w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+						class="controlButton play">
 						<i class="fa fa-play fa-2x text-white" id="play-btn"></i>
 					</button>
 
 					<button id="pause" title="Pause button" onclick=""
-						class="controlButton pause w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue"
+						class="controlButton pause"
 						style="display: none;">
 						<i class="fa fa-pause fa-2x text-white" id="pause-btn"></i>
 					</button>
 
 					<button id="next" title="Next button" onclick=""
-						class="controlButton next w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+						class="controlButton next">
 						<i class="fa fa-forward fa-2x text-white"></i>
 					</button>
 
 					<button id="repeat" title="Repeat button" onclick=""
-						class="controlButton repeat w-14 h-14 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
+						class="controlButton repeat">
 						<i class="fa fa-repeat fa-2x text-white" aria-hidden="true"></i>
 					</button>
 				</div>
 
 				<br>
-				<div class="playbackBar flex flex-nowrap w-full gap-4 items-center justify-between text-md">
-					<span class="progressTime current text-center w-8">0.00</span>
+				<div class="playbackBar">
+					<span class="progressTime current">0.00</span>
 
-					<div class="progressBar inline-flex items-center w-full cursor-pointer h-2.5">
-						<div class="progressBarBg bg-blue-gray-50 h-full w-full overflow-hidden rounded-md border-2">
+					<div class="progressBar">
+						<div class="progressBarBg">
 							<div
-								class="progress flex h-full items-baseline justify-center overflow-hidden break-all bg-gradient-to-tr from-purple-600 to-purple-400 text-white">
+								class="progress">
 							</div>
 						</div>
 					</div>
 
-					<span class="progressTime remaining text-center w-8">0.00</span>
+					<span class="progressTime remaining">0.00</span>
 				</div>
 
 
@@ -186,17 +186,16 @@ $jsonArray = json_encode($resultArray);
 		</div>
 
 		<div id="nowPlayingRight">
-			<div class="volumeBar flex flex-row w-full gap-4 items-center justify-between text-md">
+			<div class="volumeBar">
 
 				<button id="volume" title="Volume button" onclick="setMute()"
-					class="controlButton volume w-12 h-12 rounded-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:shadow-outline-blue">
-					<i class="fa  fa-volume-off fa-2x text-white" aria-hidden="true"></i>
+					class="controlButton volume">
+					<i class="fa fa-volume-off fa-2x text-white" aria-hidden="true"></i>
 				</button>
 
-				<div class="progressBar h-full w-full overflow-hidden rounded-md">
-					<div class="progressBarBg h-2 w-full rounded-lg border-2">
-						<div
-							class="progress flex h-full items-baseline justify-center overflow-hidden break-all bg-gradient-to-tr from-purple-600 to-purple-400 text-white">
+				<div class="progressBar">
+					<div class="progressBarBg">
+						<div class="progress">
 						</div>
 					</div>
 				</div>
