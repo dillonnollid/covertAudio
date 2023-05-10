@@ -1,6 +1,6 @@
-<aside class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0" >
-    <div class="py-4 text-gray-500 dark:text-gray-400">
-        <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200">
+<aside class="desktopAside">
+    <div class="asideText">
+        <a class="logoText">
             <span class="ml-4 cursor-pointer" role="link" tabindex="0" onclick="openPage('browse.php')">covertAudio</span>
         </a>
 

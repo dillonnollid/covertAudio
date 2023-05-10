@@ -39,8 +39,8 @@ else {
 
 <body x-data="data()" x-init="$watch('dark', value => document.documentElement.classList.toggle('dark', value))">
 
-    <div id="mainContainer" class="flex bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
+    <div id="mainContainer" class="mainContainer" :class="{ 'overflow-hidden': isSideMenuOpen }">
 
         <?php include("views/components/sideSearchBarContainer.php"); ?>
 
-        <div id="mainContent" class="container min-h-screen overflow-y-auto justify-center items-center">
+        <div id="mainContent" class="mainContent">

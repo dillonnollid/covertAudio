@@ -98,29 +98,26 @@ $jsonArray = json_encode($resultArray);
 			console.log("Repeat");
 		});
 	});
-
 	//Calculate time using the offset (where on the progress bar they clicked)
 	
 </script>
 
-<div id="nowPlayingBarContainer"
-	class="flex flex-col items-center justify-center font-semibold transition-colors text-black dark:text-white md:flex-row md:px-10">
+<div class="nowPlayingBarContainer">
 	<!-- Outer div that holds the left, center and right divs-->
-	<div id="nowPlayingBar" class="container mx-auto my-auto p-4 md:w-2/3">
+	<div class="nowPlayingBar">
 
-		<div id="nowPlayingLeft" class="">
-			<div class="content p-6 justify-center items-center mx-auto flex flex-col">
+		<div class="nowPlayingLeft">
+			<div class="content">
 				<span class="albumLink">
 					<img role="link" tabindex="0" src=""
-						class="albumArtwork sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-xl mx-auto hover:scale-105 duration-200 cursor-pointer">
+						class="albumArtwork">
 				</span>
 
-				<div class="trackInfo text-center p-4 flex flex-col">
-					<span class="trackName font-bold cursor-pointer">
+				<div class="trackInfo">
+					<span class="trackName">
 						<span role="link" tabindex="0"></span>
 					</span>
-					<br>
-					<span class="artistName font-normal cursor-pointer">
+					<span class="artistName">
 						<span role="link" tabindex="0"></span>
 					</span>
 				</div>
@@ -128,7 +125,7 @@ $jsonArray = json_encode($resultArray);
 		</div>
 
 		<div id="nowPlayingCenter">
-			<div class="content playerControls px-4 py-2">
+			<div class="content px-4 py-2">
 				<div class="buttons">
 					<!--<button class="controlButton shuffle flex-auto w-14" title="Shuffle button" onclick="setShuffle()">
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
@@ -136,7 +133,7 @@ $jsonArray = json_encode($resultArray);
 
 					<button id="shuffle" title="Shuffle button" onclick=""
 						class="controlButton shuffle">
-						<i class="fa fa-random fa-2x text-white" aria-hidden="true"></i>
+						<i class="fa fa-random fa-2x text-white"></i>
 					</button>
 
 					<button id="previous" title="Previous button" onclick=""
@@ -162,7 +159,7 @@ $jsonArray = json_encode($resultArray);
 
 					<button id="repeat" title="Repeat button" onclick=""
 						class="controlButton repeat">
-						<i class="fa fa-repeat fa-2x text-white" aria-hidden="true"></i>
+						<i class="fa fa-repeat fa-2x text-white"></i>
 					</button>
 				</div>
 
@@ -205,9 +202,9 @@ $jsonArray = json_encode($resultArray);
 
 	</div><!-- END NOW PLAYING BAR -->
 
-	<div class="container mx-auto p-4 h-full justify-center space-y-8">
+	<div class="messageContainer">
 
-		<div class="min-w-0 p-4 text-white bg-blue-600 rounded-lg shadow-xs h-1/3">
+		<div class="messageBox">
 			<h4 class="mb-4 font-semibold">
 				Hello, <?php echo $_SESSION['name']; ?>
 			</h4>
@@ -220,7 +217,7 @@ $jsonArray = json_encode($resultArray);
 			</p>
 		</div>
 
-		<div class="min-w-0 p-4 text-white bg-green-600 rounded-lg shadow-xs h-1/3">
+		<div class="messageBox">
 			<h4 class="mb-4 font-semibold">
 				Rules and Regulations
 			</h4>

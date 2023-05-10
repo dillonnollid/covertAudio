@@ -7,12 +7,12 @@
     x-transition:leave="transition ease-in-out duration-150"
     x-transition:leave-start="opacity-100"
     x-transition:leave-end="opacity-0"
-    class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
+    class="hamburgerBackdrop">
 </div>
 
 <!-- Mobile sidebar -->
 <aside
-    class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
+    class="mobileAside"
     x-show="isSideMenuOpen"
     x-transition:enter="transition ease-in-out duration-150"
     x-transition:enter-start="opacity-0 transform -translate-x-20"
@@ -23,8 +23,8 @@
     @click.away="closeSideMenu"
     @keydown.escape="closeSideMenu">
 
-    <div class="py-4 text-gray-500 dark:text-gray-400">
-        <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#" >
+    <div class="asideText">
+        <a class="logoText" href="#">
             <span class="ml-4" role="link" tabindex="0" onclick="openPage('browse.php')">covertAudio</span>
         </a>
 

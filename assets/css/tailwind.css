@@ -2,8 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Main Elements */
+.mainContainer {
+    @apply flex bg-gray-50 dark:bg-gray-900;
+}
+
+.mainContent {
+    @apply container min-h-screen overflow-y-auto justify-center items-center;
+}
+
+/* Aside Elements*/
+.hamburgerBackdrop {
+    @apply fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center;
+}
+
+.mobileAside {
+    @apply fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden;
+}
+
+.desktopAside {
+    @apply z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0;
+}
+
+.asideText {
+    @apply text-gray-500 dark:text-gray-400 py-4;
+}
+
+.logoText {
+    @apply ml-6 text-lg font-bold text-gray-800 dark:text-gray-200;
+}
+
+/* Now Playing Bar Elements */
 .nowPlayingBarContainer {
-    @apply flex flex-col items-center justify-center font-semibold transition-colors text-black dark:text-white md:flex-row md:px-10;
+    @apply flex flex-col items-center justify-center font-semibold transition-colors text-black dark:text-white md:flex-row md:px-10 space-y-4 md:space-y-0;
 }
 
 .nowPlayingBar {
@@ -11,15 +42,15 @@
 }
 
 .content {
-    @apply flex flex-col justify-center items-center mx-auto p-6;
+    @apply flex flex-col justify-center items-center mx-auto md:py-6;
 }
 
 .albumArtwork {
-    @apply sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-xl mx-auto hover:scale-105 duration-200 cursor-pointer;
+    @apply w-52 h-52 sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-xl mx-auto hover:scale-105 duration-200 cursor-pointer;
 }
 
 .trackInfo {
-    @apply flex flex-col text-center p-4;
+    @apply flex flex-col text-center leading-loose p-4;
 }
 
 .trackName {
@@ -31,14 +62,15 @@
 }
 
 .buttons {
-    @apply flex justify-between items-center md:px-4;
+    @apply flex justify-between items-center w-full md:px-4;
 }
+
 .controlButton {
-    @apply w-14 h-14 bg-red-400 text-sm font-medium leading-5 text-white transition-colors duration-150 border border-transparent rounded-lg active:bg-blue-600 focus:outline-none;
+    @apply w-12 h-12 md:w-14 md:h-14 bg-purple-600 text-sm font-medium leading-5 text-white transition-colors duration-150 border border-transparent rounded-lg active:bg-blue-600 focus:outline-none;
 }
   
 .controlButton:hover {
-    @apply bg-blue-700 shadow-lg;
+    @apply bg-purple-700 shadow-lg;
 }
 
 .playbackBar {
@@ -54,21 +86,22 @@
 }
 
 .progressBarBg {
-    @apply h-full w-full overflow-hidden rounded-md border-2;
+    @apply h-full w-full overflow-hidden rounded-md border-2 whitespace-nowrap;
 }
 
 .progress {
-    @apply flex h-full items-baseline justify-center overflow-hidden break-all bg-gradient-to-tr from-purple-600 to-purple-400 text-white;
+    @apply flex h-full items-baseline justify-center overflow-hidden break-all bg-gradient-to-tr from-purple-600 to-purple-400 text-white whitespace-nowrap;
 }
 
 .progressTime {
-    @apply text-center w-8;
+    @apply text-center w-12 whitespace-nowrap;
 }
 
+/* */
 .messageContainer {
-    @apply container mx-auto p-4 h-full justify-center space-y-8;
+    @apply container mx-auto p-4 h-full justify-center space-y-4 md:space-y-8;
 }
 
 .messageBox {
-    @apply min-w-0 p-4 text-white bg-purple-600 rounded-lg h-1/3;
+    @apply min-w-0 p-4 text-white bg-purple-600 rounded-lg shadow-md;
 }
