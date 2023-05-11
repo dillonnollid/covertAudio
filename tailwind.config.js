@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-
-/** npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/tailwind.output.css --watch */
+/** add this to package.json under 'dev' -> npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/tailwind.output.css --watch */
 module.exports = {  
   darkMode: 'class',
   content: [
@@ -62,4 +61,3 @@ module.exports = {
   plugins: [],
   purge: ['./**/*.html', './**/*.php', './**/*.js'],
 }
-

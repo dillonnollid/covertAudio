@@ -182,7 +182,7 @@ $jsonArray = json_encode($resultArray);
 			</div>
 		</div>
 
-		<div id="nowPlayingRight">
+		<!--<div id="nowPlayingRight">
 			<div class="volumeBar">
 
 				<button id="volume" title="Volume button" onclick="setMute()"
@@ -198,7 +198,7 @@ $jsonArray = json_encode($resultArray);
 				</div>
 
 			</div>
-		</div>
+		</div>-->
 
 	</div><!-- END NOW PLAYING BAR -->
 

@@ -5,13 +5,12 @@ include_once("mobileAside.php");
 ?>
 
 <!-- DIV OUTSIDE HEADER -->
-<div class="flex flex-col flex-1 w-full">
-    <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
-        <div class="container flex items-center justify-between h-full px-6 mx-auto text-blue-600 dark:text-purple-300">
-
+<div class="outsideHeader">
+    <header class="mainHeader">
+        <div class="subHeader">
             <!-- Mobile hamburger -->
             <button
-                class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+                class="hamburger"
                 @click="toggleSideMenu"
                 aria-label="Menu">
                 <svg
@@ -29,6 +28,7 @@ include_once("mobileAside.php");
             <!-- Search input NOT YET CONFIGURED WITH TW-->
             <div class="flex justify-center flex-1 lg:mr-32">
                 <div class="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
+                    <!-- Search Icon Container -->
                     <div class="absolute inset-y-0 flex items-center pl-2">
                         <svg
                             class="w-4 h-4"
@@ -41,6 +41,7 @@ include_once("mobileAside.php");
                                 clip-rule="evenodd"></path>
                         </svg>
                     </div>
+
                     <input
                         class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
                         type="text"
@@ -50,6 +51,7 @@ include_once("mobileAside.php");
                 </div>
             </div>
 
+            <!-- Header Button List -->
             <ul class="flex items-center flex-shrink-0 space-x-6">
                 <!-- Theme toggler -->
                 <li class="flex">

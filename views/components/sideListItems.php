@@ -97,14 +97,18 @@
         </button>
         <template x-if="isPagesMenuOpen">
             <ul
-                x-transition:enter="transition-all ease-in-out duration-300"
-                x-transition:enter-start="opacity-25 max-h-0"
-                x-transition:enter-end="opacity-100 max-h-xl"
-                x-transition:leave="transition-all ease-in-out duration-300"
-                x-transition:leave-start="opacity-100 max-h-xl"
-                x-transition:leave-end="opacity-0 max-h-0"
-                class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
-                aria-label="submenu">
+            x-show.transition.origin.top="isPagesMenuOpen"
+            x-transition:enter="transition ease-out duration-900"
+            x-transition:enter-start="opacity-0 transform scale-95"
+            x-transition:enter-end="opacity-100 transform scale-100"
+            x-transition:leave="transition ease-in duration-500"
+            x-transition:leave-start="opacity-100 transform scale-100"
+            x-transition:leave-end="opacity-0 transform scale-95"
+            class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+            aria-label="submenu"
+            style="max-height: 0;"
+            x-bind:style="isPagesMenuOpen ? 'max-height: none;' : 'max-height: 0;'">
+            <!-- Your list items here -->
 
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
                     <a class="w-full" onclick="openPage('create.php?id=song')">Add Song</a>
