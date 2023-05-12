@@ -21,7 +21,7 @@ $jsonArray = json_encode($resultArray);
 		setTrack(newPlaylist[0], newPlaylist, false);
 		updateVolumeProgressBar(audioElement.audio);//Volume bar not yet implemented with tailwind player
 
-		$("#nowPlayingBarContainer").on("mousedown touchstart mousemove touchmove", function (e) {
+		$("#nowPlayingBarContainer").on("mousedown click mousemove touchmove", function (e) {
 			e.preventDefault();//prevents default behaviour for these events. Since we are coding their behaviour. Cannot highlight the buttons and stuff in now playing.
 		});
 
@@ -68,32 +68,32 @@ $jsonArray = json_encode($resultArray);
 			mouseDown = false;
 		});
 
-		$("#play").on('click touchstart', function () {
+		$("#play").on('click', function () {
 			playSong();
 			console.log("Play");
 		});
 
-		$("#pause").on('click touchstart', function () {
+		$("#pause").on('click', function () {
 			pauseSong();
 			console.log("Pause");
 		});
 
-		$("#previous").on('click touchstart', function () {
+		$("#previous").on('click', function () {
 			prevSong();
 			console.log("Previous");
 		});
 
-		$("#next").on('click touchstart', function () {
+		$("#next").on('click', function () {
 			nextSong();
 			console.log("Next");
 		});
 
-		$("#shuffle").on('click touchstart', function () {
+		$("#shuffle").on('click', function () {
 			setShuffle();
 			console.log("Shuffle");
 		});
 
-		$("#repeat").on('click touchstart', function () {
+		$("#repeat").on('click', function () {
 			setRepeat();
 			console.log("Repeat");
 		});
@@ -125,7 +125,7 @@ $jsonArray = json_encode($resultArray);
 		</div>
 
 		<div id="nowPlayingCenter">
-			<div class="content px-4 py-2">
+			<div class="content py-2">
 				<div class="buttons">
 					<!--<button class="controlButton shuffle flex-auto w-14" title="Shuffle button" onclick="setShuffle()">
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">

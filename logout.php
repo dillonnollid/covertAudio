@@ -1,6 +1,6 @@
 <?php
 session_start();
 session_destroy();
-header("location:newRegister.php");
+header("location:register.php");
 exit();
 ?>

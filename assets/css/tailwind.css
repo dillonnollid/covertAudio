@@ -49,13 +49,13 @@
 }
 
 .generalInput {
-    @apply block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none dark:text-gray-300;
+    /*@apply block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none dark:text-gray-300;*/
+    @apply block w-full mb-1 text-lg border-0 rounded-md bg-gray-100 dark:bg-gray-700 placeholder-gray-600 dark:placeholder-gray-400 dark:border-gray-600 focus:border-purple-400 focus:outline-none dark:text-gray-300 focus:placeholder-gray-500 dark:focus:placeholder-gray-600 focus:bg-white;
 }
 
 .generalCenteredText {
     @apply text-gray-600 dark:text-gray-300 text-center;
 }
-
 
 
 /* Now Playing Bar Elements */
@@ -76,7 +76,7 @@
 }
 
 .trackInfo {
-    @apply flex flex-col text-center leading-loose p-4;
+    @apply flex flex-col text-center leading-loose p-2;
 }
 
 .trackName {

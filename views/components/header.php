@@ -14,7 +14,7 @@ if(isset($_SESSION['userLoggedIn'])) {
     $_SESSION["role"] = $userLoggedIn->getRoleName();
 }
 else {
-    header("Location: newRegister.php");
+    header("Location: register.php");
     exit();
 }
 ?>
