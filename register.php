@@ -54,11 +54,11 @@ if(isset($_POST['registerButton'])) {
 }
 ?>
 
-<div class="flex items-center min-h-screen p-6">
-    <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
-        <div class="flex flex-col overflow-y-auto md:flex-row">
+<div class="authPage">
+    <div class="authContainer">
+        <div class="authInner">
 
-            <div class="h-32 md:h-auto md:w-1/2">
+            <div class="authImageContainer">
                 <img
                     aria-hidden="true"
                     class="object-cover w-full h-full dark:hidden"
@@ -73,95 +73,95 @@ if(isset($_POST['registerButton'])) {
                 />
             </div>
 
-            <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+            <div class="formContainer">
 
                 <!-- Register Form -->
                 <form id="registerForm" action="register.php" method="POST" class="w-full">
-                    <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                    <h1 class="logo">
                         covertAuth - Register
                     </h1>
 
                     <!-- Username -->
-                    <label for="username" class="block text-sm">
-                        <span class="text-red-700 dark:text-red-400">
+                    <label for="username" class="labelStyle">
+                        <span class="errorText">
                             <?php echo $account->getError(Constants::$usernameCharacters);?>
                         </span>
-                        <span class="text-red-700 dark:text-red-400">
+                        <span class="errorText">
                             <?php echo $account->getError(Constants::$usernameTaken);?>
                         </span>
-                        <span class="text-gray-700 dark:text-gray-400">Username</span>
+                        <span class="labelText">Username</span>
                         <input
                             class="generalInput"
-                            id="username" name="username" type="text" placeholder="e.g. bartSimpson" value="<?php getInputValue('username') ?>" required/>
+                            id="username" name="username" type="text" placeholder="e.g. johnSmith" value="<?php getInputValue('username') ?>" required/>
                     </label>
 
                     <!-- First Name -->
-                    <label for="firstName" class="block text-sm">
-                        <span class="text-red-700 dark:text-red-400">
+                    <label for="firstName" class="labelStyle">
+                        <span class="errorText">
                             <?php echo $account->getError(Constants::$firstNameCharacters);?>
                         </span>
-                        <span class="text-gray-700 dark:text-gray-400">First name</span>
+                        <span class="labelText">First name</span>
                         <input
                             class="generalInput"
-                            id="firstName" name="firstName" type="text" placeholder="e.g. Bart" value="<?php getInputValue('firstName') ?>" required/>
+                            id="firstName" name="firstName" type="text" placeholder="e.g. John" value="<?php getInputValue('firstName') ?>" required/>
                     </label>
 
                     <!-- Last Name -->
-                    <label for="lastName" class="block text-sm">
-                        <span class="text-red-700 dark:text-red-400">
+                    <label for="lastName" class="labelStyle">
+                        <span class="errorText">
                             <?php echo $account->getError(Constants::$lastNameCharacters);?>
                         </span>
-                        <span class="text-gray-700 dark:text-gray-400">Last name</span>
+                        <span class="labelText">Last name</span>
                         <input
                             class="generalInput"
-                            id="lastName" name="lastName" type="text" placeholder="e.g. Simpson" value="<?php getInputValue('lastName') ?>" required/>
+                            id="lastName" name="lastName" type="text" placeholder="e.g. Smith" value="<?php getInputValue('lastName') ?>" required/>
                     </label>
 
                     <!-- Email 1 -->
-                    <label for="email" class="block text-sm">
-                        <span class="text-red-700 dark:text-red-400">
+                    <label for="email" class="labelStyle">
+                        <span class="errorText">
                             <?php echo $account->getError(Constants::$emailsDoNotMatch);?>
                         </span>
-                        <span class="text-red-700 dark:text-red-400">
+                        <span class="errorText">
                             <?php echo $account->getError(Constants::$emailInvalid);?>
                         </span>
-                        <span class="text-red-700 dark:text-red-400">
+                        <span class="errorText">
                             <?php echo $account->getError(Constants::$emailTaken);?>
                         </span>
-                        <span class="text-gray-700 dark:text-gray-400">Email</span>
+                        <span class="labelText">Email</span>
                         <input
                             class="generalInput"
-                            id="email" name="email" type="email" placeholder="e.g. bart@gmail.com" value="<?php getInputValue('email'); ?>" required/>
+                            id="email" name="email" type="email" placeholder="e.g. john@gmail.com" value="<?php getInputValue('email'); ?>" required/>
                     </label>
 
                     <!-- Repeat Email -->
-                    <label for="email2" class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Repeat Email</span>
+                    <label for="email2" class="labelStyle">
+                        <span class="labelText">Repeat Email</span>
                         <input
                             class="generalInput"
                             id="email2" name="email2" type="email" placeholder="e.g. Same as above" value="<?php getInputValue('email2'); ?>" required/>
                     </label>
 
                     <!-- Password -->
-                    <label for="password" class="block mt-4 text-sm">
-                        <span class="text-red-700 dark:text-red-400">
+                    <label for="password" class="labelStyle">
+                        <span class="errorText">
                             <?php echo $account->getError(Constants::$passwordsDoNoMatch);?>
                         </span>
-                        <span class="text-red-700 dark:text-red-400">
+                        <span class="errorText">
                             <?php echo $account->getError(Constants::$passwordNotAlphanumeric);?>
                         </span>
-                        <span class="text-red-700 dark:text-red-400">
+                        <span class="errorText">
                             <?php echo $account->getError(Constants::$passwordCharacters);?>
                         </span>
-                        <span class="text-gray-700 dark:text-gray-400">Password</span>
+                        <span class="labelText">Password</span>
                         <input
                             class="generalInput"
                             id="password" name="password" type="password" placeholder="Your password" required
                         />
                     </label>
                     <!-- Repeat Password -->
-                    <label for="password2" class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">
+                    <label for="password2" class="labelStyle">
+                        <span class="labelText">
                           Confirm password
                         </span>
                         <input
@@ -172,10 +172,10 @@ if(isset($_POST['registerButton'])) {
 
                     <!-- Privacy Policy -->
                     <div class="flex mt-6 text-sm">
-                        <label class="flex items-center dark:text-gray-400">
+                        <label class="labelText flex items-center">
                             <input
                                 type="checkbox"
-                                class="text-blue-600 form-checkbox focus:border-blue-400 focus:outline-none focus:shadow-outline-blue dark:focus:shadow-outline-gray"
+                                class="checkBox"
                             />
                             <span class="ml-2">
                                 I agree to the <span class="underline">privacy policy</span>
@@ -183,15 +183,15 @@ if(isset($_POST['registerButton'])) {
                         </label>
                     </div>
 
-                    <hr class="my-8" />
+                    <hr class="my-8">
 
-                    <button type="submit" name="registerButton" class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
+                    <button type="submit" name="registerButton" class="submitButton">
                         Create account
                     </button>
 
                     <!-- Switch to Login form-->
                     <p class="mt-4 hasAccountText">
-                        <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" id="hideRegister">
+                        <a class="themedText" id="hideRegister">
                             Already have an account? Click here!
                         </a>
                     </p>
@@ -199,31 +199,31 @@ if(isset($_POST['registerButton'])) {
 
                 <!-- Login Form -->
                 <form id="loginForm" action="register.php" method="POST" class="w-full">
-                    <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">covertAuth - Login</h1>
+                    <h1 class="logo">covertAuth - Login</h1>
                     <p>
                         <!-- These errors will only print if they exist obviously, getError checks if the error exists in our log array, if it exists in the array then it returns the error text! -->
-                        <span class="text-red-700 dark:text-red-400">
+                        <span class="errorText">
                             <?php echo $account->getError(Constants::$loginFailed);?>
                         </span>
-                        <label for="loginUsername" class="block text-sm text-gray-700 dark:text-gray-400" >Username</label>
-                        <input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. bartSimpson" value="<?php getInputValue('loginUsername') ?>" class="generalInput" required>
+                        <label for="loginUsername" class="labelStyle labelText">Username</label>
+                        <input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. johnSmith" value="<?php getInputValue('loginUsername') ?>" class="generalInput" required>
                     </p>
                     <br>
                     <p>
-                        <label for="loginPassword" class="block text-sm text-gray-700 dark:text-gray-400">Password</label>
+                        <label for="loginPassword" class="labelStyle labelText">Password</label>
                         <input id="loginPassword" name="loginPassword" type="password" placeholder="Your password" class="generalInput" required>
                     </p>
 
-                    <hr class="my-8" />
+                    <hr class="my-8">
 
-                    <button type="submit" name="loginButton" class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
+                    <button type="submit" name="loginButton" class="submitButton">
                         Log In
                     </button>
 
                     <br>
 
                     <div class="hasAccountText">
-                        <span id="hideLogin" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
+                        <span id="hideLogin" class="themedText">
                             Don't have an account yet? Signup here.
                         </span>
                     </div>

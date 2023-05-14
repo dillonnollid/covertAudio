@@ -14,6 +14,11 @@
 /tmp/tests/*
 !/tmp/tests/empty
 
+/assets/music/*
+/assets/.DS_Store
+.DS_Store
+.idea/*
+
 /logs/*
 !/logs/empty
 

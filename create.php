@@ -2,13 +2,12 @@
 include("includes/includedFiles.php"); 
 ?>
 
-<h1 class="pageHeadingBig"></h1>
-<div class="items-center justify-center m-10 px-4 py-4 md:px-24 md:py-24 w-auto h-auto">
+<div class="contributeContainer">
 
 	<?php if(isset($_GET["id"]) && trim($_GET["id"]) == 'song'){ ?>
-		<div class="items-center justify-center">
+		<div class="centerStuff">
 
-			<h1 class="generalCenteredText"><a href="https://ytmp3.cc/" target="blank">Add Song!<br><br>Click here go to youtube downloader. <br>Download MP3 in top quality and upload the file below!</a><br></h1>
+			<h1 class="generalCenteredText"><a href="https://ytmp3.cc/" target="blank">Add Song!<br>Click here go to youtube downloader. <br>Download MP3 in top quality and upload the file below!</a><br></h1>
 			<br>
 
 	        <form action="FileUpload.php" method="post" enctype="multipart/form-data">
@@ -59,7 +58,7 @@ include("includes/includedFiles.php");
 		<?php echo "<br><hr>";
 		$songQuery = mysqli_query($con, "SELECT * FROM songs");
 			$i=1;
-			echo "<ul class='generalCenteredText' style='padding:6%;text-size:20px;'><li>Existing Songs (Please don't duplicate)</li><br>";
+			echo "<ul class='generalCenteredText'><li>Existing Songs (Please don't duplicate)</li><br>";
 			while($row = mysqli_fetch_array($songQuery)) {
 				$name=$row['title'];
 				echo "<li>$name</li>";
@@ -77,7 +76,7 @@ include("includes/includedFiles.php");
 			 //print_r($links);die();
 			?>
 	<?php } elseif(isset($_GET["id"]) && trim($_GET["id"]) == 'artist'){ ?>
-		<div class="items-center justify-center p-6">
+		<div class="centerStuff">
 			<h1 class="generalCenteredText">Add Artist! </h1>
 			<h2 class="generalCenteredText">(Existing artists listed below)</h2><br>
 				
@@ -104,7 +103,7 @@ include("includes/includedFiles.php");
 		echo "<br><hr><br>";
 		$artistQuery = mysqli_query($con, "SELECT * FROM artists");
 			$i=1;
-			echo "<ul class='generalCenteredText' style='padding:6%;text-size:20px;'><li>Existing Artists (Please don't duplicate)</li><br>";
+			echo "<ul class='generalCenteredText'><li>Existing Artists (Please don't duplicate)</li><br>";
 			while($row = mysqli_fetch_array($artistQuery)) {
 				$name=$row['name'];
 				echo "<li>$name</li>";
@@ -112,8 +111,8 @@ include("includes/includedFiles.php");
 			}
 			echo "</ul>"; ?>
 	<?php } elseif(isset($_GET["id"]) && trim($_GET["id"]) == 'album'){ ?>
-		<div class="items-center justify-center p-6">
-			<h1 class="">Add Album! </h1>
+		<div class="centerStuff">
+			<h1 class="generalCenteredText">Add Album! </h1>
 			<h2 class="generalCenteredText">(Existing Albums listed below)</h2><br>
 				
 	        <form action="FileUpload.php" method="post" enctype="multipart/form-data">
@@ -150,7 +149,7 @@ include("includes/includedFiles.php");
 		<?php echo "<br><hr><br>";
 		$albumQuery = mysqli_query($con, "SELECT * FROM albums");
 			$i=1;
-			echo "<ul class='generalCenteredText' style='padding:6%;text-size:20px;'><li>Existing Albums (Please don't duplicate)</li><br>";
+			echo "<ul class='generalCenteredText'><li>Existing Albums (Please don't duplicate)</li><br>";
 			while($row = mysqli_fetch_array($albumQuery)) {
 				$name=$row['title'];
 				echo "<li>$name</li>";
@@ -158,7 +157,7 @@ include("includes/includedFiles.php");
 			}
 			echo "</ul>";
 		} elseif(isset($_GET["id"]) && trim($_GET["id"]) == 'genre'){ ?>
-			<div class="items-center justify-center p-6">
+			<div class="centerStuff">
 				<h1 class="generalCenteredText">Add Genre!</h1>
 				<h2 class="generalCenteredText">(Existing Genres listed below)</h2><br>
 					
@@ -172,7 +171,7 @@ include("includes/includedFiles.php");
 
 		<?php echo "<br><hr><br>";
 		$genreQuery = mysqli_query($con, "SELECT * FROM genres");
-			echo "<ul class='generalCenteredText' style='padding:6%;text-size:20px;'><li>Existing Genres (Please don't duplicate)</li><br>";
+			echo "<ul class='generalCenteredText'><li>Existing Genres (Please don't duplicate)</li><br>";
 			while($row = mysqli_fetch_array($genreQuery)) {
 				$name=$row['name'];
 				echo "<li>$name</li>";

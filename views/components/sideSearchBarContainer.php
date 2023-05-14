@@ -26,10 +26,10 @@ include_once("mobileAside.php");
             </button>
             
             <!-- Search input NOT YET CONFIGURED WITH TW-->
-            <div class="flex justify-center flex-1 lg:mr-32">
-                <div class="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
+            <div class="searchContainer">
+                <div class="searchBox">
                     <!-- Search Icon Container -->
-                    <div class="absolute inset-y-0 flex items-center pl-2">
+                    <div class="searchIcon">
                         <svg
                             class="w-4 h-4"
                             aria-hidden="true"
@@ -52,11 +52,11 @@ include_once("mobileAside.php");
             </div>
 
             <!-- Header Button List -->
-            <ul class="flex items-center flex-shrink-0 space-x-6">
+            <ul class="headerButtonList">
                 <!-- Theme toggler -->
                 <li class="flex">
                     <button
-                        class="rounded-md focus:outline-none focus:shadow-outline-purple"
+                        class="headerButton"
                         @click="toggleTheme"
                         aria-label="Toggle color mode">
 
@@ -89,7 +89,7 @@ include_once("mobileAside.php");
                 <!-- Notifications menu -->
                 <li class="relative">
                     <button
-                        class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
+                        class="headerButton relative align-middle"
                         @click="toggleNotificationsMenu"
                         @keydown.escape="closeNotificationsMenu"
                         aria-label="Notifications"
@@ -107,7 +107,7 @@ include_once("mobileAside.php");
                         <!-- Notification badge -->
                         <span
                             aria-hidden="true"
-                            class="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800">
+                            class="notifBadge">
                         </span>
                     </button>
                     <template x-if="isNotificationsMenuOpen">
@@ -117,26 +117,26 @@ include_once("mobileAside.php");
                             x-transition:leave-end="opacity-0"
                             @click.away="closeNotificationsMenu"
                             @keydown.escape="closeNotificationsMenu"
-                            class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700">
+                            class="notifMenu">
 
                             <li class="flex">
-                                <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+                                <a class="notifOption" href="#">
                                     <span onclick="openPage('messages.php')">Messages</span>
-                                    <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600" >
+                                    <span class="notifNumber">
                                 ?
                                 </span>
                                 </a>
                             </li>
                             <li class="flex">
-                                <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+                                <a class="notifOption" href="#">
                                     <span onclick="openPage('requests.php')" >Requests</span>
-                                    <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600">
+                                    <span class="notifNumber">
                                         ?
                                     </span>
                                 </a>
                             </li>
                             <li class="flex">
-                                <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+                                <a class="notifOption" href="#">
                                     <span onclick="openPage('alerts.php')">Alerts</span>
                                 </a>
                             </li>
@@ -147,13 +147,13 @@ include_once("mobileAside.php");
                 <!-- Profile menu -->
                 <li class="relative">
                     <button
-                        class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+                        class="headerButton align-middle"
                         @click="toggleProfileMenu"
                         @keydown.escape="closeProfileMenu"
                         aria-label="Account"
                         aria-haspopup="true">
                         <img
-                            class="object-cover w-8 h-8 rounded-full"
+                            class="profilePhoto"
                             src="./<?php echo $userLoggedIn->getProfilePhotoPath();?>"
                             alt=""
                             aria-hidden="true"/>
@@ -166,11 +166,11 @@ include_once("mobileAside.php");
                             x-transition:leave-end="opacity-0"
                             @click.away="closeProfileMenu"
                             @keydown.escape="closeProfileMenu"
-                            class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
+                            class="profileMenu"
                             aria-label="submenu">
 
                             <li class="flex">
-                                <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200">
+                                <a class="notifOption">
                                     <svg
                                         class="w-4 h-4 mr-3"
                                         aria-hidden="true"
@@ -188,7 +188,7 @@ include_once("mobileAside.php");
                                 </a>
                             </li>
                             <li class="flex">
-                                <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200">
+                                <a class="notifOption">
                                     <svg
                                         class="w-4 h-4 mr-3"
                                         aria-hidden="true"
@@ -207,7 +207,7 @@ include_once("mobileAside.php");
                                 </a>
                             </li>
                             <li class="flex">
-                                <a href="logout.php" class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
+                                <a href="logout.php" class="notifOption" href="#">
                                     <svg
                                         class="w-4 h-4 mr-3"
                                         aria-hidden="true"
