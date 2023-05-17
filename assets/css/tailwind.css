@@ -44,7 +44,7 @@
 }
 
 .submitButton {
-    @apply block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none;
+    @apply block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg hover:bg-purple-700 focus:outline-none;
 }
 
 .themedText {
@@ -143,7 +143,6 @@
 }
 
 .generalInput {
-    /*@apply block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none dark:text-gray-300;*/
     @apply block w-full mb-1 text-lg border-0 rounded-md bg-gray-100 dark:bg-gray-700 placeholder-gray-600 dark:placeholder-gray-400 dark:border-gray-600 focus:border-purple-400 focus:outline-none dark:text-gray-300 focus:placeholder-gray-500 dark:focus:placeholder-gray-600 focus:bg-white;
 }
 
@@ -186,11 +185,11 @@
 }
 
 .controlButton {
-    @apply w-12 h-12 md:w-14 md:h-14 bg-purple-600 text-sm font-medium leading-5 text-white transition-colors duration-150 border border-transparent rounded-lg active:bg-blue-600 focus:outline-none;
+    @apply w-12 h-12 md:w-14 md:h-14 text-sm font-medium leading-5 text-white transition-colors duration-150 border border-transparent rounded-lg focus:outline-none;
 }
   
 .controlButton:hover {
-    @apply bg-purple-700 shadow-lg;
+    @apply shadow-lg;
 }
 
 .playbackBar {

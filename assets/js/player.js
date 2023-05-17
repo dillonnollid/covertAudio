@@ -15,7 +15,7 @@ function prevSong() {
 }
 
 function nextSong() {
-    if (repeat == true) {
+    if (repeat) {
         audioElement.setTime(0);
         playSong();
         return;
@@ -35,29 +35,41 @@ function nextSong() {
 //Buttons/Icons not yet implemented on tailwind player
 function setRepeat() {
     repeat = !repeat;
-    var imageName = repeat ? "repeat-active.png" : "repeat.png";
-    $(".controlButton.repeat img").attr("src", "assets/images/icons/" + imageName);
+    
+    if (repeat) { //Indicates repeat was enabled, change button colour
+        if ($('.controlButton.repeat').removeClass('bg-purple-500') && $('.controlButton.repeat').addClass('bg-purple-800')) {
+            console.log("REPEAT BUTTON COLOR SWITCH SUCCESS!");
+        } 
+    } else { //Indicates repeat was disabled, revert button colour
+        if ($('.controlButton.repeat').removeClass('bg-purple-800') && $('.controlButton.repeat').addClass('bg-purple-500')) {
+            console.log("REPEAT BUTTON COLOR REVERT SUCCESS!");
+        } 
+    }
 }
 
 function setMute() {
     audioElement.audio.muted = !audioElement.audio.muted;
-    var imageName = audioElement.audio.muted ? "volume-mute.png" : "volume.png";
-    $(".controlButton.volume img").attr("src", "assets/images/icons/" + imageName);
+    /*var imageName = audioElement.audio.muted ? "volume-mute.png" : "volume.png";
+    $(".controlButton.volume img").attr("src", "assets/images/icons/" + imageName);*/
 }
 
 function setShuffle() {
     shuffle = !shuffle;
-    var imageName = shuffle ? "shuffle-active.png" : "shuffle.png";
-    $(".controlButton.shuffle img").attr("src", "assets/images/icons/" + imageName);
 
-    if (shuffle == true) {
-        //Randomize playlist
+    if (shuffle) { //Randomize playlist and change button colour
         shuffleArray(shufflePlaylist);
         currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
+
+        if ($('.controlButton.shuffle').removeClass('bg-purple-500') && $('.controlButton.shuffle').addClass('bg-purple-800')) {
+            console.log("SHUFFLE BUTTON COLOR SWITCH SUCCESS!");
+        } 
     }
-    else {
-        //shuffle has been deactivated, go back to regular playlist
+    else { //shuffle has been disabled, go back to regular playlist and revert button colour
         currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
+
+        if ($('.controlButton.shuffle').removeClass('bg-purple-800') && $('.controlButton.shuffle').addClass('bg-purple-500')) {
+            console.log("SHUFFLE BUTTON COLOR REVERT SUCCESS!");
+        } 
     }
 }
 
@@ -79,7 +91,7 @@ function setTrack(trackId, newPlaylist, play) {
         shuffleArray(shufflePlaylist);
     }
 
-    if (shuffle == true) {
+    if (shuffle) {
         currentIndex = shufflePlaylist.indexOf(trackId);
     }
     else {
@@ -99,7 +111,7 @@ function setTrack(trackId, newPlaylist, play) {
         $.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function (data) {
             var artist = JSON.parse(data);
             $(".trackInfo .artistName span").text(artist.name);
-            $(".trackInfo .artistName span").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
+            $(".trackInfo .artistName span").attr("onclick", "openPage('artistView.php?id=" + artist.id + "')");
         });
 
         //Another nested Ajax call, uses getAlbumJson ajax handler file, find album using track.album, then apply the data!
@@ -112,7 +124,7 @@ function setTrack(trackId, newPlaylist, play) {
 
         audioElement.setTrack(track);
 
-        if (play == true) {
+        if (play) {
             playSong();
         }
     });

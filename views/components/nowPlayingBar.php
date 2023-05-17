@@ -70,32 +70,32 @@ $jsonArray = json_encode($resultArray);
 
 		$("#play").on('click', function () {
 			playSong();
-			console.log("Play");
+			//console.log("Play");
 		});
 
 		$("#pause").on('click', function () {
 			pauseSong();
-			console.log("Pause");
+			//console.log("Pause");
 		});
 
 		$("#previous").on('click', function () {
 			prevSong();
-			console.log("Previous");
+			//console.log("Previous");
 		});
 
 		$("#next").on('click', function () {
 			nextSong();
-			console.log("Next");
+			//console.log("Next");
 		});
 
 		$("#shuffle").on('click', function () {
 			setShuffle();
-			console.log("Shuffle");
+			//console.log("Shuffle");
 		});
 
 		$("#repeat").on('click', function () {
 			setRepeat();
-			console.log("Repeat");
+			//console.log("Repeat");
 		});
 	});
 	//Calculate time using the offset (where on the progress bar they clicked)
@@ -131,34 +131,28 @@ $jsonArray = json_encode($resultArray);
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>-->
 
-					<button id="shuffle" title="Shuffle button" onclick=""
-						class="controlButton shuffle">
+					<button id="shuffle" title="Shuffle button" class="controlButton shuffle bg-purple-500">
 						<i class="fa fa-random fa-2x text-white"></i>
 					</button>
 
-					<button id="previous" title="Previous button" onclick=""
-						class="controlButton previous">
+					<button id="previous" title="Previous button" class="controlButton previous bg-purple-500">
 						<i class="fa fa-backward fa-2x text-white"></i>
 					</button>
 
-					<button id="play" title="Play button" onclick=""
-						class="controlButton play">
+					<button id="play" title="Play button" class="controlButton play bg-purple-500">
 						<i class="fa fa-play fa-2x text-white" id="play-btn"></i>
 					</button>
 
-					<button id="pause" title="Pause button" onclick=""
-						class="controlButton pause"
+					<button id="pause" title="Pause button" class="controlButton pause bg-purple-500"
 						style="display: none;">
 						<i class="fa fa-pause fa-2x text-white" id="pause-btn"></i>
 					</button>
 
-					<button id="next" title="Next button" onclick=""
-						class="controlButton next">
+					<button id="next" title="Next button" class="controlButton next bg-purple-500">
 						<i class="fa fa-forward fa-2x text-white"></i>
 					</button>
 
-					<button id="repeat" title="Repeat button" onclick=""
-						class="controlButton repeat">
+					<button id="repeat" title="Repeat button" class="controlButton repeat bg-purple-500">
 						<i class="fa fa-repeat fa-2x text-white"></i>
 					</button>
 				</div>
