@@ -205,6 +205,8 @@ $jsonArray = json_encode($resultArray);
 			<p class="font-semibold">
 				Username = <?php echo $_SESSION['userLoggedIn'];?>
 				<br>
+				Email = <?php echo $_SESSION['email'];?>
+				<br>
 				ImagePath = <?php echo $_SESSION['profilePic']; ?>
 				<br>
 				Role = <?php echo $_SESSION['role']; ?>

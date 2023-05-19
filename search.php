@@ -31,9 +31,9 @@ else {
 
 <?php if($term == "") exit(); ?>
 
-<div class="tracklistContainer borderBottom">
+<table class="niceTable">
 	<h2>SONGS</h2>
-	<ul class="tracklist">
+	<ul class="niceList">
 		
 		<?php
 		$songsQuery = mysqli_query($con, "SELECT id FROM songs WHERE title LIKE '$term%' LIMIT 10");
@@ -56,9 +56,9 @@ else {
 			$albumSong = new Song($con, $row['id']);
 			$albumArtist = $albumSong->getArtist();
 
-			echo "<li class='tracklistRow'>
+			echo "<li class='niceItem'>
 					<div class='trackCount'>
-						<img class='play' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
+						<img class='playIcon' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
 						<span class='trackNumber'>$i</span>
 					</div>
 
@@ -70,7 +70,7 @@ else {
 
 					<div class='trackOptions'>
 						<input type='hidden' class='songId' value='" . $albumSong->getId() . "'>
-						<img class='optionsButton' src='assets/images/icons/more.png' onclick='showOptionsMenu(this)'>
+						<img class='optionsIcon' src='assets/images/icons/more.png' onclick='showOptionsMenu(this)'>
 					</div>
 
 					<div class='trackDuration'>
@@ -90,9 +90,9 @@ else {
 		</script>
 
 	</ul>
-</div>
+</table>
 
-<div class="artistsContainer borderBottom">
+<div class="artistsContainer">
 
 	<h2>ARTISTOS</h2>
 

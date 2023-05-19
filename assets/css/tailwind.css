@@ -47,7 +47,7 @@
     @apply block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg hover:bg-purple-700 focus:outline-none;
 }
 
-.themedText {
+.colourText {
     @apply text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline;
 }
 
@@ -147,7 +147,7 @@
 }
 
 .generalCenteredText {
-    @apply text-gray-600 dark:text-gray-300 text-center;
+    @apply themeText text-center;
 }
 
 

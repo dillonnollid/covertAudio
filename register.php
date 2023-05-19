@@ -89,7 +89,7 @@ if(isset($_POST['registerButton'])) {
                         <span class="errorText">
                             <?php echo $account->getError(Constants::$usernameTaken);?>
                         </span>
-                        <span class="labelText">Username</span>
+                        <span class="themeText">Username</span>
                         <input
                             class="generalInput"
                             id="username" name="username" type="text" placeholder="e.g. johnSmith" value="<?php getInputValue('username') ?>" required/>
@@ -100,7 +100,7 @@ if(isset($_POST['registerButton'])) {
                         <span class="errorText">
                             <?php echo $account->getError(Constants::$firstNameCharacters);?>
                         </span>
-                        <span class="labelText">First name</span>
+                        <span class="themeText">First name</span>
                         <input
                             class="generalInput"
                             id="firstName" name="firstName" type="text" placeholder="e.g. John" value="<?php getInputValue('firstName') ?>" required/>
@@ -111,7 +111,7 @@ if(isset($_POST['registerButton'])) {
                         <span class="errorText">
                             <?php echo $account->getError(Constants::$lastNameCharacters);?>
                         </span>
-                        <span class="labelText">Last name</span>
+                        <span class="themeText">Last name</span>
                         <input
                             class="generalInput"
                             id="lastName" name="lastName" type="text" placeholder="e.g. Smith" value="<?php getInputValue('lastName') ?>" required/>
@@ -128,7 +128,7 @@ if(isset($_POST['registerButton'])) {
                         <span class="errorText">
                             <?php echo $account->getError(Constants::$emailTaken);?>
                         </span>
-                        <span class="labelText">Email</span>
+                        <span class="themeText">Email</span>
                         <input
                             class="generalInput"
                             id="email" name="email" type="email" placeholder="e.g. john@gmail.com" value="<?php getInputValue('email'); ?>" required/>
@@ -136,7 +136,7 @@ if(isset($_POST['registerButton'])) {
 
                     <!-- Repeat Email -->
                     <label for="email2" class="labelStyle">
-                        <span class="labelText">Repeat Email</span>
+                        <span class="themeText">Repeat Email</span>
                         <input
                             class="generalInput"
                             id="email2" name="email2" type="email" placeholder="e.g. Same as above" value="<?php getInputValue('email2'); ?>" required/>
@@ -153,7 +153,7 @@ if(isset($_POST['registerButton'])) {
                         <span class="errorText">
                             <?php echo $account->getError(Constants::$passwordCharacters);?>
                         </span>
-                        <span class="labelText">Password</span>
+                        <span class="themeText">Password</span>
                         <input
                             class="generalInput"
                             id="password" name="password" type="password" placeholder="Your password" required
@@ -161,7 +161,7 @@ if(isset($_POST['registerButton'])) {
                     </label>
                     <!-- Repeat Password -->
                     <label for="password2" class="labelStyle">
-                        <span class="labelText">
+                        <span class="themeText">
                           Confirm password
                         </span>
                         <input
@@ -172,7 +172,7 @@ if(isset($_POST['registerButton'])) {
 
                     <!-- Privacy Policy -->
                     <div class="flex mt-6 text-sm">
-                        <label class="labelText flex items-center">
+                        <label class="themeText flex items-center">
                             <input
                                 type="checkbox"
                                 class="checkBox"
@@ -191,7 +191,7 @@ if(isset($_POST['registerButton'])) {
 
                     <!-- Switch to Login form-->
                     <p class="mt-4 hasAccountText">
-                        <a class="themedText" id="hideRegister">
+                        <a class="colourText" id="hideRegister">
                             Already have an account? Click here!
                         </a>
                     </p>
@@ -205,12 +205,12 @@ if(isset($_POST['registerButton'])) {
                         <span class="errorText">
                             <?php echo $account->getError(Constants::$loginFailed);?>
                         </span>
-                        <label for="loginUsername" class="labelStyle labelText">Username</label>
+                        <label for="loginUsername" class="labelStyle themeText">Username</label>
                         <input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. johnSmith" value="<?php getInputValue('loginUsername') ?>" class="generalInput" required>
                     </p>
                     <br>
                     <p>
-                        <label for="loginPassword" class="labelStyle labelText">Password</label>
+                        <label for="loginPassword" class="labelStyle themeText">Password</label>
                         <input id="loginPassword" name="loginPassword" type="password" placeholder="Your password" class="generalInput" required>
                     </p>
 
@@ -223,7 +223,7 @@ if(isset($_POST['registerButton'])) {
                     <br>
 
                     <div class="hasAccountText">
-                        <span id="hideLogin" class="themedText">
+                        <span id="hideLogin" class="colourText">
                             Don't have an account yet? Signup here.
                         </span>
                     </div>

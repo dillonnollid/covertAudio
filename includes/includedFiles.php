@@ -8,6 +8,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
 	include("models/Playlist.php");
 	include("models/Genre.php");
 
+	$userLoggedIn;
 	if(isset($_GET['userLoggedIn'])) {
 		$userLoggedIn = new User($con, $_GET['userLoggedIn']);
 	} else {

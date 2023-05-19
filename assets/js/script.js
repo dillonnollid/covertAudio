@@ -13,7 +13,7 @@ var timer;
 /*$(document).click(function(click) {
 	var target = $(click.target);
 
-	if(!target.hasClass("item") && !target.hasClass("optionsButton")) {
+	if(!target.hasClass("item") && !target.hasClass("optionsIcon")) {
 		hideOptionsMenu();
 	}
 });

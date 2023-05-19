@@ -10,6 +10,7 @@ if(isset($_SESSION['userLoggedIn'])) {
     $userLoggedIn = new User($con, $_SESSION['userLoggedIn']);
     echo "<div></div>";//$userLoggedIn->getName();
     $_SESSION["name"] = $userLoggedIn->getName();
+    $_SESSION["email"] = $userLoggedIn->getEmail();;
     $_SESSION["profilePic"] = $userLoggedIn->getProfilePhotoPath();
     $_SESSION["role"] = $userLoggedIn->getRoleName();
 }

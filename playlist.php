@@ -11,7 +11,7 @@ $playlist = new Playlist($con, $playlistId);
 $owner = new User($con, $playlist->getOwner());
 ?>
 
-<div class="entityInfo">
+<div class="pageContainer">
 
 	<div class="leftSection">
 		<div class="playlistImage">
@@ -28,8 +28,8 @@ $owner = new User($con, $playlist->getOwner());
 
 </div>
 
-<div class="tracklistContainer">
-	<ul class="tracklist">
+<table class="niceTable">
+	<ul class="niceList">
 		
 		<?php
 		$songIdArray = $playlist->getSongIds();
@@ -40,9 +40,9 @@ $owner = new User($con, $playlist->getOwner());
 			$playlistSong = new Song($con, $songId);
 			$songArtist = $playlistSong->getArtist();
 
-			echo "<li class='tracklistRow'>
+			echo "<li class='niceListRow'>
 					<div class='trackCount'>
-						<img class='play' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $playlistSong->getId() . "\", tempPlaylist, true)'>
+						<img class='playIcon' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $playlistSong->getId() . "\", tempPlaylist, true)'>
 						<span class='trackNumber'>$i</span>
 					</div>
 
@@ -54,7 +54,7 @@ $owner = new User($con, $playlist->getOwner());
 
 					<div class='trackOptions'>
 						<input type='hidden' class='songId' value='" . $playlistSong->getId() . "'>
-						<img class='optionsButton' src='assets/images/icons/more.png' onclick='showOptionsMenu(this)'>
+						<img class='optionsIcon' src='assets/images/icons/more.png' onclick='showOptionsMenu(this)'>
 					</div>
 
 					<div class='trackDuration'>
@@ -74,7 +74,7 @@ $owner = new User($con, $playlist->getOwner());
 		</script>
 
 	</ul>
-</div>
+</table>
 
 <nav class="optionsMenu">
 	<input type="hidden" class="songId">

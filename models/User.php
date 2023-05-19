@@ -21,6 +21,10 @@ class User {
         return $this->username;
     }
 
+    public function getEmail() {
+        return $this->userData['email'];
+    }
+
     public function getName() {
         return $this->userData['firstName'] . ' ' . $this->userData['lastName'];
     }
