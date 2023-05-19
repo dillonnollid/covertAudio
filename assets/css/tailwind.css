@@ -31,7 +31,7 @@
     @apply text-red-700 dark:text-red-400;
 }
 
-.labelText {
+.themeText {
     @apply text-gray-700 dark:text-gray-400;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .asideText {
-    @apply text-gray-500 dark:text-gray-400 py-4;
+    @apply themeText py-4;
 }
 
 .logoText {
@@ -232,4 +232,93 @@
 
 .centerStuff {
     @apply items-center justify-center p-6;
+}
+
+/* Content Pages e.g. albumView */
+.pageContainer {
+    @apply flex flex-col md:flex-row justify-center items-center overflow-hidden m-8;
+}
+
+.leftSection {
+    @apply justify-center items-center mx-auto p-8;
+}
+
+.centerSection {
+    @apply justify-center items-center mx-auto p-8;
+}
+
+.rightSection {
+    @apply justify-center items-center rounded-lg text-center bg-purple-500 w-3/4 md:m-8 ;
+}
+
+.tableContainer {
+    @apply justify-center items-center w-auto overflow-hidden m-6 rounded-xl;
+}
+
+.niceTable {
+    @apply w-full whitespace-nowrap;
+}
+
+.niceList {
+    @apply list-none md:list-disc bg-white divide-y dark:divide-gray-700 dark:bg-gray-800;
+} 
+
+.niceItem {
+    @apply flex justify-between items-center w-auto p-2 md:h-20;
+}
+
+.trackCount {
+    @apply flex flex-row flex-auto basis-1/4 justify-around;
+}
+
+.trackInfo {
+    @apply flex flex-col basis-2/4 justify-center items-center content-between;
+}
+
+.trackOptions {
+    @apply flex flex-col flex-auto basis-1/4 items-center cursor-pointer;
+}
+
+.trackDuration {
+    @apply flex flex-col basis-1/4 items-center;
+}
+
+.trackNumber {
+    @apply my-auto p-2 themeText;
+}
+
+.trackName {
+    @apply font-medium h-1/2 themeText my-auto cursor-pointer;
+}
+
+.artistName {
+    @apply font-light h-1/2 themeText my-auto cursor-pointer;
+}
+
+.playIcon {
+    @apply my-auto w-10 h-10 p-2 cursor-pointer;
+}
+
+.optionsIcon {
+    @apply  w-8 h-8 my-auto;
+}
+
+.durationText {
+    @apply themeText;
+}
+
+.imageAnimation {
+    @apply shadow-lg hover:shadow-2xl;
+}
+
+
+/* Hide vertical scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide vertical scrollbar for IE, Edge and Firefox */
+body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
