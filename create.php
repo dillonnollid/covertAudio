@@ -7,7 +7,7 @@ include("includes/includedFiles.php");
 	<?php if(isset($_GET["id"]) && trim($_GET["id"]) == 'song'){ ?>
 		<div class="centerStuff">
 
-			<h1 class="generalCenteredText"><a href="https://ytmp3.cc/" target="blank">Add Song!<br>Click here go to youtube downloader. <br>Download MP3 in top quality and upload the file below!</a><br></h1>
+			<h1 class="generalCenteredText"><a href="https://mp3-convert.org/youtube-to-mp3/" target="blank">Add Song!<br>Click here go to youtube downloader. <br>Download MP3 in top quality and upload the file below!</a><br></h1>
 			<br>
 
 	        <form action="FileUpload.php" method="post" enctype="multipart/form-data">

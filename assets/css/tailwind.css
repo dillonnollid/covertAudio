@@ -31,6 +31,18 @@
     @apply text-red-700 dark:text-red-400;
 }
 
+.errorBox {
+    @apply bg-red-400 border-solid border-2 border-red-500 text-red-900 text-center p-4;
+}
+
+.successBox {
+    @apply bg-green-400 border-solid border-2 border-green-500 text-green-900 text-center p-4;
+}
+
+.centeredContainer {
+    @apply container mx-auto;
+}
+
 .themeText {
     @apply text-gray-700 dark:text-gray-400;
 }
@@ -157,7 +169,7 @@
 }
 
 .nowPlayingBar {
-    @apply container mx-auto my-auto p-4 md:w-2/3;
+    @apply centeredContainer my-auto p-4 md:w-2/3;
 }
 
 .content {
@@ -218,7 +230,7 @@
 
 /* Other Main Elements */
 .messageContainer {
-    @apply container mx-auto p-4 h-full justify-center space-y-4 md:space-y-8;
+    @apply centeredContainer p-4 h-full justify-center space-y-4 md:space-y-8;
 }
 
 .messageBox {
@@ -227,7 +239,7 @@
 
 /* Contribute Elements */
 .contributeContainer {
-    @apply items-center justify-center m-10 px-4 py-4 md:px-24 md:py-24 w-auto h-auto;
+    @apply items-center justify-center m-10 px-4 py-4 md:px-24 md:py-8 w-auto h-auto;
 }
 
 .centerStuff {

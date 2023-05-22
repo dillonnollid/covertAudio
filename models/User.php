@@ -1,5 +1,4 @@
 <?php
-
 class User {
     private $con;
     private $username;
@@ -48,6 +47,37 @@ class User {
             default:
                 return 'None';
         }
+    }
+
+    public function updateEmail($newEmail){
+        // Sanitize email input to protect against SQL injection
+        $newEmail = $this->con->real_escape_string($newEmail);
+
+        //If email doesn't exist, proceed and execute SQL update
+        $checkEmailQuery = mysqli_query($this->con, "SELECT email FROM users WHERE email='$newEmail'");
+        if(mysqli_num_rows($checkEmailQuery) == 0) {
+            // SQL query to update the email address
+            $sql = "UPDATE users SET email = '$newEmail' WHERE username = '$this->username'";
+        
+            // Perform the update        
+            if($this->con->query($sql)){
+                return true;
+            } else {
+                return false;
+            }
+        } else { 
+            // Email already exists
+            return false;
+        }
+        
+    }
+
+    public function updatePassword($oldPassword, $newPassword1, $newPassword2){
+        return true;//Temporary
+    }
+
+    public function updateProfilePhoto($imageFile){
+        return true;//Temporary
     }
 
 }

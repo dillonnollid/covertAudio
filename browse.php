@@ -1,7 +1,7 @@
 <?php include("includes/includedFiles.php");?>
 
 <div class="container p-6 mx-auto grid h-full">
-
+    <?php include("views/components/errorMessages.php");?>
     <?php include("views/components/nowPlayingBar.php");?>
     <br>
 

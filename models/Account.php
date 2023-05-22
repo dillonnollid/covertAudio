@@ -86,11 +86,17 @@
 		}
 
 		private function validateEmails($em, $em2) {
+			//Sanitize email variables
+			$em = $this->con->real_escape_string($em);
+			$em2 = $this->con->real_escape_string($em2);
+			
+			//Check emails and ensure both entries are matching
 			if($em != $em2) {
 				array_push($this->errorArray, Constants::$emailsDoNotMatch);
 				return;
 			}
 
+			//Validate email address
 			if(!filter_var($em, FILTER_VALIDATE_EMAIL)) {
 				array_push($this->errorArray, Constants::$emailInvalid);
 				return;
