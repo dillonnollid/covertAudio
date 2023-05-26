@@ -43,7 +43,7 @@ include_once("mobileAside.php");
                     </div>
 
                     <input
-                        class="generalInput pl-8 pr-2"
+                        class="searchInput pl-8 pr-2"
                         type="text"
                         placeholder="Search for stuff"
                         aria-label="Search"
@@ -169,7 +169,7 @@ include_once("mobileAside.php");
                             class="profileMenu"
                             aria-label="submenu">
 
-                            <li class="flex">
+                            <!--<li class="flex">
                                 <a class="notifOption">
                                     <svg
                                         class="w-4 h-4 mr-3"
@@ -186,7 +186,7 @@ include_once("mobileAside.php");
                                     </svg>
                                     <span role="link" tabindex="0" onclick="openPage('updateDetails.php')">Profile</span>
                                 </a>
-                            </li>
+                            </li>-->
                             <li class="flex">
                                 <a class="notifOption">
                                     <svg

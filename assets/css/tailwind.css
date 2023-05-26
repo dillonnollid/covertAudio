@@ -56,7 +56,7 @@
 }
 
 .submitButton {
-    @apply block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg hover:bg-purple-700 focus:outline-none;
+    @apply block w-full px-4 py-2 mt-4 md:mx-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg hover:bg-purple-700 focus:outline-none;
 }
 
 .colourText {
@@ -66,7 +66,7 @@
 
 /* Main Elements */
 .mainContainer {
-    @apply flex bg-gray-50 dark:bg-gray-900;
+    @apply flex bg-gradient-to-tr from-purple-200 to-gray-300 dark:from-purple-900 dark:to-gray-900;
 }
 
 .mainContent {
@@ -118,6 +118,10 @@
     @apply relative w-full max-w-xl mr-6 focus-within:text-purple-500;
 }
 
+.searchInput {
+    @apply block w-full mb-1 text-lg border-0 rounded-md bg-gray-100 dark:bg-gray-700 placeholder-gray-600 dark:placeholder-gray-400 dark:border-gray-600 focus:border-purple-400 focus:outline-none dark:text-gray-300 focus:placeholder-gray-500 dark:focus:placeholder-gray-600 focus:bg-white;
+}
+
 .searchIcon {
     @apply absolute inset-y-0 flex items-center pl-2;
 }
@@ -155,7 +159,7 @@
 }
 
 .generalInput {
-    @apply block w-full mb-1 text-lg border-0 rounded-md bg-gray-100 dark:bg-gray-700 placeholder-gray-600 dark:placeholder-gray-400 dark:border-gray-600 focus:border-purple-400 focus:outline-none dark:text-gray-300 focus:placeholder-gray-500 dark:focus:placeholder-gray-600 focus:bg-white;
+    @apply block w-full p-2.5 my-2 md:px-6 md:mx-4 text-base rounded-lg bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 focus:ring-purple-500 focus:border-purple-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500;
 }
 
 .generalCenteredText {
@@ -248,7 +252,7 @@
 
 /* Content Pages e.g. albumView */
 .pageContainer {
-    @apply flex flex-col md:flex-row justify-center items-center overflow-hidden m-8;
+    @apply flex flex-col md:flex-row m-8 justify-center items-center overflow-hidden;
 }
 
 .leftSection {
@@ -256,7 +260,7 @@
 }
 
 .centerSection {
-    @apply justify-center items-center mx-auto p-8;
+    @apply justify-center items-center mx-auto p-8 rounded-xl bg-gray-100 dark:bg-gray-800;
 }
 
 .rightSection {

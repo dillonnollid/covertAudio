@@ -12,7 +12,7 @@ $artist = new Artist($con, $artistId);
 ?>
 
 <div class="pageContainer p-8">
-	<div class="centerSection">
+	<div class="leftSection">
 		<div class="artistInfo bg-purple-400 w-3/4 m-8 justify-center items-center text-center">
 			<h1 class="artistName"><?php echo $artist->getName(); ?></h1>
 			<hr>
