@@ -1,12 +1,15 @@
 <?php
+include("models/Account.php");
 class User {
     private $con;
     private $username;
     private $userData;
+    private $account;
 
     public function __construct($con, $username) {
         $this->con = $con;
         $this->username = $username;
+        $this->account = new Account($con);
         $query = "SELECT firstName, lastName, email, profilePic, role FROM users WHERE username = ?";
         $stmt = $this->con->prepare($query);
         $stmt->bind_param("s", $this->username);
@@ -73,12 +76,62 @@ class User {
     }
 
     public function updatePassword($oldPassword, $newPassword1, $newPassword2){
-        return true;//Temporary
+        // Sanitize passwords to protect against SQL injection
+        $oldPassword    = $this->con->real_escape_string($oldPassword);
+        $newPassword1   = $this->con->real_escape_string($newPassword1);
+        $newPassword2   = $this->con->real_escape_string($newPassword2);
+        
+        if($this->account->login($this->username, $oldPassword) && $this->account->validatePasswords($newPassword1, $newPassword2)){
+            //Old password is correct, encrypt and update new password
+            $encryptedPw = md5($newPassword1);
+
+            $sql = "UPDATE users SET password = '$encryptedPw' WHERE username = '$this->username'";
+        
+            // Perform the update and return the result
+            if($this->con->query($sql)){
+                return true;
+            } else {
+                return false;
+            }   
+            
+        } else {
+            //Old password is incorrect
+            return false;
+        }
     }
 
     public function updateProfilePhoto($imageFile){
-        return true;//Temporary
+        // Check if file was uploaded without errors
+        if(isset($imageFile) && $imageFile['error'] == 0){
+            $valid_extensions = array("jpg", "jpeg", "png", "gif"); // Define valid file extensions
+    
+            $file_extension = pathinfo($imageFile["name"], PATHINFO_EXTENSION); // Extract the file extension
+    
+            if(in_array($file_extension, $valid_extensions)){ // Check if file extension is valid
+                $new_file_name = $this->username . "_" . time() . "." . $file_extension; // Generate unique file name to avoid overwriting other files
+    
+                $file_path = getcwd() . "\assets\images\profile-pics\\" . $new_file_name;
+    
+                if(move_uploaded_file($imageFile["tmp_name"], $file_path)){ // Move the file to the server
+                    // Update the profile photo in the database
+                    $sql = "UPDATE users SET profilePic = 'assets/images/profile-pics/$new_file_name' WHERE username = '$this->username'";
+    
+                    if($this->con->query($sql)){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else { // Failed to move file
+                    return false;
+                }
+            } else { // Invalid file extension
+                return false;
+            }
+        } else { // File not uploaded or other error occurred
+            return false;
+        }
     }
+    
 
 }
 

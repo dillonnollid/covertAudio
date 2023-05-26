@@ -85,7 +85,7 @@
 			}
 		}
 
-		private function validateEmails($em, $em2) {
+		public function validateEmails($em, $em2) {
 			//Sanitize email variables
 			$em = $this->con->real_escape_string($em);
 			$em2 = $this->con->real_escape_string($em2);
@@ -109,7 +109,7 @@
 			}
 		}
 
-		private function validatePasswords($pw, $pw2) {
+		public function validatePasswords($pw, $pw2) {
 			if($pw != $pw2) {
 				array_push($this->errorArray, Constants::$passwordsDoNoMatch);
 				return;

@@ -32,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header("Location: $redirect");
                 }
             } else {
-                header("Location: $redirect?error=Invalid email address!");
+                $_SESSION['error'] = "Invalid email address!";
+                header("Location: $redirect");
             }
             break;
 
@@ -44,12 +45,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Simple password validation - ensure non-empty and new passwords match
             if ($oldPassword && $newPassword1 && $newPassword2 && $newPassword1 === $newPassword2) {
                 if($userLoggedIn->updatePassword($oldPassword, $newPassword1, $newPassword2)) {
-                    header("Location: $redirect?success=Password updated successfully!");
+                    $_SESSION['success'] = "Password updated successfully!";
+                    header("Location: $redirect");
                 } else {
-                    header("Location: $redirect?error=Failed to update password :(");
+                    $_SESSION['error'] = "Failed to update password :(";
+                    header("Location: $redirect");
                 }
             } else {
-                header("Location: $redirect?error=Invalid password input!");
+                $_SESSION['error'] = "Invalid password input!";
+                header("Location: $redirect");
             }
             break;
 
@@ -58,12 +62,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Ensure file was uploaded and is the correct type, size, etc.
             if(isset($_FILES['imgupload']) && $_FILES['imgupload']['size'] > 0) {
                 if($userLoggedIn->updateProfilePhoto($_FILES['imgupload'])) {
-                    header("Location: $redirect?success=Profile photo updated successfully!");
+                    $_SESSION['success'] = "Profile photo updated successfully!";
+                    header("Location: $redirect");
                 } else {
-                    header("Location: $redirect?error=Failed to update profile photo :(");
+                    $_SESSION['error'] = "Failed to update profile photo :(";
+                    header("Location: $redirect");
                 }
             } else {
-                header("Location: $redirect?error=Invalid photo input!");
+                $_SESSION['error'] = "Invalid photo input!";
+                header("Location: $redirect");
             }
             break;
 

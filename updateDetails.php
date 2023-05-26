@@ -3,6 +3,13 @@ include("includes/includedFiles.php");
 ?>
 
 <div class="pageContainer md:flex-col md:p-12 space-y-8">
+
+		<img src="<?php echo $_SESSION['profilePic'];?>" class="albumArtwork">
+
+		<div class="generalCenteredText">
+			Hello, <?php echo $_SESSION['name']; ?>
+		</div>
+
 	<form class="centeredContainer" action="formHandler.php" method="post">
 		<input type="hidden" name="action" value="updateEmail">
 		<label for="email" class="labelStyle generalCenteredText">Update Email</label>
@@ -21,10 +28,10 @@ include("includes/includedFiles.php");
 		<input class="submitButton" type="submit" value="SAVE PASSWORD">
 	</form>
 
-	<form class="centeredContainer" action="formHandler.php" method="post">
+	<form class="centeredContainer" action="formHandler.php" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="action" value="updateProfilePhoto">
-		<label for="upload" class="labelStyle generalCenteredText">Update Profile Photo</label>
-		<input type="file" name="imgupload" name="upload" placeholder="Choose Album artwork To Upload" class="generalInput" required>
+		<label for="imgupload" class="labelStyle generalCenteredText">Update Profile Photo</label>
+		<input type="file" name="imgupload" placeholder="Choose Album artwork To Upload" class="generalInput" required>
 		<input class="submitButton" type="submit" value="SAVE PROFILE PHOTO">
 	</form>
 

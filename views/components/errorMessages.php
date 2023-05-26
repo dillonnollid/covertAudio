@@ -5,9 +5,7 @@ $errorMsg = "";
 if(isset($_SESSION['success'])) {
     $successMsg = htmlspecialchars($_SESSION['success']);
     unset($_SESSION['success']);
-}
-
-if(isset($_SESSION['error'])) {
+} elseif(isset($_SESSION['error'])) {
     $errorMsg = htmlspecialchars($_SESSION['error']);
     unset($_SESSION['error']);
 }
@@ -19,10 +17,8 @@ if(isset($_SESSION['error'])) {
             <p class="font-bold">Success</p>
             <p><?php echo $successMsg;?></p>
         </div>
-    <?php } ?>
-
-    <?php if($errorMsg !== ""){ ?>
-        <div class="" role="alert">
+    <?php } elseif($errorMsg !== ""){ ?>
+        <div class="errorBox" role="alert">
             <p class="font-bold">Error</p>
             <p><?php echo $errorMsg;?></p>
         </div>
