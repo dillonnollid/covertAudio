@@ -1,6 +1,7 @@
 <?php
     require_once "controllers/CreateController.php";
     $createController = new CreateController();
+    $redirect = 'browse.php';
 
     if (isset($_FILES['upload'])) {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,4 +20,6 @@
         }
 
     }
+    //After operation is complete (and success or error messages applied to session vars), redirect to homepage. 
+    header("Location: $redirect");
 ?>

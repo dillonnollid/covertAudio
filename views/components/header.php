@@ -43,5 +43,6 @@ else {
     <div id="mainContainer" class="mainContainer" :class="{ 'overflow-hidden': isSideMenuOpen }">
 
         <?php include("views/components/sideSearchBarContainer.php"); ?>
+        <?php include("views/components/initialisePlayback.php"); ?>
 
         <div id="mainContent" class="mainContent">

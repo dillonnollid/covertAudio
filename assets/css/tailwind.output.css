@@ -3725,7 +3725,7 @@ video {
   position: absolute;
   right: 0px;
   margin-top: 0.5rem;
-  width: 14rem;
+  width: 12rem;
 }
 
 .profileMenu > :not([hidden]) ~ :not([hidden]) {
