@@ -10,17 +10,21 @@ var shuffle = false;
 var userLoggedIn;
 var timer;
 
-/*$(document).click(function(click) {
-	var target = $(click.target);
 
-	if(!target.hasClass("item") && !target.hasClass("optionsIcon")) {
+$(document).click(function(e) {
+	var target = e.target;
+	if (!$(target).is('.optionsMenu') && !$(target).parents().is('.optionsMenu') && !$(target).is('.optionsIcon')) {
 		hideOptionsMenu();
 	}
+
+	/*OLD if(!target.hasClass("item") && !target.hasClass("optionsIcon")) {
+		hideOptionsMenu();
+	}*/
 });
 
 $(window).scroll(function() {
 	hideOptionsMenu();
-});*/
+});
 
 $(document).on("change", "select.playlist", function() {
 	var select = $(this);
@@ -59,7 +63,6 @@ function openPage(url) {
 }
 
 function createPlaylist() {
-	console.log(userLoggedIn);
 	var popup = prompt("Please enter the name of your playlist");
 
 	if(popup != null) {
@@ -69,7 +72,6 @@ function createPlaylist() {
 				alert(error);
 				return;
 			}
-
 			//do something when ajax returns
 			openPage("yourMusic.php");
 		});
@@ -93,26 +95,20 @@ function deletePlaylist(playlistId) {
 	}
 }
 
-function hideOptionsMenu() {
-	var menu = $(".optionsMenu");
-	if(menu.css("display") != "none") {
-		menu.css("display", "none");
-	}
+function showOptionsMenu(button) {
+    var songId = $(button).prevAll(".songId").val();
+    var menu = $(button).closest('.niceItem').find(".optionsMenu");
+    menu.find(".songId").val(songId);
+
+    menu.toggleClass('hidden');
 }
 
-function showOptionsMenu(button) {
-	var songId = $(button).prevAll(".songId").val();
-	var menu = $(".optionsMenu");
-	var menuWidth = menu.width();
-	menu.find(".songId").val(songId);
-
-	var scrollTop = $(window).scrollTop(); //Distance from top of window to top of document
-	var elementOffset = $(button).offset().top; //Distance from top of document
-
-	var top = elementOffset - scrollTop;
-	var left = $(button).position().left;
-
-	menu.css({ "top": top + "px", "left": left - menuWidth + "px", "display": "inline" });
+function hideOptionsMenu() {
+	/*var menu = $(".optionsMenu");
+	if(menu.css("display") != "none") {
+		menu.css("display", "none");
+	}*/
+	$('.optionsMenu').addClass('hidden').removeClass('block');
 }
 
 //Formats time remaining into a user friendly variable!

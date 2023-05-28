@@ -8,11 +8,12 @@ include("models/Song.php");
 //If user's not logged in, redirect them to login+register page
 if(isset($_SESSION['userLoggedIn'])) {
     $userLoggedIn = new User($con, $_SESSION['userLoggedIn']);
-    echo "<div></div>";//$userLoggedIn->getName();
     $_SESSION["name"] = $userLoggedIn->getName();
     $_SESSION["email"] = $userLoggedIn->getEmail();;
     $_SESSION["profilePic"] = $userLoggedIn->getProfilePhotoPath();
     $_SESSION["role"] = $userLoggedIn->getRoleName();
+
+    echo "<script> var userLoggedIn = '" . $_SESSION['userLoggedIn'] . "'; </script>";
 }
 else {
     header("Location: register.php");

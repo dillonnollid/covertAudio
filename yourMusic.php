@@ -2,33 +2,28 @@
 include("includes/includedFiles.php");
 ?>
 
-<div class="playlistsContainer">
+<div class="pageContainer">
 
-	<div class="gridViewContainer">
-		<h2>YOUR PLAYLISTS</h2>
+	<div class="centerSection">
 
-		<div class="buttonItems">
-			<button class="button green" onclick="createPlaylist()">NEW PLAYLIST</button>
-		</div>
+		<h2 class="generalCenteredText">Your Playlists</h2>
 
 		<?php
-			$username = $userLoggedIn->getUsername();
+			$username = $_SESSION['userLoggedIn'];
+			echo "Hi, " . $username . "<br>";
 
 			$playlistsQuery = mysqli_query($con, "SELECT * FROM playlists WHERE owner='$username'");
 
 			if(mysqli_num_rows($playlistsQuery) == 0) {
-				echo "<span class='noResults'>No playlists yet.</span>";
+				echo "<span class='errorText'>No playlists yet.</span>";
 			}
 
 			while($row = mysqli_fetch_array($playlistsQuery)) {
 				$playlist = new Playlist($con, $row);
 
-				echo "<div class='gridViewItem' role='link' tabindex='0' 
-							onclick='openPage(\"playlist.php?id=" . $playlist->getId() . "\")'>
+				echo "<div class='niceItem' role='link' tabindex='0' 
+							onclick='openPage(\"playlistView.php?id=" . $playlist->getId() . "\")'>
 
-						<div class='playlistImage'>
-							<img src='assets/images/icons/playlist.png'>
-						</div>
 						
 						<div class='gridViewInfo'>"
 							. $playlist->getName() .
@@ -37,5 +32,9 @@ include("includes/includedFiles.php");
 					</div>";
 			}
 		?>
+
+		<div class="">
+			<button class="submitButton" onclick="createPlaylist()">NEW PLAYLIST</button>
+		</div>
 	</div>
 </div>

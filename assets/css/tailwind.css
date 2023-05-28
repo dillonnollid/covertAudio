@@ -280,7 +280,7 @@
 } 
 
 .niceItem {
-    @apply flex justify-between items-center w-auto p-2 md:h-20;
+    @apply flex relative justify-between items-center w-auto p-2 md:h-20;
 }
 
 .trackCount {
