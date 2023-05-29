@@ -181,7 +181,7 @@
 }
 
 .albumArtwork {
-    @apply w-52 h-52 sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-xl mx-auto hover:scale-105 duration-200 cursor-pointer;
+    @apply w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 object-cover rounded-xl mx-auto hover:scale-105 duration-200 cursor-pointer;
 }
 
 .trackInfo {
@@ -260,7 +260,7 @@
 }
 
 .centerSection {
-    @apply justify-center items-center mx-auto p-8 rounded-xl bg-gray-100 dark:bg-gray-800;
+    @apply justify-center items-center mx-auto p-8 rounded-xl w-2/3 md:w-1/2 bg-gray-100 dark:bg-gray-800;
 }
 
 .rightSection {
@@ -324,7 +324,7 @@
 }
 
 .imageAnimation {
-    @apply shadow-lg hover:shadow-2xl;
+    @apply shadow-lg hover:shadow-2xl max-h-56;
 }
 
 

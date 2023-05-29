@@ -7,10 +7,9 @@ include("includes/includedFiles.php");
 	<div class="centerSection">
 
 		<h2 class="generalCenteredText">Your Playlists</h2>
-
+		<hr class="m-4">
 		<?php
 			$username = $_SESSION['userLoggedIn'];
-			echo "Hi, " . $username . "<br>";
 
 			$playlistsQuery = mysqli_query($con, "SELECT * FROM playlists WHERE owner='$username'");
 
@@ -25,16 +24,15 @@ include("includes/includedFiles.php");
 							onclick='openPage(\"playlistView.php?id=" . $playlist->getId() . "\")'>
 
 						
-						<div class='gridViewInfo'>"
+						<div class='generalCenteredText'>"
 							. $playlist->getName() .
 						"</div>
 
 					</div>";
 			}
+
+		echo "<button class='submitButton' onclick='createPlaylist()'>NEW PLAYLIST</button>";
 		?>
 
-		<div class="">
-			<button class="submitButton" onclick="createPlaylist()">NEW PLAYLIST</button>
-		</div>
 	</div>
 </div>

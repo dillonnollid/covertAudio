@@ -70,32 +70,32 @@ $jsonArray = json_encode($resultArray);
 
 		$("#play").on('click', function () {
 			playSong();
-			//console.log("Play");
+			console.log("Play");
 		});
 
 		$("#pause").on('click', function () {
 			pauseSong();
-			//console.log("Pause");
+			console.log("Pause");
 		});
 
 		$("#previous").on('click', function () {
 			prevSong();
-			//console.log("Previous");
+			console.log("Previous");
 		});
 
 		$("#next").on('click', function () {
 			nextSong();
-			//console.log("Next");
+			console.log("Next");
 		});
 
 		$("#shuffle").on('click', function () {
 			setShuffle();
-			//console.log("Shuffle");
+			console.log("Shuffle");
 		});
 
 		$("#repeat").on('click', function () {
 			setRepeat();
-			//console.log("Repeat");
+			console.log("Repeat");
 		});
 	});
 	

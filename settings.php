@@ -4,14 +4,13 @@ include("includes/includedFiles.php");
 
 <div class="pageContainer md:flex-col md:p-12 space-y-8">
 
-	<div class="leftSection">
+	<div class="">
 		<img src="<?php echo $_SESSION['profilePic'];?>" class="albumArtwork">
 
 		<div class="generalCenteredText">
 			Hello, <?php echo $_SESSION['name']; ?>
 		</div>
 	</div>
-	
 
 	<!--<div class="centerSection">
 		<div class="userInfo">
