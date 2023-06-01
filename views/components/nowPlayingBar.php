@@ -124,3 +124,7 @@
 	</div>
 
 </div>
+
+<script>
+	updateNowPlayingBar();
+</script>

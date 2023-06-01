@@ -10,16 +10,15 @@ var shuffle = false;
 var userLoggedIn;
 var timer;
 
+//Global audio instance that will be used everywhere. 
+audioElement = new Audio();
 
+//Playlist dropdown menu functionality 
 $(document).click(function(e) {
 	var target = e.target;
 	if (!$(target).is('.optionsMenu') && !$(target).parents().is('.optionsMenu') && !$(target).is('.optionsIcon')) {
 		hideOptionsMenu();
 	}
-
-	/*OLD if(!target.hasClass("item") && !target.hasClass("optionsIcon")) {
-		hideOptionsMenu();
-	}*/
 });
 
 $(window).scroll(function() {
@@ -44,6 +43,7 @@ $(document).on("change", "select.playlist", function() {
 	});
 });
 
+//Populate main container with the desired page e.g. browse.php or settings.php
 function openPage(url) {
 
 	if(timer != null) {
@@ -56,12 +56,13 @@ function openPage(url) {
 
 	var encodedUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
 	console.log(encodedUrl);
-	console.log("TRYING TO LOAD CONTENT 2");
+	console.log("REPOPULATING MAIN DIV");
 	$("#mainContent").load(encodedUrl);
 	$("body").scrollTop(0);
 	history.pushState(null, null, url);
 }
 
+//Handle the creation and deletion of playlists using JS and Ajax
 function createPlaylist() {
 	var popup = prompt("Please enter the name of your playlist");
 
@@ -88,7 +89,6 @@ function deletePlaylist(playlistId) {
 				alert(error);
 				return;
 			}
-
 			//do something when ajax returns
 			openPage("yourMusic.php");
 		});
@@ -104,14 +104,10 @@ function showOptionsMenu(button) {
 }
 
 function hideOptionsMenu() {
-	/*var menu = $(".optionsMenu");
-	if(menu.css("display") != "none") {
-		menu.css("display", "none");
-	}*/
 	$('.optionsMenu').addClass('hidden').removeClass('block');
 }
 
-//Formats time remaining into a user friendly variable!
+//Formats timestamps into a display friendly variable!
 function formatTime(seconds) {
 	var time = Math.round(seconds);
 	var minutes = Math.floor(time / 60); //Rounds down
@@ -168,7 +164,7 @@ function Audio() {
 		updateVolumeProgressBar(this);
 	});
 
-	//Small functions for this AUDIO to change state, play and pause, set current time in song etc
+	//Small functions for the audio object to change state, play and pause, set current time in song etc
 	this.setTrack = function(track) {
 		this.currentlyPlaying = track;
 		this.audio.src = track.path;
@@ -186,4 +182,126 @@ function Audio() {
 		this.audio.currentTime = seconds;
 	}
 
+}
+
+function setButtonFunctions() {
+	$("#nowPlayingBarContainer").on("mousedown click mousemove touchmove", function (e) {
+		e.preventDefault();//prevents default behaviour for these events. Since we are coding their behaviour. Cannot highlight the buttons and stuff in now playing.
+	});
+
+	//When the mouse is being clicked down on those elements, then we turn on mouseDown.
+	$(".playbackBar .progressBar").mousedown(function () {
+		mouseDown = true;
+	});
+
+	//pass in e to mousemove, e is event, passing whatever called it in aswell, it'll pass in the mouse click object
+	$(".playbackBar .progressBar").mousemove(function (e) {
+		if (mouseDown == true) {
+			//Set time of song, depending on position of mouse
+			timeFromOffset(e, this);
+		}
+	});
+
+	$(".playbackBar .progressBar").mouseup(function (e) {
+		timeFromOffset(e, this);
+	});
+
+	$(".volumeBar .progressBar").mousedown(function () {
+		mouseDown = true;
+	});
+
+	$(".volumeBar .progressBar").mousemove(function (e) {
+		if (mouseDown == true) {
+			var percentage = e.offsetX / $(this).width();
+
+			if (percentage >= 0 && percentage <= 1) {
+				audioElement.audio.volume = percentage;
+			}
+		}
+	});
+
+	$(".volumeBar .progressBar").mouseup(function (e) {
+		var percentage = e.offsetX / $(this).width();
+
+		if (percentage >= 0 && percentage <= 1) {
+			audioElement.audio.volume = percentage;
+		}
+	});
+
+	$(document).mouseup(function () {
+		mouseDown = false;
+	});
+
+	$("#play").on('click', function () {
+		playSong();
+		console.log("Play");
+	});
+
+	$("#pause").on('click', function () {
+		pauseSong();
+		console.log("Pause");
+	});
+
+	$("#previous").on('click', function () {
+		prevSong();
+		console.log("Previous");
+	});
+
+	$("#next").on('click', function () {
+		nextSong();
+		console.log("Next");
+	});
+
+	$("#shuffle").on('click', function () {
+		setShuffle();
+		console.log("Shuffle");
+	});
+
+	$("#repeat").on('click', function () {
+		setRepeat();
+		console.log("Repeat");
+	});
+}
+
+function updateNowPlayingBar() {
+    if (audioElement && audioElement.currentlyPlaying) {
+        console.log("NPB UPDATE " + audioElement.currentlyPlaying.title);
+        $('.trackName span').text(audioElement.currentlyPlaying.title);
+
+        // Fetch artist name and album artwork 
+        $.post("includes/handlers/ajax/getArtistJson.php", { artistId: audioElement.currentlyPlaying.artist }, function (data) {
+            var artist = JSON.parse(data);
+            $('.artistName span').text(artist.name);
+        });
+
+        $.post("includes/handlers/ajax/getAlbumJson.php", { albumId: audioElement.currentlyPlaying.album }, function (data) {
+            var album = JSON.parse(data);
+            $('.albumArtwork').attr('src', album.artworkPath);
+        });
+
+        // Update controlButton states based on audio states, then check for shuffle and repeat
+        if(audioElement.audio.paused) {
+            $(".controlButton.play").show();
+            $(".controlButton.pause").hide();
+        } else {
+            $(".controlButton.play").hide();
+            $(".controlButton.pause").show();
+        }
+
+        if(shuffle) {
+            $('.controlButton.shuffle').addClass('bg-purple-800').removeClass('bg-purple-500');
+        } else {
+            $('.controlButton.shuffle').addClass('bg-purple-500').removeClass('bg-purple-800');
+        }
+
+        if(repeat) {
+            $('.controlButton.repeat').addClass('bg-purple-800').removeClass('bg-purple-500');
+        } else {
+            $('.controlButton.repeat').addClass('bg-purple-500').removeClass('bg-purple-800');
+		}
+
+		//Call the function to set button and playback functionalities
+		setButtonFunctions();
+		
+    }
 }
