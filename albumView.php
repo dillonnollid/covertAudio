@@ -17,6 +17,10 @@ $artist = $album->getArtist();
 $artistId = $artist->getId();
 ?>
 
+<!--<div class="actionTextBar">
+    <span class="colourText cursor-pointer" role="link" tabindex="0" onclick="openPage('browse.php')">&larr; Back to Home</span>
+</div>-->
+
 <div class="pageContainer">
 
 	<div class="leftSection">
@@ -27,6 +31,7 @@ $artistId = $artist->getId();
 		<h2 class="text-2xl"><?php echo $album->getTitle(); ?></h2><br>
 		<p role="link" tabindex="0" onclick="openPage('artistView.php?id=$artistId')">By <?php echo $artist->getName(); ?></p><br>
 		<p class="text-xl"><?php echo $album->getNumberOfSongs(); ?> songs</p><br>
+        <span class="themedText cursor-pointer hover:underline" role="link" tabindex="0" onclick="openPage('browse.php')">&larr; Back to Home</span>
 	</div>
 
 </div>

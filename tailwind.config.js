@@ -20,6 +20,9 @@ module.exports = {
         wide: { raw: '(min-aspect-ratio: 3 / 2)' },
         'taller-than-854': { raw: '(min-height: 854px)' },
       },
+      fontFamily: {
+        'custom': ['Raleway', 'fallbackFont', 'sans-serif']
+      },
       'animation': {
         'gradient-x':'gradient-x 15s ease infinite',
         'gradient-y':'gradient-y 15s ease infinite',

@@ -2994,6 +2994,10 @@ video {
   content: var(--tw-content);
 }
 
+body {
+  font-family: Raleway, fallbackFont, sans-serif;
+}
+
 /* Auth Elements*/
 
 .authPage {
@@ -3224,8 +3228,8 @@ video {
 }
 
 .colourText {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   font-weight: 500;
   --tw-text-opacity: 1;
   color: rgb(147 51 234 / var(--tw-text-opacity));
@@ -3937,6 +3941,19 @@ video {
   }
 }
 
+.actionTextBar {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  display: inline-block;
+}
+
+@media (min-width: 768px) {
+  .actionTextBar {
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+  }
+}
+
 .content {
   margin-left: auto;
   margin-right: auto;
@@ -4532,6 +4549,10 @@ body {
 .hover\:text-yellow-400:hover {
   --tw-text-opacity: 1;
   color: rgb(250 204 21 / var(--tw-text-opacity));
+}
+
+.hover\:underline:hover {
+  text-decoration-line: underline;
 }
 
 .before\:hover\:text-center:hover::before {

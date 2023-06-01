@@ -14,11 +14,12 @@ $artist = new Artist($con, $artistId);
 <div class="pageContainer p-8">
 	<div class="leftSection">
 		<div class="artistInfo bg-purple-400 w-3/4 m-8 justify-center items-center text-center">
-			<h1 class="artistName"><?php echo $artist->getName(); ?></h1>
+			<h1 class="artistName themedText"><?php echo $artist->getName(); ?></h1>
 			<hr>
 			<div class="headerButtons">
 				<button class="button" onclick="playFirstSong()">PLAY SONGS</button>
 			</div>
+			<span class="themedText cursor-pointer hover:underline" role="link" tabindex="0" onclick="openPage('browse.php')">&larr; Back to Home</span>
 		</div>
 	</div>
 </div>
