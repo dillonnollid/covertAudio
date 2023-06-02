@@ -76,7 +76,7 @@ if(isset($_POST['registerButton'])) {
             <div class="formContainer">
 
                 <!-- Register Form -->
-                <form id="registerForm" action="register.php" method="POST" class="w-full">
+                <form id="registerForm" action="authenticate.php" method="POST" class="w-full">
                     <h1 class="logo">
                         covertAuth - Register
                     </h1>
@@ -198,7 +198,7 @@ if(isset($_POST['registerButton'])) {
                 </form>
 
                 <!-- Login Form -->
-                <form id="loginForm" action="register.php" method="POST" class="w-full">
+                <form id="loginForm" action="authenticate.php" method="POST" class="w-full">
                     <h1 class="logo">covertAuth - Login</h1>
                     <p>
                         <!-- These errors will only print if they exist obviously, getError checks if the error exists in our log array, if it exists in the array then it returns the error text! -->

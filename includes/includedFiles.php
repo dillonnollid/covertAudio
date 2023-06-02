@@ -1,12 +1,12 @@
 <?php
 if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
-	include("includes/config.php");
-	include("models/User.php");
-	include("models/Artist.php");
-	include("models/Album.php");
-	include("models/Song.php");
-	include("models/Playlist.php");
-	include("models/Genre.php");
+	include("config.php");
+	include(__DIR__ . "/../models/User.php");
+	include(__DIR__ . "/../models/Artist.php");
+	include(__DIR__ . "/../models/Album.php");
+	include(__DIR__ . "/../models/Song.php");
+	include(__DIR__ . "/../models/Playlist.php");
+	include(__DIR__ . "/../models/Genre.php");
 
 	$userLoggedIn;
 	if(isset($_GET['userLoggedIn'])) {

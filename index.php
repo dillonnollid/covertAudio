@@ -1,5 +1,5 @@
 <?php 
-include("includes/includedFiles.php"); 
+include(__DIR__ . '/includes/includedFiles.php');
 ?>
 
 <script>

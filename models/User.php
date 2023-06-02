@@ -1,5 +1,5 @@
 <?php
-include("models/Account.php");
+include(__DIR__ . '/Account.php');
 class User {
     private $con;
     private $username;

@@ -10,7 +10,7 @@ if(isset($_SESSION['userLoggedIn'])) {
 }
 
 // Default redirection page
-$redirect = 'browse.php';
+$redirect = 'index.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //Ternary operator, shorthand of if-else. Checks whether 'action' exists, after ? will execute if condition is true. After : will execute if condition is false! 

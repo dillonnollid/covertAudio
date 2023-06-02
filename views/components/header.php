@@ -16,7 +16,7 @@ if(isset($_SESSION['userLoggedIn'])) {
     echo "<script> var userLoggedIn = '" . $_SESSION['userLoggedIn'] . "'; </script>";
 }
 else {
-    header("Location: register.php");
+    header("Location: authenticate.php");
     exit();
 }
 ?>

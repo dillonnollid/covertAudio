@@ -1,5 +1,5 @@
-<?php
-include("includes/includedFiles.php"); 
+<?php 
+require(__DIR__ . '/../../includes/includedFiles.php');
 
 //Make sure we have an album ID in our get array (from URL), else we wanna redirect them back to index
 if(isset($_GET['id'])) {

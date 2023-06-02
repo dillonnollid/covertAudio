@@ -45,22 +45,30 @@ $(document).on("change", "select.playlist", function() {
 
 //Populate main container with the desired page e.g. browse.php or settings.php
 function openPage(url) {
+    if(timer != null) {
+        clearTimeout(timer);
+    }
 
-	if(timer != null) {
-		clearTimeout(timer);
-	}
+    if(url.indexOf("?") == -1) {
+        url = url + "?";
+    }
 
-	if(url.indexOf("?") == -1) {
-		url = url + "?";
-	}
+    var encodedUrl = encodeURI("views/pages/" + url + "&userLoggedIn=" + userLoggedIn);
+    console.log(encodedUrl);
+    console.log("REPOPULATING MAIN DIV");
 
-	var encodedUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
-	console.log(encodedUrl);
-	console.log("REPOPULATING MAIN DIV");
-	$("#mainContent").load(encodedUrl);
-	$("body").scrollTop(0);
-	history.pushState(null, null, url);
+	$("#mainContent").fadeOut('slow', 'linear', function () { //Fade out the old content
+		//throw new Error("FADING OUT");
+		$(this).load(encodedUrl, function () { //Load the new content
+            $(this).fadeIn('slow');//Fade in the new content
+        });
+    });
+
+    $("body").scrollTop(0);
+    history.pushState(null, null, url);
+    setButtonFunctions();
 }
+
 
 //Handle the creation and deletion of playlists using JS and Ajax
 function createPlaylist() {
@@ -271,13 +279,17 @@ function updateNowPlayingBar() {
         // Fetch artist name and album artwork 
         $.post("includes/handlers/ajax/getArtistJson.php", { artistId: audioElement.currentlyPlaying.artist }, function (data) {
             var artist = JSON.parse(data);
-            $('.artistName span').text(artist.name);
+			$(".trackInfo .artistName span").text(artist.name);
+            $(".trackInfo .artistName span").attr("onclick", "openPage('artistView.php?id=" + artist.id + "')");
         });
 
         $.post("includes/handlers/ajax/getAlbumJson.php", { albumId: audioElement.currentlyPlaying.album }, function (data) {
             var album = JSON.parse(data);
-            $('.albumArtwork').attr('src', album.artworkPath);
-        });
+			$('.albumArtwork').attr('src', album.artworkPath);
+			$(".content .albumLink img").attr("src", album.artworkPath);
+            $(".content .albumLink img").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
+            $(".trackInfo .trackName span").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
+		});
 
         // Update controlButton states based on audio states, then check for shuffle and repeat
         if(audioElement.audio.paused) {

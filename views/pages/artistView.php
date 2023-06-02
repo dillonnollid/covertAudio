@@ -1,5 +1,5 @@
 <?php
-include("includes/includedFiles.php");
+require(__DIR__ . '/../../includes/includedFiles.php');
 
 if(isset($_GET['id'])) {
 	$artistId = $_GET['id'];

@@ -1,4 +1,5 @@
-<?php include("includes/includedFiles.php"); 
+<?php 
+require(__DIR__ . '/../../includes/includedFiles.php');
 
 if(isset($_GET['id'])) {
 	$playlistId = $_GET['id'];

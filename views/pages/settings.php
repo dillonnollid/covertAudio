@@ -1,5 +1,5 @@
 <?php  
-include("includes/includedFiles.php");
+require(__DIR__ . '/../../includes/includedFiles.php');
 ?>
 
 <div class="pageContainer md:flex-col md:p-12 space-y-8">
