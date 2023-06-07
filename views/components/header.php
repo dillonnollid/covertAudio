@@ -1,4 +1,16 @@
 <?php
+
+// Get the current script filename
+$currentFile = $_SERVER['PHP_SELF'];
+
+// Check if the requested file or directory doesn't exist
+if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $currentFile)) {
+    // Perform certain actions or redirect to another page
+    // For example, you can redirect to the home page
+    header('Location: /index.php');
+    exit(); // Make sure to exit after sending the redirect header
+}
+
 include("includes/config.php");
 include("models/User.php");
 include("models/Artist.php");
@@ -14,12 +26,14 @@ if(isset($_SESSION['userLoggedIn'])) {
     $_SESSION["role"] = $userLoggedIn->getRoleName();
 
     echo "<script> var userLoggedIn = '" . $_SESSION['userLoggedIn'] . "'; </script>";
+    
 }
 else {
     header("Location: authenticate.php");
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en" class="dark" >
 <head>
@@ -36,7 +50,7 @@ else {
 
     <style> @font-face { font-family: 'Raleway'; src: url('assets/fonts/Raleway.ttf'); } </style>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" defer>
     <link rel="stylesheet" href="assets/css/tailwind.output.css" />
 </head>
 

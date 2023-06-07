@@ -54,18 +54,14 @@ function openPage(url) {
     }
 
     var encodedUrl = encodeURI("views/pages/" + url + "&userLoggedIn=" + userLoggedIn);
-    console.log(encodedUrl);
-    console.log("REPOPULATING MAIN DIV");
+    console.log("REPOPULATING MAIN DIV = " + encodedUrl);
 
-	$("#mainContent").fadeOut('slow', 'linear', function () { //Fade out the old content
-		//throw new Error("FADING OUT");
-		$(this).load(encodedUrl, function () { //Load the new content
-            $(this).fadeIn('slow');//Fade in the new content
-        });
-    });
+	$("#mainContent").load(encodedUrl, function () { //Load the new content
+		$(this).fadeIn('slow');//Fade in the new content
+	});
 
     $("body").scrollTop(0);
-    history.pushState(null, null, url);
+    //history.pushState(null, null, url);
     setButtonFunctions();
 }
 
@@ -242,32 +238,32 @@ function setButtonFunctions() {
 
 	$("#play").on('click', function () {
 		playSong();
-		console.log("Play");
+		//console.log("Play");
 	});
 
 	$("#pause").on('click', function () {
 		pauseSong();
-		console.log("Pause");
+		//console.log("Pause");
 	});
 
 	$("#previous").on('click', function () {
 		prevSong();
-		console.log("Previous");
+		//console.log("Previous");
 	});
 
 	$("#next").on('click', function () {
 		nextSong();
-		console.log("Next");
+		//console.log("Next");
 	});
 
 	$("#shuffle").on('click', function () {
 		setShuffle();
-		console.log("Shuffle");
+		//console.log("Shuffle");
 	});
 
 	$("#repeat").on('click', function () {
 		setRepeat();
-		console.log("Repeat");
+		//console.log("Repeat");
 	});
 }
 

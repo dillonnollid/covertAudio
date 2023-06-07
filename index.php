@@ -3,6 +3,6 @@ include(__DIR__ . '/includes/includedFiles.php');
 ?>
 
 <script>
-	//openPage("browse.php");
+	openPage("browse.php");
 </script>
 

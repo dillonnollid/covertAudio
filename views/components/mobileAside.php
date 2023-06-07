@@ -24,7 +24,7 @@
     @keydown.escape="closeSideMenu">
 
     <div class="asideText">
-        <a class="logoText" href="#">
+        <a class="logoText">
             <span class="ml-4" role="link" tabindex="0" onclick="openPage('browse.php')">covertAudio</span>
         </a>
 

@@ -11,7 +11,7 @@ class CreateController{
         $this->con = mysqli_connect("localhost", "root", "", "covertAudio");
         include_once("getID3/getid3/getid3.php");
         $this->getID3 = new getID3;
-        $this->redirect = 'browse.php';
+        $this->redirect = 'views/pages/browse.php';
     }
 
     public function addSong() {

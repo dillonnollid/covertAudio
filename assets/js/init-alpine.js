@@ -22,7 +22,7 @@ function data() {
     dark: getThemeFromLocalStorage(),
     toggleTheme() {
       this.dark = !this.dark;
-      console.log("Toggling theme to dark=" + this.dark);
+      //console.log("Toggling theme to dark=" + this.dark);
       setThemeToLocalStorage(this.dark);
       //document.documentElement.classList.toggle("dark", this.dark);
     },
