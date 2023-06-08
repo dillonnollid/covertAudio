@@ -2,8 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    @apply font-custom;
+@font-face {
+    font-family: "Raleway";
+    src: url("../fonts/Raleway.ttf");
+}
+
+body {
+    @apply font-raleway;
 }
 
 /* Auth Elements*/
@@ -66,7 +71,6 @@ body{
 .colourText {
     @apply text-base font-medium text-purple-600 dark:text-purple-400 hover:underline;
 }
-
 
 /* Main Elements */
 .mainContainer {

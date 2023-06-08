@@ -18,9 +18,11 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
 } else {
 	include("views/components/header.php");
 
-	$url = $_SERVER['REQUEST_URI'];
 	echo '<script>openPage("browse.php");</script>';
+
+	//$url = $_SERVER['REQUEST_URI'];
 	//echo "<script>openPage('$url')</script>";
+	
     include("views/components/footer.php");
 	exit();
 }

@@ -8,7 +8,17 @@ class CreateController{
     private $redirect;
 
     public function __construct(){
-        $this->con = mysqli_connect("localhost", "root", "", "covertAudio");
+        require_once dirname(__DIR__) . '/vendor/autoload.php';
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+
+        $dbHost = $_ENV['DB_HOST'];
+        $dbUsername = $_ENV['DB_USERNAME'];
+        $dbPassword = $_ENV['DB_PASSWORD'];
+        $dbDatabase = $_ENV['DB_DATABASE'];
+
+        $this->con = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbDatabase);
+        
         include_once("getID3/getid3/getid3.php");
         $this->getID3 = new getID3;
         $this->redirect = 'views/pages/browse.php';
@@ -37,10 +47,10 @@ class CreateController{
                 "(title,artist,album,genre,duration,path,albumOrder,plays) " . "VALUES " .
                 "('$songTitle',$artistID,$albumID,$genre,'$len','$path',1,1)";
 
-            if (mysqli_query($this->con, $sql) == 1) {
+            if (mysqli_query($this->con,$sql) == 1) {
                 $_SESSION['success'] = "New song record created successfully: " . (string)$songTitle;
             } else {
-                $_SESSION['error'] =  "Error: " . $sql . "<br>" . $this->con->error;
+                $_SESSION['error'] =  "Error: " . $sql . $this->con->error;
             }
         } else {
             $_SESSION['error'] =  "Error: There was a problem saving the uploaded file";
@@ -66,7 +76,7 @@ class CreateController{
             if (mysqli_query($this->con,$sql) == 1) {
                 $_SESSION['success'] = "New album created successfully: " . (string)$albumTitle;
             } else {
-                $_SESSION['error'] =  "Error: " . $sql . "<br>" . $this->con->error;
+                $_SESSION['error'] =  "Error: " . $sql . $this->con->error;
             }
         } else {
             $_SESSION['error'] =  "Error: There was a problem saving the uploaded file";
@@ -84,7 +94,7 @@ class CreateController{
         if (mysqli_query($this->con,$sql) == 1) {
             $_SESSION['success'] = "New artist created successfully: " . $artist;
         } else {
-            $_SESSION['error'] =  "Error: " . $sql . "<br>" . $this->con->error;
+            $_SESSION['error'] =  "Error: " . $sql . $this->con->error;
         }
 
     }
@@ -99,7 +109,7 @@ class CreateController{
         if (mysqli_query($this->con,$sql) == 1) {
             $_SESSION['success'] = "New genre created successfully: " . $genre;
         } else {
-            $_SESSION['error'] =  "Error: " . $sql . "<br>" . $this->con->error;
+            $_SESSION['error'] =  "Error: " . $sql . $this->con->error;
         }
     }
 

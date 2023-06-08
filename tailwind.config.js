@@ -21,7 +21,7 @@ module.exports = {
         'taller-than-854': { raw: '(min-height: 854px)' },
       },
       fontFamily: {
-        'custom': ['Raleway', 'fallbackFont', 'sans-serif']
+        raleway: ['Raleway', 'sans-serif']
       },
       'animation': {
         'gradient-x':'gradient-x 15s ease infinite',
