@@ -125,6 +125,6 @@
 
 </div>
 
-<script defer>
+<script>
 	updateNowPlayingBar();
 </script>

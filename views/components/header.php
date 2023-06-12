@@ -42,14 +42,14 @@ else {
     <script src="assets/js/script.js"></script>
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
-    <script src="./assets/js/init-alpine.js" defer></script>
+    <script src="assets/js/init-alpine.js" defer></script>
 
     <!-- <style> @font-face { font-family: 'Raleway'; src: url('assets/fonts/Raleway.ttf'); } </style> -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" defer>
     <link rel="stylesheet" href="assets/css/tailwind.output.css" />
 
-    <link rel="icon" type="image/x-icon" href="./assets/images/icons/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">
 </head>
 
 <body x-data="data()" x-init="$watch('dark', value => document.documentElement.classList.toggle('dark', value))">

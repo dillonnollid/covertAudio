@@ -112,18 +112,20 @@
 		public function validatePasswords($pw, $pw2) {
 			if($pw != $pw2) {
 				array_push($this->errorArray, Constants::$passwordsDoNoMatch);
-				return;
+				return false;
 			}
 
 			if(preg_match('/[^A-Za-z0-9]/', $pw)) {
 				array_push($this->errorArray, Constants::$passwordNotAlphanumeric);
-				return;
-			}
+				return false;
+			}			
 
 			if(strlen($pw) > 30 || strlen($pw) < 5) {
 				array_push($this->errorArray, Constants::$passwordCharacters);
-				return;
+				return false;
 			}
+
+			return true;
 		}
 
 	}

@@ -8,7 +8,6 @@ var timer;
 var mouseDown = false; //indicates mouse button is being held down (dragged)
 var repeat = false;
 var shuffle = false;
-var firstLoad = true;
 var currentIndex = 0;
 
 //Global audio instance that will be used everywhere. 
@@ -55,7 +54,7 @@ function openPage(url) {
     }
 
     var encodedUrl = encodeURI("views/pages/" + url + "&userLoggedIn=" + userLoggedIn);
-    console.log("REPOPULATING MAIN DIV = " + encodedUrl);
+    //console.log("REPOPULATING MAIN DIV = " + encodedUrl);
 
 	$("#mainContent").load(encodedUrl, function () { //Load the new content
 		$(this).fadeIn('slow');//Fade in the new content
@@ -63,7 +62,7 @@ function openPage(url) {
 
     $("body").scrollTop(0);
     //history.pushState(null, null, url);
-    setButtonFunctions();
+    //setButtonFunctions();
 }
 
 //Handle the creation and deletion of playlists using JS and Ajax
@@ -140,7 +139,6 @@ function updateVolumeProgressBar(audio) {
 
 function playFirstSong() {
 	setTrack(tempPlaylist[0], tempPlaylist, true);
-	firstLoad = false;
 }
 
 function Audio() {
@@ -173,6 +171,7 @@ function Audio() {
 	this.setTrack = function(track) {
 		this.currentlyPlaying = track;
 		this.audio.src = track.path;
+		setButtonFunctions();
 	}
 
 	this.play = function() {
@@ -419,7 +418,7 @@ function setButtonFunctions() {
 }
 
 function updateNowPlayingBar() {
-    if (audioElement && audioElement.currentlyPlaying && !firstLoad) {
+    if (audioElement && audioElement.currentlyPlaying) {
         console.log("NPB UPDATE " + audioElement.currentlyPlaying.title);
         $('.trackName span').text(audioElement.currentlyPlaying.title);
 

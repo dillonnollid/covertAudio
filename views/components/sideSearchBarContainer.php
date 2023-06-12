@@ -188,7 +188,7 @@ include_once("mobileAside.php");
                                 </a>
                             </li>-->
                             <li class="flex">
-                                <a class="notifOption">
+                                <a class="notifOption" onclick="openPage('settings.php')">
                                     <svg
                                         class="w-4 h-4 mr-3"
                                         aria-hidden="true"

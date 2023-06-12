@@ -6,48 +6,49 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `albums` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `title` varchar(250) NOT NULL,
-  `artist` int(11) NOT NULL,
-  `genre` int(11) NOT NULL,
+  `artist` int(5) NOT NULL,
+  `genre` int(3) NOT NULL,
   `artworkPath` varchar(500) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8;
 
 CREATE TABLE IF NOT EXISTS `artists` (
-`id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `id` int(5) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `genre` int(3) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6;
 
 CREATE TABLE IF NOT EXISTS `genres` (
-`id` int(11) NOT NULL,
+  `id` int(3) NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11;
 
 CREATE TABLE IF NOT EXISTS `playlists` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `owner` varchar(50) NOT NULL,
   `dateCreated` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `playlistSongs` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `songId` int(11) NOT NULL,
   `playlistId` int(11) NOT NULL,
   `playlistOrder` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `songs` (
 `id` int(11) NOT NULL,
   `title` varchar(250) NOT NULL,
-  `artist` int(11) NOT NULL,
+  `artist` int(5) NOT NULL,
   `album` int(11) NOT NULL,
-  `genre` int(11) NOT NULL,
+  `genre` int(3) NOT NULL,
   `duration` varchar(8) NOT NULL,
   `path` varchar(500) NOT NULL,
   `albumOrder` int(11) NOT NULL,
   `plays` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32;
 
 CREATE TABLE IF NOT EXISTS `users` (
 `id` int(11) NOT NULL,
@@ -59,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `signUpDate` datetime NOT NULL,
   `profilePic` varchar(500) NOT NULL,
   `role` int(3) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3;
 
 
 INSERT INTO `albums`
@@ -67,48 +68,42 @@ INSERT INTO `albums`
 (1, 'Unknown', 100, 15, 'assets/images/artwork/unknown.jpg'),
 (2, 'Chill Dance', 100, 2, 'assets/images/artwork/slowDance.jpg'),
 (3, 'Heavy Dance', 100, 3, 'assets/images/artwork/heavyDance.jpg'),
-(4, 'US Rap/Hip-Hop', 100, 1, 'assets/images/artwork/yandhiBlack.jpg'),
-(5, 'UK Rap/Hip-Hop', 100, 1, 'assets/images/artwork/iridescence.jpg'),
+(4, 'US Beats', 100, 1, 'assets/images/artwork/yandhiBlack.jpg'),
+(5, 'UK Beats', 100, 1, 'assets/images/artwork/iridescence.jpg'),
 (6, 'Other Rap/Hip-Hop', 100, 1, 'assets/images/artwork/mosQuest.jpg'),
 (7, 'Focus Tunes', 100, 15, 'assets/images/artwork/focus.jpg'),
 (8, 'Sleep Tunes', 100, 7, 'assets/images/artwork/sleep.jpg'),
-(9, 'Mindfulness', 100, 15, 'assets/images/artwork/beatles.jpg'),
+(9, 'Mindful', 100, 15, 'assets/images/artwork/beatles.jpg'),
 (10, 'Indescribable', 100, 7, 'assets/images/artwork/earl.jpg'),
-(11, 'Glow In The Dark Tour', 10, 1, 'assets/images/artwork/gitd.jpg');
+(11, 'Glow In The Dark', 10, 1, 'assets/images/artwork/gitd.jpg');
 
-INSERT INTO `artists` (`id`, `name`) VALUES
-(1, 'Brock'),
-(2, 'Kendrick'),
-(3, 'Travis'),
-(4, 'DOOM'),
-(5, 'Ye'),
-(6, 'Cudi'),
-(7, 'Drake'),
-(8, 'Don'),
-(9, 'Biggie'),
-(10, 'Freddie'),
-(11, 'Playboi'),
-(12, 'Denz'),
-(13, 'Frank'),
-(14, 'JPEG'),
-(15, 'Meek'),
-(16, 'Pac'),
-(17, 'DMX'),
-(18, 'Souls Of Mischief'),
-(19, 'Nujabes'),
-(20, 'Joey'),
-(21, 'Nas'),
-(22, 'Posty'),
-(23, 'Isaiah'),
-(24, 'XXX'),
-(25, 'empe3'),
-(26, 'KNXWLEDGE'),
-(27, 'Erick The Architect'),
-(28, 'Kings Of Leon'),
-(29, 'Melia'),
-(30, 'Cookin Soul'),
-(31, 'Big L'),
-(100, 'Other');
+INSERT INTO `artists` (`id`, `name`, `genre`) VALUES
+(1, 'empe3', 5),
+(2, 'Douvelle', 5),
+(3, 'Kendrick', 4),
+(4, 'DOOM', 4),
+(5, 'Ye', 4),
+(6, 'Cudi', 4),
+(7, 'Meek', 4),
+(8, 'Biggie', 4),
+(9, 'Pac', 4),
+(10, 'Freddie', 4),
+(11, 'Don', 4),
+(12, 'Denz', 4),
+(13, 'Frank', 4),
+(14, 'JPEG', 4),
+(15, 'DMX', 4),
+(16, 'Souls', 4),
+(17, 'Nujab', 2),
+(18, 'Joey', 4),
+(19, 'Posty', 1),
+(20, 'Isaiah', 4),
+(21, 'L', 4),
+(22, 'Erick', 4),
+(23, 'Kings', 9),
+(24, 'Melia', 9),
+(25, 'Cookin', 4),
+(100, 'Other', 10);
 
 INSERT INTO `genres` (`id`, `name`) VALUES
 (1, 'Rap/Hip-Hop'),
@@ -123,7 +118,7 @@ INSERT INTO `genres` (`id`, `name`) VALUES
 (10, 'Jazz/Soul'),
 (11, 'Classical'),
 (12, 'Country/Folk'),
-(13, 'Audiobooks'),
+(13, 'Comedy'),
 (14, 'Podcasts'),
 (15, 'Other');
 

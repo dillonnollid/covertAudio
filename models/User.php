@@ -109,9 +109,9 @@ class User {
     
             if(in_array($file_extension, $valid_extensions)){ // Check if file extension is valid
                 $new_file_name = $this->username . "_" . time() . "." . $file_extension; // Generate unique file name to avoid overwriting other files
-    
-                $file_path = getcwd() . "\assets\images\profile-pics\\" . $new_file_name;
-    
+                
+                $file_path = getcwd() . "/assets/images/profile-pics/" . $new_file_name;
+
                 if(move_uploaded_file($imageFile["tmp_name"], $file_path)){ // Move the file to the server
                     // Update the profile photo in the database
                     $sql = "UPDATE users SET profilePic = 'assets/images/profile-pics/$new_file_name' WHERE username = '$this->username'";
