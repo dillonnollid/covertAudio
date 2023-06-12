@@ -1,14 +1,15 @@
 //Create arrays for current, shuffle and temp playlists. Declaring various variables.
 var currentPlaylist = [];
 var shufflePlaylist = [];
-var tempPlaylist = [];
+var tempPlaylist	= [];
 var audioElement;
-var mouseDown = false; //indicates mouse button is being held down (dragged)
-var currentIndex = 0;
-var repeat = false;
-var shuffle = false;
 var userLoggedIn;
 var timer;
+var mouseDown = false; //indicates mouse button is being held down (dragged)
+var repeat = false;
+var shuffle = false;
+var firstLoad = true;
+var currentIndex = 0;
 
 //Global audio instance that will be used everywhere. 
 audioElement = new Audio();
@@ -139,6 +140,7 @@ function updateVolumeProgressBar(audio) {
 
 function playFirstSong() {
 	setTrack(tempPlaylist[0], tempPlaylist, true);
+	firstLoad = false;
 }
 
 function Audio() {
@@ -315,7 +317,8 @@ function setTrack(trackId, newPlaylist, play) {
 
         if (play) {
             playSong();
-        }
+		}
+
     });
 
 }
@@ -416,7 +419,7 @@ function setButtonFunctions() {
 }
 
 function updateNowPlayingBar() {
-    if (audioElement && audioElement.currentlyPlaying) {
+    if (audioElement && audioElement.currentlyPlaying && !firstLoad) {
         console.log("NPB UPDATE " + audioElement.currentlyPlaying.title);
         $('.trackName span').text(audioElement.currentlyPlaying.title);
 
