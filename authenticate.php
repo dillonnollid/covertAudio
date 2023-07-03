@@ -190,9 +190,9 @@ if(isset($_POST['registerButton'])) {
 
                     <!-- Switch to Login form-->
                     <p class="mt-4 hasAccountText">
-                        <a class="colourText" id="hideRegister">
+                        <div class="colourText" id="hideRegister">
                             Already have an account? Click here!
-                        </a>
+                        </div>
                     </p>
                 </form>
 

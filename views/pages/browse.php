@@ -8,7 +8,7 @@
     <br>
 
     <!-- CTA GOOD FOR LATER
-    <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-blue-100 bg-blue-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue" href="https://github.com/dillonnollid/covertAudio">
+    <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-blue-100 bg-blue-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue" href="https://github.com/dillonnollid/covertAudio">
         <div class="flex items-center">
             <svg
                 class="w-5 h-5 mr-2"
@@ -21,7 +21,7 @@
             </svg>
             <span>View this project on GitHub!</span>
         </div>
-    </a>-->
+    </div>-->
 
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
         <!-- Song Card -->
@@ -158,13 +158,13 @@
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                     </div>
                                     <div>
-                                        <a class="font-semibold cursor-pointer" onclick="setTrack(<?php echo $row['id'] ?>, tempPlaylist, true)"><?php echo $row['title'] ?></a><br>
-                                        <a class="text-xs text-gray-600 dark:text-gray-400 cursor-pointer" onclick='openPage("artistView.php?id=" + <?php echo $tempArtist->getID();?>)'><?php echo $tempArtist->getName(); ?></a>
+                                        <div class="font-semibold cursor-pointer" onclick="setTrack(<?php echo $row['id'] ?>, tempPlaylist, true)"><?php echo $row['title'] ?></div>
+                                        <div class="text-xs text-gray-600 dark:text-gray-400 cursor-pointer" onclick='openPage("artistView.php?id=" + <?php echo $tempArtist->getID();?>)'><?php echo $tempArtist->getName(); ?></div>
                                     </div>
                                 </div>
                             </td>
 
-                            <td class="px-4 py-3 text-sm cursor-pointer"><a onclick='openPage("albumView.php?id=" + <?php echo $tempAlbum->getID();?>)'><?php echo $tempAlbum->getTitle(); ?></a></td>
+                            <td class="px-4 py-3 text-sm cursor-pointer"><div onclick='openPage("albumView.php?id=" + <?php echo $tempAlbum->getID();?>)'><?php echo $tempAlbum->getTitle(); ?></d></td>
                             <td class="px-4 py-3 text-xs"><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"><?php echo $tempGenre->getName();?></span></td>
                             <td class="px-4 py-3 text-sm"><?php echo $row['duration'] ?></td>
                         </tr>

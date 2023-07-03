@@ -2,7 +2,7 @@
     
     <!-- LIST ITEM -->
     <li class="relative px-6 py-3">
-        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
+        <div class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
             <svg
                 class="w-5 h-5"
                 aria-hidden="true"
@@ -17,12 +17,12 @@
                 </path>
             </svg>
             <span class="ml-4" role="link" tabindex="0" onclick="openPage('yourMusic.php')">Library</span>
-        </a>
+        </div>
     </li>
 
     <!-- LIST ITEM -->
     <li class="relative px-6 py-3">
-        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
+        <div class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
             <svg
                 class="w-5 h-5"
                 aria-hidden="true"
@@ -38,11 +38,11 @@
                 </path>
             </svg>
             <span class="ml-4" role="link" tabindex="0" onclick="openPage('about.php')">About</span>
-        </a>
+        </div>
     </li>
     <!-- LIST ITEM -->
     <li class="relative px-6 py-3">
-        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
+        <div class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
             <svg
                 class="w-5 h-5"
                 aria-hidden="true"
@@ -56,7 +56,7 @@
                 <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
             </svg>
             <span class="ml-4" role="link" tabindex="0" onclick="openPage('settings.php')">Settings</span>
-        </a>
+        </div>
     </li>
 
     <!-- LIST ITEM 8 WITH DROPPER -->
@@ -111,19 +111,19 @@
             <!-- Your list items here -->
 
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
-                    <a class="w-full" onclick="openPage('create.php?id=song')">Add Song</a>
+                    <div class="w-full" onclick="openPage('create.php?id=song')">Add Song</div>
                 </li>
 
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
-                    <a class="w-full" onclick="openPage('create.php?id=album')">Add Album</a>
+                    <div class="w-full" onclick="openPage('create.php?id=album')">Add Album</div>
                 </li>
 
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
-                    <a class="w-full" onclick="openPage('create.php?id=artist')">Add Artist</a>
+                    <div class="w-full" onclick="openPage('create.php?id=artist')">Add Artist</div>
                 </li>
 
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
-                    <a class="w-full" onclick="openPage('create.php?id=genre')">Add Genre</a>
+                    <div class="w-full" onclick="openPage('create.php?id=genre')">Add Genre</div>
                 </li>
 
             </ul>
@@ -133,7 +133,7 @@
     <!-- LIST ITEM -->
     <li class="relative px-6 py-3">
         <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-        <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="index.php">
+        <div class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="index.php">
             <svg
                 class="w-5 h-5"
                 aria-hidden="true"
@@ -148,7 +148,7 @@
                 </path>
             </svg>
             <span class="ml-4" role="link" tabindex="0" onclick="openPage('browse.php')">Restart App</span>
-        </a>
+        </div>
     </li>
 
 </ul>
@@ -156,7 +156,7 @@
 
 <!-- LIST ITEM
 <li class="relative px-6 py-3">
-    <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
+    <div class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
         <svg
             class="w-5 h-5"
             aria-hidden="true"
@@ -172,11 +172,11 @@
             </path>
         </svg>
         <span class="ml-4" role="link" tabindex="0" onclick="openPage('gallery.php')">Gallery</span>
-    </a>
+    </div>
 </li>-->
 <!-- LIST ITEM -->
 <!--<li class="relative px-6 py-3">
-    <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+    <div class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
         <svg
             class="w-5 h-5"
             aria-hidden="true"
@@ -196,12 +196,12 @@
             </path>
         </svg>
         <span class="ml-4" role="link" tabindex="0" onclick="openPage('metrics.php')">Metrics</span>
-    </a>
+    </div>
 </li>-->
 
 <!-- LIST ITEM TEST
 <li class="relative px-6 py-3">
-    <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
+    <div class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
         <svg
                 class="w-5 h-5"
                 aria-hidden="true"
@@ -217,12 +217,12 @@
             </path>
         </svg>
         <span class="ml-4" role="link" tabindex="0" onclick="openPage('player.php')">Player</span>
-    </a>
+    </div>
 </li>-->
 
 <!-- LIST ITEM 
 <li class="relative px-6 py-3">
-    <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
+    <div class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer">
         <svg
             class="w-5 h-5"
             aria-hidden="true"
@@ -237,6 +237,6 @@
             </path>
         </svg>
         <span class="ml-4" role="link" tabindex="0" onclick="openPage('browse.php')">Restart App</span>
-    </a>
+    </div>
 </li>-->
 

@@ -5,8 +5,7 @@
 		<div class="nowPlayingLeft">
 			<div class="content">
 				<span class="albumLink">
-					<img role="link" tabindex="0" src=""
-						class="albumArtwork">
+					<img role="link" tabindex="0" src="" class="albumArtwork" alt="Album Artwork">
 				</span>
 
 				<div class="trackInfo">

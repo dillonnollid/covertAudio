@@ -16,8 +16,10 @@
 
 /assets/music/*
 /assets/.DS_Store
+/assets/images/profile-pics/*
 .DS_Store
 .idea/*
+.env
 
 /logs/*
 !/logs/empty

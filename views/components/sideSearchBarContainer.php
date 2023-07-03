@@ -119,25 +119,25 @@ include_once("mobileAside.php");
                             class="notifMenu">
 
                             <li class="flex">
-                                <a class="notifOption" href="#">
+                                <div class="notifOption" href="#">
                                     <span onclick="openPage('messages.php')">Messages</span>
                                     <span class="notifNumber">
                                 ?
                                 </span>
-                                </a>
+                                </div>
                             </li>
                             <li class="flex">
-                                <a class="notifOption" href="#">
+                                <div class="notifOption" href="#">
                                     <span onclick="openPage('requests.php')" >Requests</span>
                                     <span class="notifNumber">
                                         ?
                                     </span>
-                                </a>
+                                </div>
                             </li>
                             <li class="flex">
-                                <a class="notifOption" href="#">
+                                <div class="notifOption" href="#">
                                     <span onclick="openPage('alerts.php')">Alerts</span>
-                                </a>
+                                </div>
                             </li>
                         </ul>
                     </template>
@@ -169,7 +169,7 @@ include_once("mobileAside.php");
                             aria-label="submenu">
 
                             <!--<li class="flex">
-                                <a class="notifOption">
+                                <div class="notifOption">
                                     <svg
                                         class="w-4 h-4 mr-3"
                                         aria-hidden="true"
@@ -184,10 +184,10 @@ include_once("mobileAside.php");
                                         </path>
                                     </svg>
                                     <span role="link" tabindex="0" onclick="openPage('updateDetails.php')">Profile</span>
-                                </a>
+                                </div>
                             </li>-->
                             <li class="flex">
-                                <a class="notifOption" onclick="openPage('settings.php')">
+                                <div class="notifOption" onclick="openPage('settings.php')">
                                     <svg
                                         class="w-4 h-4 mr-3"
                                         aria-hidden="true"
@@ -203,7 +203,7 @@ include_once("mobileAside.php");
                                         <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                     </svg>
                                     <span role="link" tabindex="0" onclick="openPage('settings.php')">Settings</span>
-                                </a>
+                                </div>
                             </li>
                             <li class="flex">
                                 <a href="logout.php" class="notifOption" href="#">

@@ -22,7 +22,7 @@ if(isset($_SESSION['userLoggedIn'])) {
     $_SESSION["profilePic"] = $userLoggedIn->getProfilePhotoPath();
     $_SESSION["role"] = $userLoggedIn->getRoleName();
 
-    echo "<script> var userLoggedIn = '" . $_SESSION['userLoggedIn'] . "'; </script>";
+    //echo "<script> var userLoggedIn = '" . $_SESSION['userLoggedIn'] . "'; </script>";
     
 }
 else {
@@ -47,7 +47,7 @@ else {
 
     <!-- <style> @font-face { font-family: 'Raleway'; src: url('assets/fonts/Raleway.ttf'); } </style> -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" defer>
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" defer>
     <link rel="stylesheet" href="assets/css/tailwind.output.css" />
 
     <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">

@@ -1,8 +1,8 @@
 <aside class="desktopAside">
     <div class="asideText">
-        <a class="logoText">
+        <div class="logoText">
             <span class="ml-4 cursor-pointer" role="link" tabindex="0" onclick="openPage('browse.php')">covertAudio</span>
-        </a>
+        </div>
 
         <?php include("sideListItems.php");?>
 
