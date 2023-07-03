@@ -15,13 +15,10 @@ $jsonArray = json_encode($resultArray);
 	$(document).ready(function () {
 		//output json array into our newPlaylist object, create an Audio element (call func in script.js)
 		var newPlaylist = <?php echo $jsonArray; ?>;
-		audioElement = new Audio();
+		//audioElement = new Audio();//Already init in script.js
 
 		//Set track
 		setTrack(newPlaylist[0], newPlaylist, false);
 		updateVolumeProgressBar(audioElement.audio);//Volume bar not yet implemented with tailwind player
-
-		setButtonFunctions();
 	});
-	
 </script>

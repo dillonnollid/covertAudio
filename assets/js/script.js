@@ -10,6 +10,8 @@ var repeat = false;
 var shuffle = false;
 var currentIndex = 0;
 
+//console.log("LOADING SCRIPT.JS");
+
 //Global audio instance that will be used everywhere. 
 audioElement = new Audio();
 
@@ -62,7 +64,6 @@ function openPage(url) {
 
     $("body").scrollTop(0);
     //history.pushState(null, null, url);
-    //setButtonFunctions();
 }
 
 //Handle the creation and deletion of playlists using JS and Ajax
@@ -142,6 +143,8 @@ function playFirstSong() {
 }
 
 function Audio() {
+	//console.log("RUNNING AUDIO FUNCTION");
+
 	//Basically a class for audio, will instantiate in html, vars to hold current song, create an audio element on the page, 
 	this.currentlyPlaying;
 	this.audio = document.createElement('audio');
@@ -171,7 +174,6 @@ function Audio() {
 	this.setTrack = function(track) {
 		this.currentlyPlaying = track;
 		this.audio.src = track.path;
-		setButtonFunctions();
 	}
 
 	this.play = function() {
@@ -201,7 +203,7 @@ function prevSong() {
     else {
         currentIndex = currentIndex - 1;
         setTrack(currentPlaylist[currentIndex], currentPlaylist, true);
-    }
+	}
 }
 
 function nextSong() {
@@ -219,7 +221,7 @@ function nextSong() {
     }
 
     var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
-    setTrack(trackToPlay, currentPlaylist, true);
+	setTrack(trackToPlay, currentPlaylist, true);
 }
 
 //Buttons/Icons not yet implemented on tailwind player
@@ -228,11 +230,11 @@ function setRepeat() {
     
     if (repeat) { //Indicates repeat was enabled, change button colour
         if ($('.controlButton.repeat').removeClass('bg-purple-500') && $('.controlButton.repeat').addClass('bg-purple-800')) {
-            console.log("REPEAT BUTTON COLOR SWITCH SUCCESS!");
+            //console.log("REPEAT BUTTON COLOR ENABLE SUCCESS!");
         } 
     } else { //Indicates repeat was disabled, revert button colour
         if ($('.controlButton.repeat').removeClass('bg-purple-800') && $('.controlButton.repeat').addClass('bg-purple-500')) {
-            console.log("REPEAT BUTTON COLOR REVERT SUCCESS!");
+            //console.log("REPEAT BUTTON COLOR DISABLE SUCCESS!");
         } 
     }
 }
@@ -251,14 +253,14 @@ function setShuffle() {
         currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
 
         if ($('.controlButton.shuffle').removeClass('bg-purple-500') && $('.controlButton.shuffle').addClass('bg-purple-800')) {
-            console.log("SHUFFLE BUTTON COLOR SWITCH SUCCESS!");
+            //console.log("SHUFFLE BUTTON TOGGLED!");
         } 
     }
     else { //shuffle has been disabled, go back to regular playlist and revert button colour
         currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
 
         if ($('.controlButton.shuffle').removeClass('bg-purple-800') && $('.controlButton.shuffle').addClass('bg-purple-500')) {
-            console.log("SHUFFLE BUTTON COLOR REVERT SUCCESS!");
+            //console.log("SHUFFLE BUTTON TOGGLED BACK!");
         } 
     }
 }
@@ -274,6 +276,7 @@ function shuffleArray(a) {
 }
 
 function setTrack(trackId, newPlaylist, play) {
+	//console.log("setTrack Executing!");
 
     if (newPlaylist != currentPlaylist) {
         currentPlaylist = newPlaylist;
@@ -312,12 +315,14 @@ function setTrack(trackId, newPlaylist, play) {
             $(".trackInfo .trackName span").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
         });
 
-        audioElement.setTrack(track);
+		audioElement.setTrack(track);
+		//console.log("SETTING TRACK " + track.title + " ARTIST IS " + track.artist);
 
         if (play) {
             playSong();
 		}
 
+		setButtonFunctions();
     });
 
 }
@@ -329,16 +334,18 @@ function playSong() {
     }
     $(".controlButton.play").hide();
     $(".controlButton.pause").show();
-    audioElement.play();
+	audioElement.play();
 }
 
 function pauseSong() {
     $(".controlButton.play").show();
     $(".controlButton.pause").hide();
-    audioElement.pause();
+	audioElement.pause();
 }
 
 function setButtonFunctions() {
+	//console.log("SETTING BUTTON FUNCTIONS");
+
 	$("#nowPlayingBarContainer").on("mousedown click mousemove touchmove", function (e) {
 		e.preventDefault();//prevents default behaviour for these events. Since we are coding their behaviour. Cannot highlight the buttons and stuff in now playing.
 	});
@@ -386,40 +393,42 @@ function setButtonFunctions() {
 		mouseDown = false;
 	});
 
-	$("#play").on('click', function () {
+	$("#play").off('click').on('click', function () {
 		playSong();
-		console.log("Play");
+		//console.log("Clicked Play");
 	});
 
-	$("#pause").on('click', function () {
+	$("#pause").off('click').on('click', function () {
 		pauseSong();
-		console.log("Pause");
+		//console.log("Clicked Pause");
 	});
 
-	$("#previous").on('click', function () {
+	$("#previous").off('click').on('click', function () {
 		prevSong();
-		console.log("Previous");
+		//console.log("Clicked Previous");
 	});
 
-	$("#next").on('click', function () {
+	$("#next").off('click').on('click', function () {
 		nextSong();
-		console.log("Next");
+		//console.log("Clicked Next");
 	});
 
-	$("#shuffle").on('click', function () {
+	$("#shuffle").off('click').on('click', function () {
 		setShuffle();
-		console.log("Shuffle");
+		//console.log("Clicked Shuffle");
 	});
 
-	$("#repeat").on('click', function () {
+	$("#repeat").off('click').on('click', function () {
 		setRepeat();
-		console.log("Repeat");
+		//console.log("Clicked Repeat");
 	});
+
+
 }
 
 function updateNowPlayingBar() {
     if (audioElement && audioElement.currentlyPlaying) {
-        console.log("NPB UPDATE " + audioElement.currentlyPlaying.title);
+        //console.log("NPB UPDATE " + audioElement.currentlyPlaying.title);
         $('.trackName span').text(audioElement.currentlyPlaying.title);
 
         // Fetch artist name and album artwork 
@@ -448,7 +457,7 @@ function updateNowPlayingBar() {
 
         if(shuffle) {
             $('.controlButton.shuffle').addClass('bg-purple-800').removeClass('bg-purple-500');
-        } else {
+		} else {
             $('.controlButton.shuffle').addClass('bg-purple-500').removeClass('bg-purple-800');
         }
 

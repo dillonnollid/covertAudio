@@ -87,7 +87,7 @@ include_once("mobileAside.php");
                     </button>
                 </li>
                 <!-- Notifications menu -->
-                <li class="relative">
+                <!--<li class="relative">
                     <button
                         class="headerButton relative align-middle"
                         @click="toggleNotificationsMenu"
@@ -104,7 +104,6 @@ include_once("mobileAside.php");
                             </path>
                         </svg>
 
-                        <!-- Notification badge -->
                         <span
                             aria-hidden="true"
                             class="notifBadge">
@@ -142,7 +141,7 @@ include_once("mobileAside.php");
                             </li>
                         </ul>
                     </template>
-                </li>
+                </li>-->
 
                 <!-- Profile menu -->
                 <li class="relative">
