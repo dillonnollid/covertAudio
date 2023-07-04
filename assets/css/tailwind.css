@@ -246,11 +246,11 @@ body {
 
 /* Other Main Elements */
 .messageContainer {
-    @apply centeredContainer p-4 h-full justify-center space-y-4 md:space-y-8;
+    @apply centeredContainer p-2 md:p-4 h-full justify-center space-y-4 md:space-y-8;
 }
 
 .messageBox {
-    @apply min-w-0 p-4 text-white bg-purple-600 rounded-lg shadow-md;
+    @apply w-full min-w-0 p-4 mb-2 md:mb-4 text-white bg-purple-600 rounded-lg shadow-md hover:shadow-xl text-base font-normal;
 }
 
 /* Contribute Elements */
@@ -264,7 +264,7 @@ body {
 
 /* Content Pages e.g. albumView */
 .pageContainer {
-    @apply flex flex-col md:flex-row m-8 justify-center items-center overflow-hidden;
+    @apply flex flex-col md:flex-row m-4 md:m-8 justify-center items-center overflow-hidden;
 }
 
 .leftSection {

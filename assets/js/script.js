@@ -298,19 +298,19 @@ function setTrack(trackId, newPlaylist, play) {
 
         //Create an object for this song/track using the data returned from Ajax call, set our trackname.
         var track = JSON.parse(data);
-        $(".trackName span").text(track.title);//Title is the var name in our track object
+        $(".trackName span").hide().text(track.title).fadeIn("slow");//Title is the var name in our track object
 
         //nested ajax call to get Artist info, send in Artist ID encapsulated in track,
         $.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function (data) {
             var artist = JSON.parse(data);
-            $(".trackInfo .artistName span").text(artist.name);
+            $(".trackInfo .artistName span").hide().text(artist.name).fadeIn("slow");
             $(".trackInfo .artistName span").attr("onclick", "openPage('artistView.php?id=" + artist.id + "')");
         });
 
         //Another nested Ajax call, uses getAlbumJson ajax handler file, find album using track.album, then apply the data!
         $.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function (data) {
             var album = JSON.parse(data);
-            $(".content .albumLink img").attr("src", album.artworkPath);
+            $(".content .albumLink img").attr("src", album.artworkPath).fadeIn("slow");
             $(".content .albumLink img").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
             $(".trackInfo .trackName span").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
         });
@@ -429,18 +429,17 @@ function setButtonFunctions() {
 function updateNowPlayingBar() {
     if (audioElement && audioElement.currentlyPlaying) {
         //console.log("NPB UPDATE " + audioElement.currentlyPlaying.title);
-        $('.trackName span').text(audioElement.currentlyPlaying.title);
+        $('.trackName span').hide().text(audioElement.currentlyPlaying.title).fadeIn("slow");
 
         // Fetch artist name and album artwork 
         $.post("includes/handlers/ajax/getArtistJson.php", { artistId: audioElement.currentlyPlaying.artist }, function (data) {
             var artist = JSON.parse(data);
-			$(".trackInfo .artistName span").text(artist.name);
+			$(".trackInfo .artistName span").hide().text(artist.name).fadeIn("slow");
             $(".trackInfo .artistName span").attr("onclick", "openPage('artistView.php?id=" + artist.id + "')");
         });
 
         $.post("includes/handlers/ajax/getAlbumJson.php", { albumId: audioElement.currentlyPlaying.album }, function (data) {
             var album = JSON.parse(data);
-			$('.albumArtwork').attr('src', album.artworkPath);
 			$(".content .albumLink img").attr("src", album.artworkPath);
             $(".content .albumLink img").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");
             $(".trackInfo .trackName span").attr("onclick", "openPage('albumView.php?id=" + album.id + "')");

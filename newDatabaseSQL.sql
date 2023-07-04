@@ -70,9 +70,9 @@ INSERT INTO `albums`
 (3, 'Heavy Dance', 100, 3, 'assets/images/artwork/heavyDance.jpg'),
 (4, 'US Beats', 100, 1, 'assets/images/artwork/yandhiBlack.jpg'),
 (5, 'UK Beats', 100, 1, 'assets/images/artwork/iridescence.jpg'),
-(6, 'Other Rap/Hip-Hop', 100, 1, 'assets/images/artwork/mosQuest.jpg'),
-(7, 'Focus Tunes', 100, 15, 'assets/images/artwork/focus.jpg'),
-(8, 'Sleep Tunes', 100, 7, 'assets/images/artwork/sleep.jpg'),
+(6, 'Other Rap', 100, 1, 'assets/images/artwork/mosQuest.jpg'),
+(7, 'Focus', 100, 15, 'assets/images/artwork/focus.jpg'),
+(8, 'Sleep', 100, 7, 'assets/images/artwork/sleep.jpg'),
 (9, 'Mindful', 100, 15, 'assets/images/artwork/beatles.jpg'),
 (10, 'Indescribable', 100, 7, 'assets/images/artwork/earl.jpg'),
 (11, 'Glow In The Dark', 10, 1, 'assets/images/artwork/gitd.jpg');
@@ -106,12 +106,12 @@ INSERT INTO `artists` (`id`, `name`, `genre`) VALUES
 (100, 'Other', 10);
 
 INSERT INTO `genres` (`id`, `name`) VALUES
-(1, 'Rap/Hip-Hop'),
-(2, 'Dance/House/Electonic'),
-(3, 'Trance/Techno/Heavy'),
+(1, 'Rap'),
+(2, 'Dance/House'),
+(3, 'Trance/Techno'),
 (4, 'Rock/Metal'),
 (5, 'Popular'),
-(6, 'Indie/Alternative'),
+(6, 'Indie/Alt'),
 (7, 'Chill/Sleep'),
 (8, 'Meditation'),
 (9, 'Instrumental'),

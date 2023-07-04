@@ -22,9 +22,6 @@
 		<div id="nowPlayingCenter">
 			<div class="content py-2">
 				<div class="buttons">
-					<!-- OLD BUTTON STRUCTURE <button class="controlButton shuffle flex-auto w-14" title="Shuffle button" onclick="setShuffle()">
-						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
-					</button>-->
 
 					<button id="shuffle" title="Shuffle button" class="controlButton shuffle bg-purple-500">
 						<i class="fa fa-random fa-2x text-white"></i>
@@ -92,32 +89,34 @@
 
 	<div class="messageContainer">
 
-		<div class="messageBox">
+	<div class="messageBox">
 			<h4 class="mb-4 font-semibold">
 				Hello, <?php echo $_SESSION['name']; ?>
 			</h4>
 			<p class="font-semibold">
-				Username = <?php echo $_SESSION['userLoggedIn'];?>
+				Username (Required for log in):<br>
+                <?php echo $_SESSION['userLoggedIn'];?>
 				<br>
-				Email = <?php echo $_SESSION['email'];?>
-				<br>
-				ImagePath = <?php echo $_SESSION['profilePic']; ?>
-				<br>
-				Role = <?php echo $_SESSION['role']; ?>
+				Email (Can be changed in settings page):<br> 
+                <?php echo $_SESSION['email'];?>
+				
 			</p>
 		</div>
 
 		<div class="messageBox">
 			<h4 class="mb-4 font-semibold">
-				Rules and Regulations
+				Quick Play Genres
 			</h4>
-			<p>
-				You can upload your own music to this website!<br>
-				Click the 'Contribute' button in the menu to start.<br>
-				Be aware, you must only upload Copyright free music. <br>
-				This site is for sharing royalty free tunes<br>
-				If it's on Spotify, it doesn't belong here!<br>
-			</p>
+			<div class="buttons">
+				<?php 
+					$genresWithSongs = ;
+				?>
+					<button id="" title="Genre button" class="controlButton bg-purple-500">
+						Genre Name
+					</button>
+
+
+				</div>
 		</div>
 
 	</div>
