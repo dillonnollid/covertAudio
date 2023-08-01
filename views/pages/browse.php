@@ -1,4 +1,8 @@
-<?php require(__DIR__ . '/../../includes/includedFiles.php');?>
+<?php 
+require(__DIR__ . '/../../includes/includedFiles.php');
+require(__DIR__ . '/../../controllers/GeneralController.php');
+$generalController = new GeneralController();
+?>
 
 <div class="container p-6 mx-auto grid h-full">
     <?php 
@@ -7,9 +11,9 @@
     ?>
     <br>
 
-    <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+    <div class="infoCardContainer">
         <!-- Song Card -->
-        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="infoCard">
             <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
@@ -35,7 +39,7 @@
         </div>
 
         <!-- Album Card -->
-        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="infoCard">
             <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
@@ -61,7 +65,7 @@
         </div>
 
         <!-- Genre Card -->
-        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="infoCard">
             <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
@@ -87,7 +91,7 @@
         </div>
 
         <!-- User Card -->
-        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="infoCard">
             <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path

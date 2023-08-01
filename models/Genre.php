@@ -28,5 +28,24 @@ class Genre {
         return $this->mysqliData;
     }
 
+    public static function getGenreObjects($con) {
+        $genres = array();
+
+        // Query to get all genres from the database
+        $query = mysqli_query($con, "SELECT * FROM genres");
+
+        while ($row = mysqli_fetch_array($query)) {
+            // Create Genre objects and store them in the $genres array
+            $genres[] = new Genre($con, $row['id']);
+        }
+
+        return $genres;
+    }
+
+    public function getGenreSongCount() {
+        $query = mysqli_query($this->con, "SELECT id FROM songs WHERE genre=$this->id");
+        return mysqli_num_rows($query);
+    }
+
 }
 ?>

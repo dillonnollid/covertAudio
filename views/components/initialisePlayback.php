@@ -11,11 +11,11 @@ while ($row = mysqli_fetch_array($songQuery)) {
 //Convert array to JSON (Javascript Object Notation), so we can use it in our JS code
 $jsonArray = json_encode($resultArray);
 ?>
+
 <script>
 	$(document).ready(function () {
 		//output json array into our newPlaylist object, create an Audio element (call func in script.js)
 		var newPlaylist = <?php echo $jsonArray; ?>;
-		//audioElement = new Audio();//Already init in script.js
 
 		//Set track
 		setTrack(newPlaylist[0], newPlaylist, false);

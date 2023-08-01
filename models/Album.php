@@ -60,5 +60,19 @@
 			return $array;
 		}
 
+		public static function getAllAlbums($con) {
+			$albums = array();
+	
+			// Query to get all genres from the database
+			$query = mysqli_query($con, "SELECT * FROM albums");
+	
+			while ($row = mysqli_fetch_array($query)) {
+				// Create Album objects and store them in the $albums array
+				$albums[] = new Album($con, $row['id']);
+			}
+	
+			return $albums;
+		}
+
 	}
 ?>

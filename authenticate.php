@@ -26,11 +26,11 @@
     <title>covertAuth</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/assets/js/register.js"></script>
+    <script src="assets/js/register.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="/assets/css/tailwind.output.css"/>
-    <link rel="icon" type="image/x-icon" href="/assets/images/icons/favicon.ico">
+    <link rel="stylesheet" href="assets/css/tailwind.output.css"/>
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">
 </head>
 
 <body x-data="data()" x-init="$watch('dark', value => document.documentElement.classList.toggle('dark', value))" class="bg-gradient-to-r from-gray-900 to-purple-900 animate-gradient-x antialiased">

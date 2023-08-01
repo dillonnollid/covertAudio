@@ -34,5 +34,19 @@
 			return $array;
 
 		}
+
+		public static function getAllArtists($con) {
+			$artists = array();
+	
+			// Query to get all artists from the database
+			$query = mysqli_query($con, "SELECT * FROM artists");
+	
+			while ($row = mysqli_fetch_array($query)) {
+				// Create Artist objects and store them in the $artists array
+				$artists[] = new Artist($con, $row['id']);
+			}
+	
+			return $artists;
+		}
 	}
 ?>

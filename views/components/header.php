@@ -23,7 +23,6 @@ if(isset($_SESSION['userLoggedIn'])) {
     $_SESSION["role"] = $userLoggedIn->getRoleName();
 
     //echo "<script> var userLoggedIn = '" . $_SESSION['userLoggedIn'] . "'; </script>";
-    
 }
 else {
     header("Location: authenticate.php");

@@ -107,16 +107,14 @@
 			<h4 class="mb-4 font-semibold">
 				Quick Play Genres
 			</h4>
-			<div class="buttons">
+			<ul class="list-disc text-wrap flex flex-col">
 				<?php 
-					$genresWithSongs = ;
+					//$genresWithSongs = ;
+					$generalController->showGenreButtons($con);
 				?>
-					<button id="" title="Genre button" class="controlButton bg-purple-500">
-						Genre Name
-					</button>
 
 
-				</div>
+			</ul>
 		</div>
 
 	</div>

@@ -58,5 +58,33 @@
 			return $this->genre;
 		}
 
+		public static function getAllSongs($con) {
+			$songs = array();
+	
+			// Query to get all songs from the database
+			$query = mysqli_query($con, "SELECT * FROM songs");
+	
+			while ($row = mysqli_fetch_array($query)) {
+				// Create Song objects and store them in the $songs array
+				$songs[] = new Song($con, $row['id']);
+			}
+	
+			return $songs;
+		}
+
+		public static function getSongCount($con) {
+			$songs = array();
+	
+			// Query to get all songs from the database
+			$query = mysqli_query($con, "SELECT * FROM songs");
+	
+			while ($row = mysqli_fetch_array($query)) {
+				// Create Song objects and store them in the $songs array
+				$songs[] = new Song($con, $row['id']);
+			}
+	
+			return $songs;
+		}
+
 	}
 ?>

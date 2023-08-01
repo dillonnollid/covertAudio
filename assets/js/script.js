@@ -62,6 +62,10 @@ function openPage(url) {
 		$(this).fadeIn('slow');//Fade in the new content
 	});
 
+	/*$('#mainContent').fadeOut(function () {
+	    $('#mainContent').load(encodedUrl).fadeIn("slow");
+	});*/
+
     $("body").scrollTop(0);
     //history.pushState(null, null, url);
 }
@@ -295,7 +299,6 @@ function setTrack(trackId, newPlaylist, play) {
     //Ajax call, pass in handler location, function is what we wanna do with result!
     //This is so we can change the song without refreshing the page, PHP won't allow us to do it since server-side
     $.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function (data) {
-
         //Create an object for this song/track using the data returned from Ajax call, set our trackname.
         var track = JSON.parse(data);
         $(".trackName span").hide().text(track.title).fadeIn("slow");//Title is the var name in our track object
@@ -323,6 +326,31 @@ function setTrack(trackId, newPlaylist, play) {
 		}
 
 		setButtonFunctions();
+    });
+
+}
+
+function setQuickPlay(genreId, newPlaylist, play) {
+
+    if (newPlaylist != currentPlaylist) {
+        currentPlaylist = newPlaylist;
+        shufflePlaylist = currentPlaylist.slice();
+        shuffleArray(shufflePlaylist);
+    }
+
+    if (shuffle) {
+        currentIndex = shufflePlaylist.indexOf(genreId);
+    }
+    else {
+        currentIndex = currentPlaylist.indexOf(genreId);
+    }
+	pauseSong();
+
+    //Ajax call, pass in handler location, function is what we wanna do with result!
+    $.post("includes/handlers/ajax/getGenreJson.php", { genreId }, function (data) {
+		//output json array returned from getGenreJson.php into our newPlaylist object
+        var newPlaylist = JSON.parse(data);
+        setTrack(newPlaylist[0], newPlaylist, true);
     });
 
 }

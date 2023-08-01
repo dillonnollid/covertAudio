@@ -253,6 +253,14 @@ body {
     @apply w-full min-w-0 p-4 mb-2 md:mb-4 text-white bg-purple-600 rounded-lg shadow-md hover:shadow-xl text-base font-normal;
 }
 
+.infoCardContainer {
+    @apply grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4;
+}
+
+.infoCard {
+    @apply flex items-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800;
+}
+
 /* Contribute Elements */
 .contributeContainer {
     @apply items-center justify-center m-10 px-4 py-4 md:px-24 md:py-8 w-auto h-auto;

@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "dev": "tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/tailwind.output.css --watch",
-    "build": "tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/tailwind.output.css"
+    "watch": "tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/tailwind.output.css --watch",
+    "build": "tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/tailwind.output.css --minify"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.2"
