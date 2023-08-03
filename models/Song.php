@@ -46,6 +46,10 @@ use models\Database;
 			return new Album($this->albumId);
 		}
 
+        public function getGenre() {
+            return new Genre($this->genre);
+        }
+
 		public function getPath() {
 			return $this->path;
 		}
@@ -58,9 +62,6 @@ use models\Database;
 			return $this->mysqliData;
 		}
 
-		public function getGenre() {
-			return $this->genre;
-		}
 
 		public static function getAllSongs() {
 			$songs = array();
@@ -77,17 +78,14 @@ use models\Database;
 		}
 
 		public static function getSongCount() {
-			$songs = array();
-	
-			// Query to get all songs from the database
-			$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT * FROM songs");
-	
-			while ($row = mysqli_fetch_array($query)) {
-				// Create Song objects and store them in the $songs array
-				$songs[] = new Song($row['id']);
-			}
-	
-			return $songs;
+            // Query to get the count of all songs from the database
+            $query = mysqli_query(Database::getInstance()->getConnection(), "SELECT COUNT(id) AS songCount FROM songs");
+
+            // Fetch the single result value
+            $row = mysqli_fetch_assoc($query);
+            $songCount = $row['songCount'];
+
+            return $songCount;
 		}
 
 	}

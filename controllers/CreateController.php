@@ -1,11 +1,14 @@
 <?php
+namespace controllers;
+
 use models\Database;
+use models\User;
 
 if(session_status() == PHP_SESSION_NONE) { //session has not started
     session_start();
 }
 
-class CreateController{
+class CreateController {
     private $getID3;
     private $con;
     private $redirect;

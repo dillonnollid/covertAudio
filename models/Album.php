@@ -77,5 +77,16 @@ use models\Database;
 			return $albums;
 		}
 
+        public static function getAlbumCount() {
+            // Query to get the count of all albums from the database
+            $query = mysqli_query(Database::getInstance()->getConnection(), "SELECT COUNT(id) AS album_count FROM albums");
+
+            // Fetch the single result value
+            $row = mysqli_fetch_assoc($query);
+            $albumCount = $row['album_count'];
+
+            return $albumCount;
+        }
+
 	}
 ?>

@@ -1,7 +1,11 @@
 <?php 
 require(__DIR__ . '/../../includes/includedFiles.php');
-require(__DIR__ . '/../../controllers/GeneralController.php');
-$generalController = new GeneralController();
+
+use controllers\MusicController;
+use controllers\UserController;
+
+$musicController = new MusicController();
+$userController = new UserController();
 ?>
 
 <div class="container p-6 mx-auto grid h-full">
@@ -29,10 +33,8 @@ $generalController = new GeneralController();
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                     <?php
-                    //BEFORE PRINTING OUT COUNT TO SONGS, LOAD ALL SONG INFO FOR LATER USE
-                    $songs = mysqli_query($con, "SELECT * FROM songs");
-                    $amount = mysqli_num_rows($songs);
-                    echo $amount;
+                        $songCount = $musicController->getTotalSongCount();
+                        echo $songCount;
                     ?>
                 </p>
             </div>
@@ -55,10 +57,7 @@ $generalController = new GeneralController();
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                     <?php
-                    //BEFORE PRINTING OUT COUNT TO SONGS, LOAD ALL SONG INFO FOR LATER USE
-                    $albums = mysqli_query($con, "SELECT * FROM albums");
-                    $albumCount = mysqli_num_rows($albums);
-                    echo $albumCount;
+                        echo $musicController->getTotalAlbumCount();
                     ?>
                 </p>
             </div>
@@ -81,10 +80,7 @@ $generalController = new GeneralController();
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                     <?php
-                    //BEFORE PRINTING OUT COUNT TO SONGS, LOAD ALL SONG INFO FOR LATER USE
-                    $genres = mysqli_query($con, "SELECT * FROM genres");
-                    $genreCount = mysqli_num_rows($genres);
-                    echo $genreCount;
+                        echo $musicController->getTotalGenreCount();
                     ?>
                 </p>
             </div>
@@ -107,10 +103,7 @@ $generalController = new GeneralController();
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                     <?php
-                    //BEFORE PRINTING OUT COUNT TO SONGS, LOAD ALL SONG INFO FOR LATER USE
-                    $users = mysqli_query($con, "SELECT * FROM users");
-                    $userCount = mysqli_num_rows($users);
-                    echo $userCount;
+                        echo $userController->getTotalUserCount();
                     ?>
                 </p>
             </div>
@@ -133,10 +126,11 @@ $generalController = new GeneralController();
 
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                     <?php
-                    while($row = mysqli_fetch_array($songs)) {
-                       $tempArtist = new models\Artist($row['artist']);
-                       $tempAlbum = new models\Album($row['album']);
-                       $tempGenre = new models\Genre($row['genre']);
+                    $songs = $musicController->getAllSongs();
+                    foreach ($songs as $song) {
+                       $tempArtist = $song->getArtist();
+                       $tempAlbum = $song->getAlbum();
+                       $tempGenre = $song->getGenre();
                        ?>
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3">
@@ -146,15 +140,15 @@ $generalController = new GeneralController();
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                     </div>
                                     <div>
-                                        <div class="font-semibold cursor-pointer" onclick="setTrack(<?php echo $row['id'] ?>, tempPlaylist, true)"><?php echo $row['title'] ?></div>
+                                        <div class="font-semibold cursor-pointer" onclick="setTrack(<?php echo $song->getId() ?>, tempPlaylist, true)"><?php echo $song->getTitle() ?></div>
                                         <div class="text-xs text-gray-600 dark:text-gray-400 cursor-pointer" onclick='openPage("artistView.php?id=" + <?php echo $tempArtist->getID();?>)'><?php echo $tempArtist->getName(); ?></div>
                                     </div>
                                 </div>
                             </td>
 
-                            <td class="px-4 py-3 text-sm cursor-pointer"><div onclick='openPage("albumView.php?id=" + <?php echo $tempAlbum->getID();?>)'><?php echo $tempAlbum->getTitle(); ?></d></td>
+                            <td class="px-4 py-3 text-sm cursor-pointer"><div onclick='openPage("albumView.php?id=" + <?php echo $tempAlbum->getID();?>)'><?php echo $tempAlbum->getTitle();?></td>
                             <td class="px-4 py-3 text-xs"><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"><?php echo $tempGenre->getName();?></span></td>
-                            <td class="px-4 py-3 text-sm"><?php echo $row['duration'] ?></td>
+                            <td class="px-4 py-3 text-sm"><?php echo $song->getDuration() ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -163,7 +157,7 @@ $generalController = new GeneralController();
 
         <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
             <span class="flex items-center col-span-3">
-                Displaying <?php echo $amount;?> Songs (All)
+                Displaying <?php echo $songCount;?> Songs (All)
             </span>
             <span class="col-span-2"></span>
             <!-- Pagination -->

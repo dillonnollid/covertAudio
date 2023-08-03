@@ -52,5 +52,16 @@ use models\Database;
 	
 			return $artists;
 		}
+
+        public static function getArtistCount() {
+            // Query to get the count of all artists from the database
+            $query = mysqli_query(Database::getInstance()->getConnection(), "SELECT COUNT(id) AS artist_count FROM artists");
+
+            // Fetch the single result value
+            $row = mysqli_fetch_assoc($query);
+            $artistCount = $row['artist_count'];
+
+            return $artistCount;
+        }
 	}
 ?>

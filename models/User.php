@@ -56,6 +56,17 @@ class User {
         }
     }
 
+    public static function getUserCount() {
+        // Query to get the count of all users from the database
+        $query = mysqli_query(Database::getInstance()->getConnection(), "SELECT COUNT(id) AS userCount FROM users");
+
+        // Fetch the single result value
+        $row = mysqli_fetch_assoc($query);
+        $userCount = $row['userCount'];
+
+        return $userCount;
+    }
+
     public function updateEmail($newEmail){
         // Sanitize email input to protect against SQL injection
         $newEmail = $this->con->real_escape_string($newEmail);

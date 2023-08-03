@@ -67,24 +67,6 @@
 			</div>
 		</div>
 
-		<!--<div id="nowPlayingRight">
-			<div class="volumeBar">
-
-				<button id="volume" title="Volume button" onclick="setMute()"
-					class="controlButton volume">
-					<i class="fa fa-volume-off fa-2x text-white" aria-hidden="true"></i>
-				</button>
-
-				<div class="progressBar">
-					<div class="progressBarBg">
-						<div class="progress">
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>-->
-
 	</div><!-- END NOW PLAYING BAR -->
 
 	<div class="messageContainer">
@@ -109,7 +91,7 @@
 			</h4>
 			<ul class="list-disc text-wrap flex flex-col">
 				<?php 
-					$generalController->showGenreButtons();
+					$musicController->showGenreButtons();
 				?>
 
 
@@ -123,3 +105,21 @@
 <script>
 	updateNowPlayingBar();
 </script>
+
+<!--<div id="nowPlayingRight">
+			<div class="volumeBar">
+
+				<button id="volume" title="Volume button" onclick="setMute()"
+					class="controlButton volume">
+					<i class="fa fa-volume-off fa-2x text-white" aria-hidden="true"></i>
+				</button>
+
+				<div class="progressBar">
+					<div class="progressBarBg">
+						<div class="progress">
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>-->

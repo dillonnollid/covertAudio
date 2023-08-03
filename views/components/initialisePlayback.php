@@ -1,6 +1,8 @@
 <?php
+use models\Database;
+
 //Select 100 (max) random songs from the DB
-$songQuery = mysqli_query($con, "SELECT id FROM songs ORDER BY RAND() LIMIT 100");
+$songQuery = mysqli_query(Database::getInstance()->getConnection(), "SELECT id FROM songs ORDER BY RAND() LIMIT 100");
 
 $resultArray = array();
 

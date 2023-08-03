@@ -51,5 +51,16 @@ class Genre {
         return $genres;
     }
 
+    public static function getGenreCount() {
+        // Query to get the count of all artists from the database
+        $query = mysqli_query(Database::getInstance()->getConnection(), "SELECT COUNT(id) AS genre_count FROM genres");
+
+        // Fetch the single result value
+        $row = mysqli_fetch_assoc($query);
+        $genreCount = $row['genre_count'];
+
+        return $genreCount;
+    }
+
 }
 ?>
