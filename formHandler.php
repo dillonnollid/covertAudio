@@ -1,9 +1,8 @@
 <?php
 include("includes/config.php");
-include("models/User.php");
 
 if(isset($_SESSION['userLoggedIn'])) {
-    $userLoggedIn = new User($con, $_SESSION['userLoggedIn']);
+    $userLoggedIn = new models\User($_SESSION['userLoggedIn']);
 } else {
     echo "Error getting logged in user details. Please try again.";
     exit();

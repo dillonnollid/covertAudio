@@ -1,15 +1,19 @@
 <?php
-include(__DIR__ . '/Account.php');
+namespace models;
+
+use models\Database;
+use models\Account;
+
 class User {
     private $con;
     private $username;
     private $userData;
     private $account;
 
-    public function __construct($con, $username) {
-        $this->con = $con;
+    public function __construct($username) {
+        $this->con = Database::getInstance()->getConnection();
         $this->username = $username;
-        $this->account = new Account($con);
+        $this->account = new Account();
         $query = "SELECT firstName, lastName, email, profilePic, role FROM users WHERE username = ?";
         $stmt = $this->con->prepare($query);
         $stmt->bind_param("s", $this->username);

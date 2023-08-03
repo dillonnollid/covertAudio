@@ -1,7 +1,10 @@
 <?php
+use models\Database;
+
 if(session_status() == PHP_SESSION_NONE) { //session has not started
     session_start();
 }
+
 class CreateController{
     private $getID3;
     private $con;
@@ -12,12 +15,7 @@ class CreateController{
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
         $dotenv->load();
 
-        $dbHost = $_ENV['DB_HOST'];
-        $dbUsername = $_ENV['DB_USERNAME'];
-        $dbPassword = $_ENV['DB_PASSWORD'];
-        $dbDatabase = $_ENV['DB_DATABASE'];
-
-        $this->con = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbDatabase);
+        $this->con = Database::getInstance()->getConnection();
         
         include_once("getID3/getid3/getid3.php");
         $this->getID3 = new getID3;

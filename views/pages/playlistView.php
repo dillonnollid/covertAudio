@@ -8,8 +8,8 @@ else {
 	header("Location: index.php");
 }
 
-$playlist = new Playlist($con, $playlistId);
-$owner = new User($con, $playlist->getOwner());
+$playlist = new models\Playlist($playlistId);
+$owner = new models\User($playlist->getOwner());
 ?>
 
 <div class="pageContainer">
@@ -38,7 +38,7 @@ $owner = new User($con, $playlist->getOwner());
 			$i = 1;
 			foreach($songIdArray as $songId) {
 
-				$playlistSong = new Song($con, $songId);
+				$playlistSong = new models\Song($songId);
 				$songArtist = $playlistSong->getArtist();
 
 				echo "<li class='niceItem'>
@@ -58,7 +58,7 @@ $owner = new User($con, $playlist->getOwner());
                         
                             <nav class='optionsMenu absolute hidden w-40 bg-gray-50 dark:bg-gray-700 shadow-lg rounded-md p-3'>
                                 <input type='hidden' class='songId'>
-                                ". Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()) ."
+                                ". models\Playlist::getPlaylistsDropdown($userLoggedIn->getUsername()) ."
                             </nav>
                         </div>
 

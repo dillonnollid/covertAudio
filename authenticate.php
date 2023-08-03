@@ -1,10 +1,7 @@
 <?php
-    //config connects us to the database. Gives us a $con object including the connection. Connection is required to create Account object like shown below! Constants does exactly what it says on the tin, just contains our String constants.
     include("includes/config.php");
-    include("models/Account.php");
-    include("models/Constants.php");
 
-    $account = new Account($con);
+    $account = new models\Account;
 
     include("includes/handlers/register-handler.php");
     include("includes/handlers/login-handler.php");
@@ -83,10 +80,10 @@ if(isset($_POST['registerButton'])) {
                     <!-- Username -->
                     <label for="username" class="labelStyle">
                         <span class="errorText">
-                            <?php echo $account->getError(Constants::$usernameCharacters);?>
+                            <?php echo $account->getError(models\Constants::$usernameCharacters);?>
                         </span>
                         <span class="errorText">
-                            <?php echo $account->getError(Constants::$usernameTaken);?>
+                            <?php echo $account->getError(models\Constants::$usernameTaken);?>
                         </span>
                         <span class="themeText">Username</span>
                         <input
@@ -97,7 +94,7 @@ if(isset($_POST['registerButton'])) {
                     <!-- First Name -->
                     <label for="firstName" class="labelStyle">
                         <span class="errorText">
-                            <?php echo $account->getError(Constants::$firstNameCharacters);?>
+                            <?php echo $account->getError(models\Constants::$firstNameCharacters);?>
                         </span>
                         <span class="themeText">First name</span>
                         <input
@@ -108,7 +105,7 @@ if(isset($_POST['registerButton'])) {
                     <!-- Last Name -->
                     <label for="lastName" class="labelStyle">
                         <span class="errorText">
-                            <?php echo $account->getError(Constants::$lastNameCharacters);?>
+                            <?php echo $account->getError(models\Constants::$lastNameCharacters);?>
                         </span>
                         <span class="themeText">Last name</span>
                         <input
@@ -119,13 +116,13 @@ if(isset($_POST['registerButton'])) {
                     <!-- Email 1 -->
                     <label for="email" class="labelStyle">
                         <span class="errorText">
-                            <?php echo $account->getError(Constants::$emailsDoNotMatch);?>
+                            <?php echo $account->getError(models\Constants::$emailsDoNotMatch);?>
                         </span>
                         <span class="errorText">
-                            <?php echo $account->getError(Constants::$emailInvalid);?>
+                            <?php echo $account->getError(models\Constants::$emailInvalid);?>
                         </span>
                         <span class="errorText">
-                            <?php echo $account->getError(Constants::$emailTaken);?>
+                            <?php echo $account->getError(models\Constants::$emailTaken);?>
                         </span>
                         <span class="themeText">Email</span>
                         <input
@@ -144,13 +141,13 @@ if(isset($_POST['registerButton'])) {
                     <!-- Password -->
                     <label for="password" class="labelStyle">
                         <span class="errorText">
-                            <?php echo $account->getError(Constants::$passwordsDoNoMatch);?>
+                            <?php echo $account->getError(models\Constants::$passwordsDoNoMatch);?>
                         </span>
                         <span class="errorText">
-                            <?php echo $account->getError(Constants::$passwordNotAlphanumeric);?>
+                            <?php echo $account->getError(models\Constants::$passwordNotAlphanumeric);?>
                         </span>
                         <span class="errorText">
-                            <?php echo $account->getError(Constants::$passwordCharacters);?>
+                            <?php echo $account->getError(models\Constants::$passwordCharacters);?>
                         </span>
                         <span class="themeText">Password</span>
                         <input
@@ -202,7 +199,7 @@ if(isset($_POST['registerButton'])) {
                     <p>
                         <!-- These errors will only print if they exist obviously, getError checks if the error exists in our log array, if it exists in the array then it returns the error text! -->
                         <span class="errorText">
-                            <?php echo $account->getError(Constants::$loginFailed);?>
+                            <?php echo $account->getError(models\Constants::$loginFailed);?>
                         </span>
                         <label for="loginUsername" class="labelStyle themeText">Username</label>
                         <input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. johnSmith" value="<?php getInputValue('loginUsername') ?>" class="generalInput" required>

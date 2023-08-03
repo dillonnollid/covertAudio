@@ -1,4 +1,6 @@
 <?php
+namespace models;
+
 class Constants {
 	//don't need to create instance of class, use these bad boys anywhere! use Constants::$passwordsDoNoMatch if it's been included.
 	//use -> when we have an instance of the class, use :: when we aren't instantiating the class! 

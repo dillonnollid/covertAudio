@@ -8,7 +8,7 @@ else {
 	header("Location: index.php");
 }
 
-$artist = new Artist($con, $artistId);
+$artist = new models\Artist($artistId);
 ?>
 
 <div class="pageContainer p-8">
@@ -33,7 +33,7 @@ $artist = new Artist($con, $artistId);
 
 			$i = 1;
 			foreach($songIdArray as $songId) {
-				$albumSong = new Song($con, $songId);
+				$albumSong = new models\Song($songId);
 				$albumArtist = $albumSong->getArtist();
 
 				echo "<li class='niceItem'>
@@ -53,7 +53,7 @@ $artist = new Artist($con, $artistId);
 						
 						<nav class='optionsMenu absolute hidden w-40 bg-gray-50 dark:bg-gray-700 shadow-lg rounded-md p-3'>
 							<input type='hidden' class='songId'>
-							". Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()) ."
+							". models\Playlist::getPlaylistsDropdown($userLoggedIn->getUsername()) ."
 						</nav>
 					</div>
 

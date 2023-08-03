@@ -109,8 +109,7 @@
 			</h4>
 			<ul class="list-disc text-wrap flex flex-col">
 				<?php 
-					//$genresWithSongs = ;
-					$generalController->showGenreButtons($con);
+					$generalController->showGenreButtons();
 				?>
 
 

@@ -1,12 +1,16 @@
 <?php
+namespace models;
+
+use models\Database;
+
 	class Account {
 
 		private $con;
 		private $errorArray;
 
-		public function __construct($con) {
+		public function __construct() {
 			//Instantiate connection object and error array to hold errors
-			$this->con = $con;
+			$this->con = Database::getInstance()->getConnection();
 			$this->errorArray = array();
 		}
 

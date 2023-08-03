@@ -1,4 +1,8 @@
 <?php
+namespace models;
+
+use models\Database;
+
 	class Song {
 
 		private $con;
@@ -11,8 +15,8 @@
 		private $duration;
 		private $path;
 
-		public function __construct($con, $id) {
-			$this->con = $con;
+		public function __construct($id) {
+			$this->con = Database::getInstance()->getConnection();
 			$this->id = $id;
 
 			//Query on creation, store data in myslqiData array and assign the vars values
@@ -35,11 +39,11 @@
 		}
 
 		public function getArtist() {
-			return new Artist($this->con, $this->artistId);
+			return new Artist($this->artistId);
 		}
 
 		public function getAlbum() {
-			return new Album($this->con, $this->albumId);
+			return new Album($this->albumId);
 		}
 
 		public function getPath() {
@@ -58,29 +62,29 @@
 			return $this->genre;
 		}
 
-		public static function getAllSongs($con) {
+		public static function getAllSongs() {
 			$songs = array();
 	
 			// Query to get all songs from the database
-			$query = mysqli_query($con, "SELECT * FROM songs");
+			$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT * FROM songs");
 	
 			while ($row = mysqli_fetch_array($query)) {
 				// Create Song objects and store them in the $songs array
-				$songs[] = new Song($con, $row['id']);
+				$songs[] = new Song($row['id']);
 			}
 	
 			return $songs;
 		}
 
-		public static function getSongCount($con) {
+		public static function getSongCount() {
 			$songs = array();
 	
 			// Query to get all songs from the database
-			$query = mysqli_query($con, "SELECT * FROM songs");
+			$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT * FROM songs");
 	
 			while ($row = mysqli_fetch_array($query)) {
 				// Create Song objects and store them in the $songs array
-				$songs[] = new Song($con, $row['id']);
+				$songs[] = new Song($row['id']);
 			}
 	
 			return $songs;

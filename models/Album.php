@@ -1,4 +1,7 @@
 <?php
+namespace models;
+
+use models\Database;
 	class Album {
 
 		private $con;
@@ -9,8 +12,8 @@
 		private $artworkPath;
 
 		//Constructor gets the Album info from a DB query, sets vars so we can use them in any function. 
-		public function __construct($con, $id) {
-			$this->con = $con;
+		public function __construct($id) {
+			$this->con = Database::getInstance()->getConnection();
 			$this->id = $id;
 
 			$query = mysqli_query($this->con, "SELECT * FROM albums WHERE id='$this->id'");
@@ -28,7 +31,7 @@
 		}
 
 		public function getArtist() {
-			return new Artist($this->con, $this->artistId);
+			return new Artist($this->artistId);
 		}
 
 		public function getGenre() {
@@ -60,15 +63,15 @@
 			return $array;
 		}
 
-		public static function getAllAlbums($con) {
+		public static function getAllAlbums() {
 			$albums = array();
 	
 			// Query to get all genres from the database
-			$query = mysqli_query($con, "SELECT * FROM albums");
+			$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT * FROM albums");
 	
 			while ($row = mysqli_fetch_array($query)) {
 				// Create Album objects and store them in the $albums array
-				$albums[] = new Album($con, $row['id']);
+				$albums[] = new Album($row['id']);
 			}
 	
 			return $albums;

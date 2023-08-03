@@ -10,7 +10,7 @@ else {
 }
 
 //Create new Album object, pass in our DB conn and the ID of the album to retrieve all album info
-$album = new Album($con, $albumId);
+$album = new models\Album($albumId);
 
 //Get artist from our Album object, then get the Artist ID from the new Artist object!
 $artist = $album->getArtist();
@@ -44,7 +44,7 @@ $artistId = $artist->getId();
 
             $i = 1;
             foreach($songIdArray as $songId) {
-                $albumSong = new Song($con, $songId);
+                $albumSong = new models\Song($songId);
                 $albumArtist = $albumSong->getArtist();
             
                 echo "<li class='niceItem'>
@@ -64,7 +64,7 @@ $artistId = $artist->getId();
                         
                             <nav class='optionsMenu absolute hidden w-40 bg-gray-50 dark:bg-gray-700 shadow-lg rounded-md p-3'>
                                 <input type='hidden' class='songId'>
-                                ". Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()) ."
+                                ". models\Playlist::getPlaylistsDropdown($userLoggedIn->getUsername()) ."
                             </nav>
                         </div>
             

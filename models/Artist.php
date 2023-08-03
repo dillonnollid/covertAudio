@@ -1,12 +1,16 @@
 <?php
+namespace models;
+
+use models\Database;
+
 	class Artist {
 
 		private $con;
 		private $id;
         private $genre;
 
-		public function __construct($con, $id) {
-			$this->con = $con;
+		public function __construct($id) {
+			$this->con = Database::getInstance()->getConnection();
 			$this->id = $id;
 		}
 
@@ -35,15 +39,15 @@
 
 		}
 
-		public static function getAllArtists($con) {
+		public static function getAllArtists() {
 			$artists = array();
 	
 			// Query to get all artists from the database
-			$query = mysqli_query($con, "SELECT * FROM artists");
+			$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT * FROM artists");
 	
 			while ($row = mysqli_fetch_array($query)) {
 				// Create Artist objects and store them in the $artists array
-				$artists[] = new Artist($con, $row['id']);
+				$artists[] = new Artist($row['id']);
 			}
 	
 			return $artists;

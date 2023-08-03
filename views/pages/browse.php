@@ -134,9 +134,9 @@ $generalController = new GeneralController();
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                     <?php
                     while($row = mysqli_fetch_array($songs)) {
-                       $tempArtist = new Artist($con, $row['artist']);
-                       $tempAlbum = new Album($con, $row['album']);
-                       $tempGenre = new Genre($con, $row['genre']);
+                       $tempArtist = new models\Artist($row['artist']);
+                       $tempAlbum = new models\Album($row['album']);
+                       $tempGenre = new models\Genre($row['genre']);
                        ?>
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3">

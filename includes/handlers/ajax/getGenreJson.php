@@ -5,7 +5,7 @@ if(isset($_POST['genreId'])) {
 	$genreId = $_POST['genreId'];
 
     //we get our con variable after including the config file
-	$songQuery = mysqli_query($con, "SELECT * FROM songs WHERE genre='$genreId'");
+    $songQuery = mysqli_query($con, "SELECT * FROM songs WHERE genre='$genreId' ORDER BY RAND()");
 
 	$resultArray = array();
 

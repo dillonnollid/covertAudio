@@ -1,4 +1,7 @@
 <?php
+namespace models;
+
+use models\Database;
 	class Playlist {
 
 		private $con;
@@ -6,18 +9,18 @@
 		private $name;
 		private $owner;
 
-		public function __construct($con, $data) {
-
-			if(!is_array($data)) {
-				//Data is an id (string)
-				$query = mysqli_query($con, "SELECT * FROM playlists WHERE id='$data'");
-				$data = mysqli_fetch_array($query);
-			}
-
-			$this->con = $con;
+		public function __construct($data) {
+			$this->con = Database::getInstance()->getConnection();
 			$this->id = $data['id'];
 			$this->name = $data['name'];
 			$this->owner = $data['owner'];
+
+			if(!is_array($data)) {
+				//Data is an id (string)
+				$query = mysqli_query($this->con, "SELECT * FROM playlists WHERE id='$data'");
+				$data = mysqli_fetch_array($query);
+			}
+
 		}
 
 		public function getId() {
@@ -47,10 +50,10 @@
 			return $array;
 		}
 
-		public static function getPlaylistsDropdown($con, $username) {
+		public static function getPlaylistsDropdown($username) {
 			$dropdown = '<select class="item playlist"><option value="">Add to playlist</option>';
 
-			$query = mysqli_query($con, "SELECT id, name FROM playlists WHERE owner='$username'");
+			$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT id, name FROM playlists WHERE owner='$username'");
 			while($row = mysqli_fetch_array($query)) {
 				$id = $row['id'];
 				$name = $row['name'];

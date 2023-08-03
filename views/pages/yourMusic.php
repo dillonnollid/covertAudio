@@ -18,7 +18,7 @@ require(__DIR__ . '/../../includes/includedFiles.php');
 			}
 
 			while($row = mysqli_fetch_array($playlistsQuery)) {
-				$playlist = new Playlist($con, $row);
+				$playlist = new models\Playlist($row);
 
 				echo "<div class='niceItem' role='link' tabindex='0' 
 							onclick='openPage(\"playlistView.php?id=" . $playlist->getId() . "\")'>

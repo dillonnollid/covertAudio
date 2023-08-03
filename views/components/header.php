@@ -1,4 +1,5 @@
 <?php
+use models\User;
 // Get the current script filename
 $currentFile = $_SERVER['PHP_SELF'];
 
@@ -16,13 +17,13 @@ include("models/Song.php");
 
 //If user's not logged in, redirect them to login+register page
 if(isset($_SESSION['userLoggedIn'])) {
-    $userLoggedIn = new User($con, $_SESSION['userLoggedIn']);
+    $userLoggedIn = new User($_SESSION['userLoggedIn']);
     $_SESSION["name"] = $userLoggedIn->getName();
     $_SESSION["email"] = $userLoggedIn->getEmail();;
     $_SESSION["profilePic"] = $userLoggedIn->getProfilePhotoPath();
     $_SESSION["role"] = $userLoggedIn->getRoleName();
 
-    //echo "<script> var userLoggedIn = '" . $_SESSION['userLoggedIn'] . "'; </script>";
+    echo "<script> var userLoggedIn = '" . $_SESSION['userLoggedIn'] . "'; </script>";
 }
 else {
     header("Location: authenticate.php");

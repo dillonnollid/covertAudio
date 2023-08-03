@@ -53,7 +53,7 @@ else {
 
 			array_push($songIdArray, $row['id']);
 
-			$albumSong = new Song($con, $row['id']);
+			$albumSong = new models\Song( $row['id']);
 			$albumArtist = $albumSong->getArtist();
 
 			echo "<li class='niceItem'>
@@ -104,7 +104,7 @@ else {
 	}
 
 	while($row = mysqli_fetch_array($artistsQuery)) {
-		$artistFound = new Artist($con, $row['id']);
+		$artistFound = new models\Artist($row['id']);
 
 		echo "<div class='searchResultRow'>
 				<div class='artistName'>
@@ -149,5 +149,5 @@ else {
 
 <nav class="optionsMenu">
 	<input type="hidden" class="songId">
-	<?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); ?>
+	<?php echo models\Playlist::getPlaylistsDropdown($userLoggedIn->getUsername()); ?>
 </nav>
