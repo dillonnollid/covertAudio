@@ -1,11 +1,17 @@
 <?php
 namespace models;
 
+use Dotenv\Dotenv;
+
 class Database {
     private static $instance = null;
     private $con;
 
     private function __construct() {
+        require_once __DIR__ . '\..\vendor\autoload.php';
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+
         // Private constructor to prevent instantiation from outside
         $dbHost = $_ENV['DB_HOST'];
         $dbUsername = $_ENV['DB_USERNAME'];

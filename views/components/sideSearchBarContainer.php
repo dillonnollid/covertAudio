@@ -206,7 +206,7 @@ include_once("mobileAside.php");
                                 </div>
                             </li>
                             <li class="flex">
-                                <a href="logout.php" class="notifOption" href="#">
+                                <a href="includes/handlers/logout-handler.php" class="notifOption">
                                     <svg
                                         class="w-4 h-4 mr-3"
                                         aria-hidden="true"

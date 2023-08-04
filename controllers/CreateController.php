@@ -1,6 +1,7 @@
 <?php
 namespace controllers;
 
+use getID3;
 use models\Database;
 use models\User;
 
@@ -8,19 +9,19 @@ if(session_status() == PHP_SESSION_NONE) { //session has not started
     session_start();
 }
 
-class CreateController {
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+class CreateController{
     private $getID3;
     private $con;
     private $redirect;
 
     public function __construct(){
-        require_once dirname(__DIR__) . '/vendor/autoload.php';
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-        $dotenv->load();
-
+        //include_once(__DIR__ . "/../vendor/autoload.php");
         $this->con = Database::getInstance()->getConnection();
-        
-        include_once("getID3/getid3/getid3.php");
+
+        include_once(__DIR__ . "/../getID3/getid3/getid3.php");
         $this->getID3 = new getID3;
         $this->redirect = 'views/pages/browse.php';
     }

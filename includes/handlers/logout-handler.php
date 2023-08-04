@@ -1,6 +1,6 @@
 <?php
 session_start();
 session_destroy();
-header("location:authenticate.php");
+header("location:../../authenticate.php");
 exit();
 ?>

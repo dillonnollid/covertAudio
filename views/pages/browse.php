@@ -5,7 +5,7 @@ use controllers\MusicController;
 use controllers\UserController;
 
 $musicController = new MusicController();
-$userController = new UserController();
+$userController = UserController::getInstance();
 ?>
 
 <div class="container p-6 mx-auto grid h-full">
