@@ -14,7 +14,7 @@ class User {
         $this->con = Database::getInstance()->getConnection();
         $this->username = $username;
         $this->account = new Account();
-        $query = "SELECT firstName, lastName, email, profilePic, role FROM users WHERE username = ?";
+        $query = "SELECT id, firstName, lastName, email, profilePic, role FROM users WHERE username = ?";
         $stmt = $this->con->prepare($query);
         $stmt->bind_param("s", $this->username);
         $stmt->execute();
@@ -25,6 +25,10 @@ class User {
 
     public function getUsername() {
         return $this->username;
+    }
+
+    public function getId() {
+        return $this->userData['id'];
     }
 
     public function getEmail() {
@@ -124,8 +128,8 @@ class User {
     
             if(in_array($file_extension, $valid_extensions)){ // Check if file extension is valid
                 $new_file_name = $this->username . "_" . time() . "." . $file_extension; // Generate unique file name to avoid overwriting other files
-                
-                $file_path = getcwd() . "/assets/images/profile-pics/" . $new_file_name;
+
+                $file_path = __DIR__ . "/../assets/images/profile-pics/" . $new_file_name;
 
                 if(move_uploaded_file($imageFile["tmp_name"], $file_path)){ // Move the file to the server
                     // Update the profile photo in the database

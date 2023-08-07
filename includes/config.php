@@ -9,8 +9,9 @@
 	}
 
     //Load the env file variables using the Dotenv package
-	require_once dirname(__DIR__) . '/vendor/autoload.php';
-	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+    require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 	$dotenv->load();
 
 	$timezone = date_default_timezone_set("Europe/Dublin");

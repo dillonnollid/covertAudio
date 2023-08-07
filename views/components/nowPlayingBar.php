@@ -23,28 +23,28 @@
 			<div class="content py-2">
 				<div class="buttons">
 
-					<button id="shuffle" title="Shuffle button" class="controlButton shuffle bg-purple-500">
+					<button id="shuffle" title="Shuffle button" class="controlButton shuffle">
 						<i class="fa fa-random fa-2x text-white"></i>
 					</button>
 
-					<button id="previous" title="Previous button" class="controlButton previous bg-purple-500">
+					<button id="previous" title="Previous button" class="controlButton previous">
 						<i class="fa fa-backward fa-2x text-white"></i>
 					</button>
 
-					<button id="play" title="Play button" class="controlButton play bg-purple-500">
+					<button id="play" title="Play button" class="controlButton play">
 						<i class="fa fa-play fa-2x text-white" id="play-btn"></i>
 					</button>
 
-					<button id="pause" title="Pause button" class="controlButton pause bg-purple-500"
+					<button id="pause" title="Pause button" class="controlButton pause"
 						style="display: none;">
 						<i class="fa fa-pause fa-2x text-white" id="pause-btn"></i>
 					</button>
 
-					<button id="next" title="Next button" class="controlButton next bg-purple-500">
+					<button id="next" title="Next button" class="controlButton next">
 						<i class="fa fa-forward fa-2x text-white"></i>
 					</button>
 
-					<button id="repeat" title="Repeat button" class="controlButton repeat bg-purple-500">
+					<button id="repeat" title="Repeat button" class="controlButton repeat">
 						<i class="fa fa-repeat fa-2x text-white"></i>
 					</button>
 				</div>

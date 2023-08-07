@@ -1,5 +1,5 @@
 <?php
-include("includes/config.php");
+include_once(__DIR__ . "/../config.php");
 
 if(isset($_SESSION['userLoggedIn'])) {
     $userLoggedIn = new models\User($_SESSION['userLoggedIn']);
@@ -9,10 +9,10 @@ if(isset($_SESSION['userLoggedIn'])) {
 }
 
 // Default redirection page
-$redirect = 'index.php';
+$redirect = '../../index.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //Ternary operator, shorthand of if-else. Checks whether 'action' exists, after ? will execute if condition is true. After : will execute if condition is false! 
+    //Ternary operator, shorthand of if-else. Checks whether 'action' exists, after ? will execute if condition is true. After : will execute if condition is false!
     $action = isset($_POST['action']) ? $_POST['action'] : null;
 
     switch($action) {

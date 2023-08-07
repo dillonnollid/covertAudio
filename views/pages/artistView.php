@@ -38,7 +38,7 @@ $artist = new models\Artist($artistId);
 
 				echo "<li class='niceItem'>
 					<div class='trackCount'>
-						<img class='playIcon' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
+						<img class='playIcon' src='assets/images/icons/play.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
 						<span class='trackNumber'>$i</span>
 					</div>
 
@@ -58,7 +58,7 @@ $artist = new models\Artist($artistId);
 					</div>
 
 					<div class='trackDuration'>
-						<span class='durationText'>" . $albumSong->getDuration() . "</span>
+						<span class='themeText'>" . $albumSong->getDuration() . "</span>
 					</div>
 				</li>";
 

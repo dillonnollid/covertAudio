@@ -82,7 +82,7 @@ function createPlaylist() {
 				return;
 			}
 			//do something when ajax returns
-			openPage("yourMusic.php");
+			openPage("yourPlaylists.php");
 		});
 	}
 }
@@ -98,7 +98,7 @@ function deletePlaylist(playlistId) {
 				return;
 			}
 			//do something when ajax returns
-			openPage("yourMusic.php");
+			openPage("yourPlaylists.php");
 		});
 	}
 }

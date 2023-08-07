@@ -58,7 +58,7 @@ else {
 
 			echo "<li class='niceItem'>
 					<div class='trackCount'>
-						<img class='playIcon' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
+						<img class='playIcon' src='assets/images/icons/play.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
 						<span class='trackNumber'>$i</span>
 					</div>
 

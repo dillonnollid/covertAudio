@@ -33,11 +33,11 @@ body {
 }
 
 .logo {
-    @apply mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200;
+    @apply mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 themeSwitchFade;
 }
 
 .errorText {
-    @apply text-red-700 dark:text-red-400;
+    @apply text-red-700 dark:text-red-400 themeSwitchFade;
 }
 
 .errorBox {
@@ -53,7 +53,7 @@ body {
 }
 
 .themeText {
-    @apply text-gray-700 dark:text-gray-400;
+    @apply text-gray-700 dark:text-gray-400 font-medium mb-1 md:mb-2 themeSwitchFade;
 }
 
 .labelStyle {
@@ -65,16 +65,16 @@ body {
 }
 
 .submitButton {
-    @apply block w-full px-4 py-2 mt-4 md:mx-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg hover:bg-purple-700 focus:outline-none;
+    @apply block w-full px-4 py-2 mt-4 md:mx-4 text-sm font-medium leading-5 text-center text-white transition-colors themeSwitchFade bg-cyan-600 dark:bg-purple-600 border border-transparent rounded-lg hover:bg-purple-700 themeSwitchFade;
 }
 
 .colourText {
-    @apply text-base font-medium text-purple-600 dark:text-purple-400 hover:underline;
+    @apply text-base font-medium text-cyan-600 dark:text-purple-400 themeSwitchFade w-full;
 }
 
 /* Main Elements */
 .mainContainer {
-    @apply flex bg-gradient-to-tr from-purple-200 to-gray-300 dark:from-purple-900 dark:to-gray-900;
+    @apply flex bg-gradient-to-tr from-cyan-100 to-gray-200 dark:from-purple-900 dark:to-gray-800 themeSwitchFade;
 }
 
 .mainContent {
@@ -87,11 +87,11 @@ body {
 }
 
 .mobileAside {
-    @apply fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden;
+    @apply fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden themeSwitchFade;
 }
 
 .desktopAside {
-    @apply z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0;
+    @apply z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0 themeSwitchFade;
 }
 
 .asideText {
@@ -99,7 +99,7 @@ body {
 }
 
 .logoText {
-    @apply ml-6 text-lg font-bold text-gray-800 dark:text-gray-200;
+    @apply ml-6 text-lg font-bold text-gray-800 dark:text-gray-200 themeSwitchFade;
 }
 
 .outsideHeader {
@@ -107,11 +107,11 @@ body {
 }
 
 .mainHeader {
-    @apply z-10 py-4 bg-white shadow-md dark:bg-gray-800;
+    @apply z-10 py-4 bg-white shadow-md dark:bg-gray-800 themeSwitchFade;
 }
 
 .subHeader {
-    @apply container flex items-center justify-between h-full px-6 mx-auto text-blue-600 dark:text-purple-300;
+    @apply container flex items-center justify-between h-full px-6 mx-auto text-cyan-600 dark:text-purple-300 themeSwitchFade;
 }
 
 .hamburger {
@@ -123,11 +123,11 @@ body {
 }
 
 .searchBox {
-    @apply relative w-full max-w-xl mr-6 focus-within:text-purple-500;
+    @apply relative w-full max-w-xl mr-6 focus-within:text-cyan-500 dark:focus-within:text-purple-500 themeSwitchFade;
 }
 
 .searchInput {
-    @apply block w-full mb-1 text-lg border-0 rounded-md bg-gray-100 dark:bg-gray-700 placeholder-gray-600 dark:placeholder-gray-400 dark:border-gray-600 focus:border-purple-400 focus:outline-none dark:text-gray-300 focus:placeholder-gray-500 dark:focus:placeholder-gray-600 focus:bg-white;
+    @apply block w-full mb-1 text-lg border-0 rounded-md bg-gray-100 dark:bg-gray-700 placeholder-gray-600 dark:placeholder-gray-400 dark:border-gray-600 focus:border-cyan-400 dark:focus:border-purple-400 focus:outline-none dark:text-gray-300 focus:placeholder-gray-500 dark:focus:placeholder-gray-600 focus:bg-white themeSwitchFade;
 }
 
 .searchIcon {
@@ -142,20 +142,24 @@ body {
     @apply rounded-md focus:outline-none;
 }
 
+.themeSwitchFade {
+    @apply duration-300 ;
+}
+
 .notifBadge {
-    @apply absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-500 border-2 border-white rounded-full dark:border-gray-800;
+    @apply absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-500 border-2 border-white rounded-full dark:border-gray-800 themeSwitchFade;
 }
 
 .notifMenu {
-    @apply absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700;
+    @apply absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700 themeSwitchFade;
 }
 
 .notifOption {
-    @apply inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200;
+    @apply inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors themeSwitchFade rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 themeSwitchFade;
 }
 
 .notifNumber {
-    @apply inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600;
+    @apply inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600 themeSwitchFade;
 }
 
 .profilePhoto {
@@ -163,11 +167,11 @@ body {
 }
 
 .profileMenu {
-    @apply absolute right-0 w-48 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700;
+    @apply absolute right-0 w-48 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700 themeSwitchFade;
 }
 
 .generalInput {
-    @apply block w-full p-2.5 my-2 md:px-6 md:mx-4 text-base rounded-lg bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 focus:ring-purple-500 focus:border-purple-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500;
+    @apply block w-full p-2.5 my-2 md:px-6 md:mx-4 text-base rounded-lg bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 focus:ring-cyan-500 dark:focus:ring-purple-500 focus:border-cyan-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 themeSwitchFade;
 }
 
 .generalCenteredText {
@@ -177,7 +181,7 @@ body {
 
 /* Now Playing Bar Elements */
 .nowPlayingBarContainer {
-    @apply flex flex-col items-center justify-center font-semibold transition-colors text-black dark:text-white md:flex-row md:px-10 space-y-4 md:space-y-0;
+    @apply flex flex-col items-center justify-center font-semibold transition-colors text-black dark:text-white md:flex-row md:px-10 space-y-4 md:space-y-0 themeSwitchFade;
 }
 
 .nowPlayingBar {
@@ -193,7 +197,7 @@ body {
 }
 
 .albumArtwork {
-    @apply w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 object-cover rounded-xl mx-auto hover:scale-105 duration-200 cursor-pointer;
+    @apply w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 object-cover rounded-full mx-auto hover:scale-105 themeSwitchFade cursor-pointer;
 }
 
 .trackInfo {
@@ -213,7 +217,7 @@ body {
 }
 
 .controlButton {
-    @apply w-12 h-12 md:w-14 md:h-14 text-sm font-medium leading-5 text-white transition-colors duration-150 border border-transparent rounded-lg focus:outline-none;
+    @apply bg-cyan-500 dark:bg-purple-500 w-12 h-12 md:w-14 md:h-14 font-medium leading-5 text-white transition-colors border border-transparent rounded-lg focus:outline-none;
 }
   
 .controlButton:hover {
@@ -237,7 +241,7 @@ body {
 }
 
 .progress {
-    @apply flex h-full items-baseline justify-center overflow-hidden break-all bg-gradient-to-tr from-purple-600 to-purple-400 text-white whitespace-nowrap;
+    @apply flex h-full items-baseline justify-center overflow-hidden break-all bg-gradient-to-tr from-cyan-600 to-cyan-400 dark:from-purple-600 dark:to-purple-400 text-white whitespace-nowrap themeSwitchFade;
 }
 
 .progressTime {
@@ -250,7 +254,7 @@ body {
 }
 
 .messageBox {
-    @apply w-full min-w-0 p-4 mb-2 md:mb-4 text-white bg-purple-600 rounded-lg shadow-md hover:shadow-xl text-base font-normal;
+    @apply w-full min-w-0 p-4 mb-2 md:mb-4 text-white bg-cyan-500 dark:bg-purple-500 rounded-lg shadow-md hover:shadow-xl text-base font-normal themeSwitchFade;
 }
 
 .infoCardContainer {
@@ -258,7 +262,7 @@ body {
 }
 
 .infoCard {
-    @apply flex items-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800;
+    @apply flex items-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 themeSwitchFade;
 }
 
 /* Contribute Elements */
@@ -272,7 +276,7 @@ body {
 
 /* Content Pages e.g. albumView */
 .pageContainer {
-    @apply flex flex-col md:flex-row m-4 md:m-8 justify-center items-center overflow-hidden;
+    @apply flex flex-col md:flex-row m-4 md:m-8 justify-center items-center overflow-hidden themeSwitchFade;
 }
 
 .leftSection {
@@ -284,7 +288,7 @@ body {
 }
 
 .rightSection {
-    @apply justify-center items-center rounded-lg text-center bg-purple-500 w-3/4 md:m-8 ;
+    @apply justify-center items-center rounded-lg text-center bg-cyan-500 dark:bg-purple-500 w-3/4 md:m-8 ;
 }
 
 .tableContainer {
@@ -339,12 +343,16 @@ body {
     @apply  w-8 h-8 my-auto;
 }
 
-.durationText {
-    @apply themeText;
+.infoContent {
+    @apply p-3 mr-4 text-cyan-500 bg-cyan-100 rounded-full dark:text-purple-100 dark:bg-purple-500;
 }
 
 .imageAnimation {
     @apply shadow-lg hover:shadow-2xl max-h-56;
+}
+
+.hoverUnderline {
+    @apply block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-cyan-600;
 }
 
 

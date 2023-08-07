@@ -50,7 +50,7 @@ $artistId = $artist->getId();
                 echo "<li class='niceItem'>
                         <div class='trackCount'>
                             <span class='trackNumber'>$i</span>
-                            <img class='playIcon' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
+                            <img class='playIcon' src='assets/images/icons/play.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
                         </div>
             
                         <div class='trackInfo' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
@@ -69,7 +69,7 @@ $artistId = $artist->getId();
                         </div>
             
                         <div class='trackDuration'>
-                            <span class='durationText'>" . $albumSong->getDuration() . "</span>
+                            <span class='themeText'>" . $albumSong->getDuration() . "</span>
                         </div>
                     </li>";
             

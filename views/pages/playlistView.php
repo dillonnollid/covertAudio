@@ -23,6 +23,7 @@ $owner = new models\User($playlist->getOwner());
 		<p>By <?php echo $playlist->getOwner(); ?></p>
 		<p><?php echo $playlist->getNumberOfSongs(); ?> songs</p>
 		<span class="themedText cursor-pointer hover:underline" role="link" tabindex="0" onclick="openPage('browse.php')">&larr; Back to Home</span>
+        <br>
 		<button class="button" onclick="deletePlaylist('<?php echo $playlistId; ?>')">DELETE PLAYLIST</button>
 	</div>
 
@@ -33,7 +34,7 @@ $owner = new models\User($playlist->getOwner());
 		<ul class="niceList">
 			
 			<?php
-			$songIdArray = $playlist->getSongIds();
+            $songIdArray =  $playlist->getPlaylistSongs();
 
 			$i = 1;
 			foreach($songIdArray as $songId) {
@@ -43,7 +44,7 @@ $owner = new models\User($playlist->getOwner());
 
 				echo "<li class='niceItem'>
 						<div class='trackCount'>
-							<img class='playIcon' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $playlistSong->getId() . "\", tempPlaylist, true)'>
+							<img class='playIcon' src='assets/images/icons/play.png' onclick='setTrack(\"" . $playlistSong->getId() . "\", tempPlaylist, true)'>
 							<span class='trackNumber'>$i</span>
 						</div>
 
@@ -63,7 +64,7 @@ $owner = new models\User($playlist->getOwner());
                         </div>
 
 						<div class='trackDuration'>
-							<span class='duration'>" . $playlistSong->getDuration() . "</span>
+							<span class='trackName'>" . $playlistSong->getDuration() . "</span>
 						</div>
 
 

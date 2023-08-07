@@ -3,6 +3,7 @@ namespace controllers;
 
 use models\Artist;
 use models\Album;
+use models\Database;
 use models\Genre;
 use models\Playlist;
 use models\Song;
@@ -60,6 +61,30 @@ class MusicController {
 
     public function getSongById($songId) {
         return new Song($songId);
+    }
+
+    public function printUserPlaylists() {
+        $playlists = Playlist::getUserPlaylists();
+
+        $output = "";
+
+        if(sizeof($playlists) == 0) {
+            $output.= "<span class='errorText'>No playlists yet.</span>";
+        }
+
+        foreach ($playlists as $playlist){
+            $output.= "<div class='niceItem' role='link' tabindex='0' 
+							onclick='openPage(\"playlistView.php?id=" . $playlist['id'] . "\")'>
+
+						
+						<div class='generalCenteredText'>"
+                . $playlist['name'] .
+                "</div>
+
+					</div>";
+        }
+
+        return $output;
     }
 }
 ?>

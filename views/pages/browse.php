@@ -18,7 +18,7 @@ $userController = UserController::getInstance();
     <div class="infoCardContainer">
         <!-- Song Card -->
         <div class="infoCard">
-            <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+            <div class="infoContent">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                         fill-rule="evenodd"
@@ -28,10 +28,10 @@ $userController = UserController::getInstance();
                 </svg>
             </div>
             <div>
-                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                <p class="themeText">
                     Total Songs
                 </p>
-                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                <p class="themeText">
                     <?php
                         $songCount = $musicController->getTotalSongCount();
                         echo $songCount;
@@ -42,7 +42,7 @@ $userController = UserController::getInstance();
 
         <!-- Album Card -->
         <div class="infoCard">
-            <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+            <div class="infoContent">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                         fill-rule="evenodd"
@@ -52,10 +52,10 @@ $userController = UserController::getInstance();
                 </svg>
             </div>
             <div>
-                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                <p class="themeText">
                     Total Albums
                 </p>
-                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                <p class="themeText">
                     <?php
                         echo $musicController->getTotalAlbumCount();
                     ?>
@@ -65,7 +65,7 @@ $userController = UserController::getInstance();
 
         <!-- Genre Card -->
         <div class="infoCard">
-            <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+            <div class="infoContent">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                         fill-rule="evenodd"
@@ -75,10 +75,10 @@ $userController = UserController::getInstance();
                 </svg>
             </div>
             <div>
-                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                <p class="themeText">
                     Total Genres
                 </p>
-                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                <p class="themeText">
                     <?php
                         echo $musicController->getTotalGenreCount();
                     ?>
@@ -88,7 +88,7 @@ $userController = UserController::getInstance();
 
         <!-- User Card -->
         <div class="infoCard">
-            <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+            <div class="infoContent">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                         fill-rule="evenodd"
@@ -98,10 +98,10 @@ $userController = UserController::getInstance();
                 </svg>
             </div>
             <div>
-                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                <p class="themeText">
                     Total Users
                 </p>
-                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                <p class="themeText">
                     <?php
                         echo $userController->getTotalUserCount();
                     ?>

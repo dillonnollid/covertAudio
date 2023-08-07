@@ -19,6 +19,7 @@ include("models/Song.php");
 if(isset($_SESSION['userLoggedIn'])) {
     $userLoggedIn = new User($_SESSION['userLoggedIn']);
     $_SESSION["name"] = $userLoggedIn->getName();
+    $_SESSION["id"] = $userLoggedIn->getId();
     $_SESSION["email"] = $userLoggedIn->getEmail();;
     $_SESSION["profilePic"] = $userLoggedIn->getProfilePhotoPath();
     $_SESSION["role"] = $userLoggedIn->getRoleName();
