@@ -228,18 +228,25 @@ function nextSong() {
 	setTrack(trackToPlay, currentPlaylist, true);
 }
 
+function isDarkThemeEnabled() {
+	if (window.localStorage.getItem('dark') && document.documentElement.classList.contains('dark')) {
+		isDark = true;
+	} else {
+		isDark = false;
+	}
+
+	console.log('Dark is ' + isDark + ' Shuffle is ' + shuffle + ' Repeat is ' + repeat);
+	return isDark;
+}
+
 //Buttons/Icons not yet implemented on tailwind player
 function setRepeat() {
-    repeat = !repeat;
+	repeat = !repeat;
     
-    if (repeat) { //Indicates repeat was enabled, change button colour
-        if ($('.controlButton.repeat').removeClass('bg-purple-500') && $('.controlButton.repeat').addClass('bg-purple-800')) {
-            //console.log("REPEAT BUTTON COLOR ENABLE SUCCESS!");
-        } 
-    } else { //Indicates repeat was disabled, revert button colour
-        if ($('.controlButton.repeat').removeClass('bg-purple-800') && $('.controlButton.repeat').addClass('bg-purple-500')) {
-            //console.log("REPEAT BUTTON COLOR DISABLE SUCCESS!");
-        } 
+	if (repeat) { // Indicates repeat was enabled
+        $('.controlButton.repeat').removeClass('dark:bg-purple-500 bg-cyan-500').addClass('dark:bg-purple-800 bg-cyan-800');
+    } else { // Indicates repeat was disabled
+        $('.controlButton.repeat').removeClass('dark:bg-purple-800 bg-cyan-800').addClass('dark:bg-purple-500 bg-cyan-500');
     }
 }
 
@@ -256,16 +263,12 @@ function setShuffle() {
         shuffleArray(shufflePlaylist);
         currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
 
-        if ($('.controlButton.shuffle').removeClass('bg-purple-500') && $('.controlButton.shuffle').addClass('bg-purple-800')) {
-            //console.log("SHUFFLE BUTTON TOGGLED!");
-        } 
+        $('.controlButton.shuffle').removeClass('dark:bg-purple-500 bg-cyan-500').addClass('dark:bg-purple-800 bg-cyan-800');
     }
     else { //shuffle has been disabled, go back to regular playlist and revert button colour
         currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
 
-        if ($('.controlButton.shuffle').removeClass('bg-purple-800') && $('.controlButton.shuffle').addClass('bg-purple-500')) {
-            //console.log("SHUFFLE BUTTON TOGGLED BACK!");
-        } 
+        $('.controlButton.shuffle').removeClass('dark:bg-purple-800 bg-cyan-800').addClass('dark:bg-purple-500 bg-cyan-500');
     }
 }
 
@@ -422,33 +425,27 @@ function setButtonFunctions() {
 	});
 
 	$("#play").off('click').on('click', function () {
-		playSong();
-		//console.log("Clicked Play");
+		playSong(); //console.log("Clicked Play");
 	});
 
 	$("#pause").off('click').on('click', function () {
-		pauseSong();
-		//console.log("Clicked Pause");
+		pauseSong(); //console.log("Clicked Pause");
 	});
 
 	$("#previous").off('click').on('click', function () {
-		prevSong();
-		//console.log("Clicked Previous");
+		prevSong(); //console.log("Clicked Previous");
 	});
 
 	$("#next").off('click').on('click', function () {
-		nextSong();
-		//console.log("Clicked Next");
+		nextSong(); //console.log("Clicked Next");
 	});
 
 	$("#shuffle").off('click').on('click', function () {
-		setShuffle();
-		//console.log("Clicked Shuffle");
+		setShuffle(); //console.log("Clicked Shuffle");
 	});
 
 	$("#repeat").off('click').on('click', function () {
-		setRepeat();
-		//console.log("Clicked Repeat");
+		setRepeat(); //console.log("Clicked Repeat");
 	});
 
 
@@ -483,15 +480,15 @@ function updateNowPlayingBar() {
         }
 
         if(shuffle) {
-            $('.controlButton.shuffle').addClass('bg-purple-800').removeClass('bg-purple-500');
+            $('.controlButton.shuffle').addClass('dark:bg-purple-800 bg-cyan-800').removeClass('dark:bg-purple-500 bg-cyan-500');
 		} else {
-            $('.controlButton.shuffle').addClass('bg-purple-500').removeClass('bg-purple-800');
+            $('.controlButton.shuffle').addClass('dark:bg-purple-500 bg-cyan-500').removeClass('dark:bg-purple-800 bg-cyan-800');
         }
 
-        if(repeat) {
-            $('.controlButton.repeat').addClass('bg-purple-800').removeClass('bg-purple-500');
-        } else {
-            $('.controlButton.repeat').addClass('bg-purple-500').removeClass('bg-purple-800');
+        if (repeat) { // Indicates repeat was enabled
+			$('.controlButton.repeat').removeClass('dark:bg-purple-500 bg-cyan-500').addClass('dark:bg-purple-800 bg-cyan-800');
+		} else { // Indicates repeat was disabled
+			$('.controlButton.repeat').removeClass('dark:bg-purple-800 bg-cyan-800').addClass('dark:bg-purple-500 bg-cyan-500');
 		}
 
 		//Call the function to set button and playback functionalities

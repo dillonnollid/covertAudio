@@ -37,7 +37,7 @@ class CreateController{
         $newTitle = trim($songTitle);
         $newTitle = str_replace(' ', '-', $newTitle);
         $newTitle = preg_replace('/[^A-Za-z0-9\-]/', '', $newTitle);
-        $uploadDir = 'assets/music/';
+        $uploadDir = __DIR__ . "/../assets/music/";
         $path = $uploadDir . $newTitle . ".mp3";
         $uploadedFile = $uploadDir . basename($path);
 
@@ -65,7 +65,7 @@ class CreateController{
         $genre = $_POST['genre'];
 
         $newTitle=trim($albumTitle);
-        $uploadDir = 'assets/images/artwork/';
+        $uploadDir = __DIR__ . "/../assets/images/profile-pics/";
         $path=$uploadDir . $newTitle . ".jpg";
         $uploadedFile = $uploadDir . basename($path);
 

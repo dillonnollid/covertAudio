@@ -197,7 +197,7 @@ body {
 }
 
 .albumArtwork {
-    @apply w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 object-cover rounded-full mx-auto hover:scale-105 themeSwitchFade cursor-pointer;
+    @apply w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 object-cover rounded-sm mx-auto hover:scale-105 themeSwitchFade cursor-pointer;
 }
 
 .trackInfo {
@@ -217,7 +217,7 @@ body {
 }
 
 .controlButton {
-    @apply bg-cyan-500 dark:bg-purple-500 w-12 h-12 md:w-14 md:h-14 font-medium leading-5 text-white transition-colors border border-transparent rounded-lg focus:outline-none;
+    @apply w-12 h-12 md:w-14 md:h-14 font-medium leading-5 text-white transition-colors border border-transparent rounded-lg focus:outline-none;
 }
   
 .controlButton:hover {

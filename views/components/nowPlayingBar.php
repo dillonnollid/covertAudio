@@ -23,28 +23,28 @@
 			<div class="content py-2">
 				<div class="buttons">
 
-					<button id="shuffle" title="Shuffle button" class="controlButton shuffle">
+					<button id="shuffle" title="Shuffle button" class="controlButton shuffle bg-cyan-500 dark:bg-purple-500">
 						<i class="fa fa-random fa-2x text-white"></i>
 					</button>
 
-					<button id="previous" title="Previous button" class="controlButton previous">
+					<button id="previous" title="Previous button" class="controlButton previous bg-cyan-500 dark:bg-purple-500">
 						<i class="fa fa-backward fa-2x text-white"></i>
 					</button>
 
-					<button id="play" title="Play button" class="controlButton play">
+					<button id="play" title="Play button" class="controlButton play bg-cyan-500 dark:bg-purple-500">
 						<i class="fa fa-play fa-2x text-white" id="play-btn"></i>
 					</button>
 
-					<button id="pause" title="Pause button" class="controlButton pause"
+					<button id="pause" title="Pause button" class="controlButton pause bg-cyan-500 dark:bg-purple-500"
 						style="display: none;">
 						<i class="fa fa-pause fa-2x text-white" id="pause-btn"></i>
 					</button>
 
-					<button id="next" title="Next button" class="controlButton next">
+					<button id="next" title="Next button" class="controlButton next bg-cyan-500 dark:bg-purple-500">
 						<i class="fa fa-forward fa-2x text-white"></i>
 					</button>
 
-					<button id="repeat" title="Repeat button" class="controlButton repeat">
+					<button id="repeat" title="Repeat button" class="controlButton repeat bg-cyan-500 dark:bg-purple-500">
 						<i class="fa fa-repeat fa-2x text-white"></i>
 					</button>
 				</div>
