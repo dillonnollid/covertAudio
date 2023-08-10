@@ -27,37 +27,45 @@ class CreateController{
     }
 
     public function addSong() {
-        //Collect values from input fields
-        //$songSource = $_POST['songSource'];//Not needed yet
+        // Collect values from input fields
         $artistID = $_POST['artistID'];
         $songTitle = $_POST['songTitle'];
         $albumID = $_POST['albumID'];
         $genre = $_POST['genre'];
-
+    
         $newTitle = trim($songTitle);
         $newTitle = str_replace(' ', '-', $newTitle);
         $newTitle = preg_replace('/[^A-Za-z0-9\-]/', '', $newTitle);
-        $uploadDir = __DIR__ . "/../assets/music/";
-        $path = $uploadDir . $newTitle . ".mp3";
+        $uploadDir = __DIR__ . "/../";
+        $path = "assets/music/" . $newTitle . ".mp3";
         $uploadedFile = $uploadDir . basename($path);
-
+    
+        
         if (move_uploaded_file($_FILES['upload']['tmp_name'], $uploadedFile)) {
-            $ThisFileInfo = $this->getID3->analyze($path);
+            $ThisFileInfo = $this->getID3->analyze($uploadedFile);
             $len = $ThisFileInfo['playtime_string'];
 
             $sql = "INSERT INTO songs " .
-                "(title,artist,album,genre,duration,path,albumOrder,plays) " . "VALUES " .
-                "('$songTitle',$artistID,$albumID,$genre,'$len','$path',1,1)";
+                "(title, artist, album, genre, duration, path, albumOrder, plays) " . "VALUES " .
+                "('$songTitle', $artistID, $albumID, $genre, '$len', '$path', 1, 1)";
 
-            if (mysqli_query($this->con,$sql) == 1) {
-                $_SESSION['success'] = "New song record created successfully: " . (string)$songTitle;
+            $this->con->set_charset("utf8mb4");
+
+            if ($this->con->ping()) {
+                if (mysqli_query($this->con, $sql) == 1) {
+                    $_SESSION['success'] = "New song record created successfully: " . (string) $songTitle;
+                } else {
+                    $_SESSION['error'] = "Error Creating Song Record: " . $sql . $this->con->error;
+                }
             } else {
-                $_SESSION['error'] =  "Error: " . $sql . $this->con->error;
+                $_SESSION['error'] = "Can't ping the database: " . $sql . $this->con->error;
             }
         } else {
             $_SESSION['error'] =  "Error: There was a problem saving the uploaded file";
         }
+        
     }
+    
 
     public function addAlbum(){
         $albumTitle = $_POST['albumTitle'];

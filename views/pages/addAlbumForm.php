@@ -8,7 +8,7 @@ $con = models\Database::getInstance()->getConnection();
         <h1 class="generalCenteredText">Add Album! </h1>
         <h2 class="generalCenteredText">(Existing Albums listed below)</h2><br>
 
-        <form action="includes/handlers/form-handler.php" method="post" enctype="multipart/form-data">
+        <form action="/controllers/FormController.php" method="post" enctype="multipart/form-data">
             <input type="text" name="albumTitle" placeholder="Album Title" class="generalInput" required/>
             <select name="artistID" id="ART" class="generalInput" required>
                 <option value="" disabled selected>Select the artist!</option>
@@ -33,7 +33,7 @@ $con = models\Database::getInstance()->getConnection();
                 ?>
             </select>
 
-            <input type="hidden" name="add" value="album" />
+            <input type="hidden" name="action" value="addAlbum">
             <input type="file" name="imgupload" id="upload" placeholder="Choose Album artwork To Upload" class="generalInput" required><br/>
             <input type="submit" name="submit" value="Upload" class="generalInput">
         </form>

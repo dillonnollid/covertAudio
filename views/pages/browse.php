@@ -147,7 +147,7 @@ $userController = UserController::getInstance();
                             </td>
 
                             <td class="px-4 py-3 text-sm cursor-pointer"><div onclick='openPage("albumView.php?id=" + <?php echo $tempAlbum->getID();?>)'><?php echo $tempAlbum->getTitle();?></td>
-                            <td class="px-4 py-3 text-xs"><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"><?php echo $tempGenre->getName();?></span></td>
+                            <td class="px-4 py-3 text-xs"><span class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full dark:bg-purple-700 dark:text-purple-100"><?php echo $tempGenre->getName();?></span></td>
                             <td class="px-4 py-3 text-sm"><?php echo $song->getDuration() ?></td>
                         </tr>
                     <?php } ?>

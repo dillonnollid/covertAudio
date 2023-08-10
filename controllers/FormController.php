@@ -1,15 +1,23 @@
 <?php
-include_once(__DIR__ . "/../config.php");
+use models\User;
+
+include_once("../includes/config.php");
+
+// Include the autoloader to autoload classes
+require_once __DIR__ . '/../vendor/autoload.php'; // Update the path to autoload.php
+
+use controllers\CreateController;
+$createController = new CreateController();
 
 if(isset($_SESSION['userLoggedIn'])) {
-    $userLoggedIn = new models\User($_SESSION['userLoggedIn']);
+    $userLoggedIn = new User($_SESSION['userLoggedIn']);
 } else {
     echo "Error getting logged in user details. Please try again.";
     exit();
 }
 
 // Default redirection page
-$redirect = '../../index.php';
+$redirect = '../index.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //Ternary operator, shorthand of if-else. Checks whether 'action' exists, after ? will execute if condition is true. After : will execute if condition is false!
@@ -69,6 +77,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             } else {
                 $_SESSION['error'] = "Invalid photo input!";
+                header("Location: $redirect");
+            }
+            break;
+
+        case 'addSong':
+            if (isset($_FILES['upload']) && $_SERVER["REQUEST_METHOD"] == "POST") {
+                $createController->addSong();
+                header("Location: $redirect");
+            }
+            break;
+
+        case 'addAlbum':
+            if(isset($_FILES['imgupload']) && $_SERVER["REQUEST_METHOD"] == "POST"){
+                $createController->addAlbum();
+                header("Location: $redirect");
+            }
+            break;
+
+        case 'addArtist':
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $createController->addArtist();
+                header("Location: $redirect");
+            }
+            break;
+
+        case 'addGenre':
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $createController->addGenre();
                 header("Location: $redirect");
             }
             break;

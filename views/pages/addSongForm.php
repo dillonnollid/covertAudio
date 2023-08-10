@@ -8,7 +8,7 @@ $con = models\Database::getInstance()->getConnection();
         <h1 class="generalCenteredText"><a href="https://mp3-convert.org/youtube-to-mp3/" target="blank">Add Song!<br>Click here go to youtube downloader. <br>Download MP3 in top quality and upload the file below!</a><br></h1>
         <br>
 
-        <form action="includes/handlers/form-handler.php" method="post" enctype="multipart/form-data">
+        <form action="/controllers/FormController.php" method="post" enctype="multipart/form-data">
             <!--<input type="text" name="songSource" placeholder="Youtube URL (Not Available yet, use youtubeToMP3 link above)" class="generalInput" disabled/>-->
             <input type="text" name="songTitle" placeholder="Song Title" class="generalInput" required/>
 
@@ -46,7 +46,7 @@ $con = models\Database::getInstance()->getConnection();
                 }
                 ?>
             </select>
-            <input type="hidden" name="add" value="song">
+            <input type="hidden" name="action" value="addSong">
             <input type="file" name="upload" id="upload" placeholder="Choose File To Upload" class="generalInput" required><br/>
             <br>
             <input type="submit" name="submit" value="Upload" class="generalInput">
