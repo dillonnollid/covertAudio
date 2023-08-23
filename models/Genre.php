@@ -13,8 +13,12 @@ class Genre extends General {
     }
 
     public function getProperties(){
-        $query = mysqli_query($this->con, "SELECT * FROM genres WHERE id='$this->id'");
-        return mysqli_fetch_array($query);
+        $query = "SELECT * FROM genres WHERE id = ?";
+        $stmt = $this->con->prepare($query);
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+		return $result->fetch_assoc();
     }
 
     public function setProperties($mysqliData){
@@ -26,8 +30,17 @@ class Genre extends General {
     }
 
     public function getGenreSongCount() {
-        $query = mysqli_query($this->con, "SELECT id FROM songs WHERE genre=$this->id");
-        return mysqli_num_rows($query);
+        $query = "SELECT COUNT(id) AS songCount FROM songs WHERE genre = ?";
+        $stmt = $this->con->prepare($query);
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $songCount = $row['songCount'];
+        $stmt->close();
+
+        return $songCount;
     }
 
     /* Static Methods Below */
@@ -35,25 +48,34 @@ class Genre extends General {
         $genres = array();
 
         // Query to get all genres from the database
-        $query = mysqli_query(Database::getInstance()->getConnection(), "SELECT * FROM genres");
+        $query = "SELECT * FROM genres ORDER BY id ASC";
+		$stmt = Database::getInstance()->getConnection()->prepare($query);
+		$stmt->execute();
+		$result = $stmt->get_result();
 
-        while ($row = mysqli_fetch_array($query)) {
+        while ($row = $result->fetch_assoc()) {
             // Create Genre objects and store them in the $genres array
-            $genres[] = new Genre($row['id']);
+			$genres[] = new Genre($row['id']);
         }
 
-        return $genres;
+        $stmt->close();
+
+		return $genres;
     }
 
     public static function getGenreCount() {
         // Query to get the count of all artists from the database
-        $query = mysqli_query(Database::getInstance()->getConnection(), "SELECT COUNT(id) AS genre_count FROM genres");
+        $query = "SELECT COUNT(id) AS genreCount FROM genres";
+        $stmt = Database::getInstance()->getConnection()->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         // Fetch the single result value
-        $row = mysqli_fetch_assoc($query);
-        $genreCount = $row['genre_count'];
+        $row = $result->fetch_assoc();
+        $albumCount = $row['genreCount'];
+        $stmt->close();
 
-        return $genreCount;
+        return $albumCount;
     }
 
 }

@@ -22,14 +22,14 @@ require(__DIR__ . '/../../includes/includedFiles.php');
 		</div>
 	</div>-->
 
-	<form class="centeredContainer" action="/controllers/FormController.php" method="post">
+	<form class="centeredContainer" action="controllers/FormController.php" method="post">
 		<input type="hidden" name="action" value="updateEmail">
 		<label for="email" class="labelStyle generalCenteredText">Update Email</label>
 		<input type="text" class="generalInput" name="email" placeholder="Enter email address here" value="<?php echo $_SESSION["email"]; ?>" required>
 		<input class="submitButton" type="submit" value="SAVE EMAIL">
 	</form>
 
-	<form class="centeredContainer" action="/controllers/FormController.php" method="post" enctype="multipart/form-data">
+	<form class="centeredContainer" action="controllers/FormController.php" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="action" value="updatePassword">
 		<label for="oldPassword" class="labelStyle generalCenteredText">Update Password</label>
 		<input type="password" class="generalInput oldPassword" name="oldPassword" placeholder="Current password" required>
@@ -38,7 +38,7 @@ require(__DIR__ . '/../../includes/includedFiles.php');
 		<input class="submitButton" type="submit" value="SAVE PASSWORD">
 	</form>
 
-	<form class="centeredContainer" action="/controllers/FormController.php" method="post" enctype="multipart/form-data">
+	<form class="centeredContainer" action="controllers/FormController.php" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="action" value="updateProfilePhoto">
 		<label for="imgupload" class="labelStyle generalCenteredText">Update Profile Photo</label>
 		<input type="file" name="imgupload" placeholder="Choose Album artwork To Upload" class="generalInput" required>

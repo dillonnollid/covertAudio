@@ -4,11 +4,7 @@ namespace models;
 use models\Database;
 use models\User;
 
-class Playlist {
-
-		private $con;
-		private $id;
-		private $name;
+class Playlist extends General {
 		private $owner;
         private $created;
 
@@ -16,21 +12,24 @@ class Playlist {
 			$this->con = Database::getInstance()->getConnection();
 			$this->id = $id;
 
-            $query = mysqli_query($this->con, "SELECT * FROM playlists WHERE id='$this->id'");
-            $data = mysqli_fetch_array($query);
-
-            $this->name = $data['name'];
-            $this->owner = $data['owner'];
-            $this->created = $data['dateCreated'];
-
+			$this->mysqliData = $this->getProperties();
+			$this->setProperties($this->mysqliData);
 		}
 
-		public function getId() {
-			return $this->id;
+		public function getProperties(){
+			$query = "SELECT * FROM playlists WHERE id = ?";
+			
+			$stmt = $this->con->prepare($query);
+			$stmt->bind_param("i", $this->id);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			return $result->fetch_assoc();
 		}
 
-		public function getName() {
-			return $this->name;
+		public function setProperties($mysqliData){
+			$this->name = $mysqliData['name'];
+            $this->owner = $mysqliData['owner'];
+            $this->created = $mysqliData['dateCreated'];
 		}
 
 		public function getOwner() {
@@ -42,53 +41,78 @@ class Playlist {
         }
 
 		public function getNumberOfSongs() {
-			$query = mysqli_query($this->con, "SELECT songId FROM playlistSongs WHERE playlistId='$this->id'");
-			return mysqli_num_rows($query);
+			$query = "SELECT COUNT(songId) AS songCount FROM playlistSongs WHERE playlistId = ?";
+			$stmt = $this->con->prepare($query);
+			$stmt->bind_param("i", $this->id);
+			$stmt->execute();
+
+			$result = $stmt->get_result();
+			$row = $result->fetch_assoc();
+			$songCount = $row['songCount'];
+			$stmt->close();
+
+			return $songCount;
 		}
 
 		public function getSongIds() {
-			$query = mysqli_query($this->con, "SELECT songId FROM playlistSongs WHERE playlistId='$this->id' ORDER BY playlistOrder ASC");
-			$array = array();
+			//Get all song IDs, create array, iterate through query results while adding the ID's onto the array which we return! 
+			$query = "SELECT songId FROM playlistSongs WHERE playlistId=? ORDER BY playlistOrder ASC";
+			$stmt = $this->con->prepare($query);
+			$stmt->bind_param("i", $this->id);
+			$stmt->execute();
 
-			while($row = mysqli_fetch_array($query)) {
-				array_push($array, $row['songId']);
+			$result = $stmt->get_result();
+			$songIds = array();
+
+			while ($row = $result->fetch_assoc()) {
+				$songIds[] = $row['songId'];
 			}
-			return $array;
+
+			$stmt->close();
+
+			return $songIds;
 		}
 
 		public static function getPlaylistsDropdown($username) {
 			$dropdown = '<select class="item playlist"><option value="">Add to playlist</option>';
-
-			$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT id, name FROM playlists WHERE owner='$username'");
-			while($row = mysqli_fetch_array($query)) {
+		
+			$query = "SELECT id, name FROM playlists WHERE owner=?";
+			$stmt = Database::getInstance()->getConnection()->prepare($query);
+			$stmt->bind_param("s", $username);
+			$stmt->execute();
+		
+			$result = $stmt->get_result();
+		
+			while($row = $result->fetch_assoc()) {
 				$id = $row['id'];
 				$name = $row['name'];
-
-				$dropdown = $dropdown . "<option value='$id'>$name</option>";
+		
+				$dropdown .= "<option value='$id'>$name</option>";
 			}
-
+		
+			$stmt->close();
+		
 			return $dropdown . "</select>";
-		}
-
-        public function getPlaylistSongs(){
-            $query = mysqli_query($this->con, "SELECT * FROM playlistSongs WHERE playlistId='$this->id' ORDER BY playlistOrder ASC");
-            $array = array();
-
-            while($row = mysqli_fetch_array($query)) {
-                array_push($array, $row['songId']);
-            }
-            return $array;
-        }
+		}		
 
         public static function getUserPlaylists(){
-            $query = mysqli_query(Database::getInstance()->getConnection(), "SELECT * FROM playlists WHERE owner='" . $_SESSION["userLoggedIn"] . "' ORDER BY id ASC");
-            $array = array();
-
-            while($row = mysqli_fetch_array($query)) {
-                array_push($array, $row);
-            }
-            return $array;
-        }
+			$username = $_SESSION["userLoggedIn"];
+			$query = "SELECT * FROM playlists WHERE owner=? ORDER BY id ASC";
+			$stmt = Database::getInstance()->getConnection()->prepare($query);
+			$stmt->bind_param("s", $username);
+			$stmt->execute();
+		
+			$result = $stmt->get_result();
+			$array = array();
+		
+			while($row = $result->fetch_assoc()) {
+				array_push($array, $row);
+			}
+		
+			$stmt->close();
+		
+			return $array;
+		}		
 
 	}
 ?>

@@ -16,12 +16,21 @@ use models\Database;
 
 		//Login and register are public because we need to use them from outside the class, most others are private. 
 		public function login($un, $pw) {
-			$pw = md5($pw);
-			$query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$un' AND password='$pw'");
-
-			if(mysqli_num_rows($query) == 1) {
+			$query = "SELECT * FROM users WHERE username = ? AND password = ?";
+			$stmt = $this->con->prepare($query);
+			
+			$encryptedPw = md5($pw);
+			
+			$stmt->bind_param("ss", $un, $encryptedPw);
+			$stmt->execute();
+			
+			$result = $stmt->get_result();
+			
+			if ($result->num_rows == 1) {
+				$stmt->close();
 				return true;
 			} else {
+				$stmt->close();
 				array_push($this->errorArray, Constants::$loginFailed);
 				return false;
 			}
@@ -55,29 +64,50 @@ use models\Database;
 		}
 
 		private function insertUserDetails($un, $fn, $ln, $em, $pw) {
-			//md5 simple encryption, pass in password, it returns hashed key kinda. Set variables and insert to db, return result
-			$encryptedPw = md5($pw);
+			$encryptedPw = md5($pw);//Should make passwords more secure by using bcrypt or Argon2
 			$profilePic = "assets/images/profile-pics/head_emerald.png";
 			$date = date("Y-m-d");
-
-			$result = mysqli_query($this->con, "INSERT INTO users VALUES ('', '$un', '$fn', '$ln','$em','$encryptedPw','$date','$profilePic',3)");
+		
+			$query = "INSERT INTO users (username, firstName, lastName, email, password, signUpDate, profilePic, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			$stmt = $this->con->prepare($query);
+		
+			$userLevel = 3; //Standard default User Level
+		
+			$stmt->bind_param("sssssssi", $un, $fn, $ln, $em, $encryptedPw, $date, $profilePic, $userLevel);
+			$result = $stmt->execute();
+		
+			$stmt->close();
+			
 			return $result;
 		}
 
 		private function validateUsername($un) {
-			//more than 25 or less than 5, push error to the array and return to stop the funk. We can use constants because we included them before we used the Account class
+			// More than 25 or less than 5 characters, push error to the array and return to stop the function.
 			if(strlen($un) > 25 || strlen($un) < 5) {
 				array_push($this->errorArray, Constants::$usernameCharacters);
 				return;
 			}
-			//Check if username exists in DB, 
-			$checkUsernameQuery = mysqli_query($this->con, "SELECT username FROM users WHERE username='$un'");
-			if(mysqli_num_rows($checkUsernameQuery) != 0) {
+		
+			// Check if username exists in DB using a prepared statement
+			$query = "SELECT username FROM users WHERE username=?";
+			$stmt = $this->con->prepare($query);
+
+			// Bind the value to the placeholder 
+			$stmt->bind_param("s", $un);
+			// Execute the Prepared Statement 
+			$stmt->execute();
+		
+			// Retrieve Result Set 
+			$result = $stmt->get_result();
+		
+			if($result->num_rows != 0) {
 				array_push($this->errorArray, Constants::$usernameTaken);
 				return;
 			}
+		
+			$stmt->close();
 		}
-
+		
 		private function validateFirstName($fn) {
 			if(strlen($fn) > 25 || strlen($fn) < 2) {
 				array_push($this->errorArray, Constants::$firstNameCharacters);

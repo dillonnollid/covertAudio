@@ -17,8 +17,13 @@ class Song extends General {
 	}
 
 	public function getProperties(){
-		$query = mysqli_query($this->con, "SELECT * FROM songs WHERE id='$this->id'");
-		return mysqli_fetch_array($query);
+		$query = "SELECT * FROM songs WHERE id = ?";
+        
+        $stmt = $this->con->prepare($query);
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+		return $result->fetch_assoc();
 	}
 
 	public function setProperties($mysqliData){
@@ -58,27 +63,36 @@ class Song extends General {
 	/* Static Methods Below */
 	public static function getAllSongs() {
 		$songs = array();
-
 		// Query to get all songs from the database
-		$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT * FROM songs");
+		$query = "SELECT * FROM songs ORDER BY id ASC";
+		$stmt = Database::getInstance()->getConnection()->prepare($query);
+		$stmt->execute();
 
-		while ($row = mysqli_fetch_array($query)) {
-			// Create Song objects and store them in the $songs array
+		$result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+            // Create Song objects and store them in the $songs array
 			$songs[] = new Song($row['id']);
-		}
+        }
+
+        $stmt->close();
 
 		return $songs;
 	}
 
 	public static function getSongCount() {
 		// Query to get the count of all songs from the database
-		$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT COUNT(id) AS songCount FROM songs");
+		$query = "SELECT COUNT(id) AS songCount FROM songs";
 
-		// Fetch the single result value
-		$row = mysqli_fetch_assoc($query);
-		$songCount = $row['songCount'];
+		$stmt = Database::getInstance()->getConnection()->prepare($query);
+        $stmt->execute();
 
-		return $songCount;
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $songCount = $row['songCount'];
+        $stmt->close();
+
+        return $songCount;
 	}
 
 }

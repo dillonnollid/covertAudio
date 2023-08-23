@@ -15,8 +15,12 @@ class Album extends General {
 	}
 
 	public function getProperties(){
-		$query = mysqli_query($this->con, "SELECT * FROM albums WHERE id='$this->id'");
-		return mysqli_fetch_array($query);
+		$query = "SELECT * FROM albums WHERE id = ?";
+        $stmt = $this->con->prepare($query);
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+		return $result->fetch_assoc();
 	}
 
 	public function setProperties($mysqliData){
@@ -39,46 +43,70 @@ class Album extends General {
 	}
 
 	public function getNumberOfSongs() {
-		//Should replace this with a mysql count statement instead of using num_rows function.
-		$query = mysqli_query($this->con, "SELECT id FROM songs WHERE album='$this->id'");
-		return mysqli_num_rows($query);
+		$query = "SELECT COUNT(id) AS songCount FROM songs WHERE album = ?";
+        $stmt = $this->con->prepare($query);
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $songCount = $row['songCount'];
+        $stmt->close();
+
+        return $songCount;
 	}
 
 	public function getSongIds() {
 		//Get all song IDs, create array, iterate through query results while adding the ID's onto the array which we return! 
-		$query = mysqli_query($this->con, "SELECT id FROM songs WHERE album='$this->id' ORDER BY albumOrder ASC");
-		$array = array();
+		$query = "SELECT id FROM songs WHERE album=? ORDER BY albumOrder ASC";
+		$stmt = $this->con->prepare($query);
+		$stmt->bind_param("i", $this->id);
+		$stmt->execute();
 
-		while($row = mysqli_fetch_array($query)) {
-			array_push($array, $row['id']);
-		}
-		return $array;
+		$result = $stmt->get_result();
+		$songIds = array();
+
+        while ($row = $result->fetch_assoc()) {
+            $songIds[] = $row['id'];
+        }
+
+        $stmt->close();
+
+        return $songIds;
 	}
 
 	/* Static Methods Below */
 	public static function getAllAlbums() {
 		$albums = array();
 
-		// Query to get all genres from the database
-		$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT * FROM albums");
+		$query = "SELECT * FROM albums ORDER BY id ASC";
+		$stmt = Database::getInstance()->getConnection()->prepare($query);
+		$stmt->execute();
 
-		while ($row = mysqli_fetch_array($query)) {
-			// Create Album objects and store them in the $albums array
+		$result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+            // Create Album objects and store them in the $albums array
 			$albums[] = new Album($row['id']);
-		}
+        }
+
+        $stmt->close();
 
 		return $albums;
+		
 	}
 
 	public static function getAlbumCount() {
-		// Query to get the count of all albums from the database
-		$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT COUNT(id) AS album_count FROM albums");
+		$query = "SELECT COUNT(id) AS albumCount FROM albums";
+        $stmt = Database::getInstance()->getConnection()->prepare($query);
+        $stmt->execute();
 
-		// Fetch the single result value
-		$row = mysqli_fetch_assoc($query);
-		$albumCount = $row['album_count'];
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $albumCount = $row['albumCount'];
+        $stmt->close();
 
-		return $albumCount;
+        return $albumCount;
 	}
 }
 ?>

@@ -34,7 +34,7 @@ $owner = new models\User($playlist->getOwner());
 		<ul class="niceList">
 			
 			<?php
-            $songIdArray =  $playlist->getPlaylistSongs();
+            $songIdArray =  $playlist->getSongIds();
 
 			$i = 1;
 			foreach($songIdArray as $songId) {

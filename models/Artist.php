@@ -13,8 +13,12 @@ class Artist extends General {
 	}
 
 	public function getProperties(){
-		$query = mysqli_query($this->con, "SELECT * FROM artists WHERE id='$this->id'");
-		return mysqli_fetch_array($query);
+		$query = "SELECT * FROM artists WHERE id = ?";
+        $stmt = $this->con->prepare($query);
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+		return $result->fetch_assoc();
 	}
 
 	public function setProperties($mysqliData){
@@ -26,40 +30,57 @@ class Artist extends General {
 	}
 	
 	public function getSongIds() {
-		$query = mysqli_query($this->con, "SELECT id FROM songs WHERE artist='$this->id' ORDER BY plays ASC");
-		$array = array();
+		//Get all song IDs, create array, iterate through query results while adding the ID's onto the array which we return! 
+		$query = "SELECT id FROM songs WHERE artist=? ORDER BY plays ASC";
+		$stmt = $this->con->prepare($query);
+		$stmt->bind_param("i", $this->id);
+		$stmt->execute();
 
-		while($row = mysqli_fetch_array($query)) {
-			array_push($array, $row['id']);
-		}
-		return $array;
+		$result = $stmt->get_result();
+		$songIds = array();
 
+        while ($row = $result->fetch_assoc()) {
+            $songIds[] = $row['id'];
+        }
+
+        $stmt->close();
+
+        return $songIds;
 	}
 
 	/* Static Methods Below */
 	public static function getAllArtists() {
 		$artists = array();
-
 		// Query to get all artists from the database
-		$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT * FROM artists");
+		$query = "SELECT * FROM artists ORDER BY id ASC";
+		$stmt = Database::getInstance()->getConnection()->prepare($query);
+		$stmt->execute();
 
-		while ($row = mysqli_fetch_array($query)) {
-			// Create Artist objects and store them in the $artists array
+		$result = $stmt->get_result();
+
+		while ($row = $result->fetch_assoc()) {
+            // Create Album objects and store them in the $albums array
 			$artists[] = new Artist($row['id']);
-		}
+        }
+
+        $stmt->close();
 
 		return $artists;
 	}
 
 	public static function getArtistCount() {
 		// Query to get the count of all artists from the database
-		$query = mysqli_query(Database::getInstance()->getConnection(), "SELECT COUNT(id) AS artist_count FROM artists");
+		$query = "SELECT COUNT(id) AS artistCount FROM artists";
+        $stmt = Database::getInstance()->getConnection()->prepare($query);
+        $stmt->execute();
+		$result = $stmt->get_result();
 
 		// Fetch the single result value
-		$row = mysqli_fetch_assoc($query);
-		$artistCount = $row['artist_count'];
+		$row = $result->fetch_assoc();
+        $artistCount = $row['artistCount'];
+        $stmt->close();
 
-		return $artistCount;
+        return $artistCount;
 	}
 }
 ?>
