@@ -140,13 +140,13 @@ $userController = UserController::getInstance();
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                     </div>
                                     <div>
-                                        <div class="font-semibold cursor-pointer" onclick="setTrack(<?php echo $song->getId() ?>, tempPlaylist, true)"><?php echo $song->getTitle() ?></div>
+                                        <div class="font-semibold cursor-pointer" onclick="setTrack(<?php echo $song->getId() ?>, tempPlaylist, true)"><?php echo $song->getName() ?></div>
                                         <div class="text-xs text-gray-600 dark:text-gray-400 cursor-pointer" onclick='openPage("artistView.php?id=" + <?php echo $tempArtist->getID();?>)'><?php echo $tempArtist->getName(); ?></div>
                                     </div>
                                 </div>
                             </td>
 
-                            <td class="px-4 py-3 text-sm cursor-pointer"><div onclick='openPage("albumView.php?id=" + <?php echo $tempAlbum->getID();?>)'><?php echo $tempAlbum->getTitle();?></td>
+                            <td class="px-4 py-3 text-sm cursor-pointer"><div onclick='openPage("albumView.php?id=" + <?php echo $tempAlbum->getID();?>)'><?php echo $tempAlbum->getName();?></td>
                             <td class="px-4 py-3 text-xs"><span class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full dark:bg-purple-700 dark:text-purple-100"><?php echo $tempGenre->getName();?></span></td>
                             <td class="px-4 py-3 text-sm"><?php echo $song->getDuration() ?></td>
                         </tr>

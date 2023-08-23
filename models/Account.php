@@ -27,8 +27,11 @@ use models\Database;
 			}
 		}
 
-		public function register($un, $fn, $ln, $em, $em2, $pw, $pw2) {
-			//this instance of the class call this function
+		//Use Ellipsis notation to accept a variable number of parameters, aka "variadic" function parameter
+		public function register(...$params) {
+			// Extract parameters from the array using the list method. Makes our Register function more flexible, allow diff arguments without modifying method signature. 
+			list($un, $fn, $ln, $em, $em2, $pw, $pw2) = $params;
+
 			$this->validateUsername($un);
 			$this->validateFirstName($fn);
 			$this->validateLastName($ln);

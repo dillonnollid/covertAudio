@@ -64,7 +64,7 @@ else {
 
 
 					<div class='trackInfo'>
-						<span class='trackName'>" . $albumSong->getTitle() . "</span>
+						<span class='trackName'>" . $albumSong->getName() . "</span>
 						<span class='artistName'>" . $albumArtist->getName() . "</span>
 					</div>
 

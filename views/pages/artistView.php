@@ -43,7 +43,7 @@ $artist = new models\Artist($artistId);
 					</div>
 
 					<div class='trackInfo' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
-						<span class='trackName'>" . $albumSong->getTitle() . "</span>
+						<span class='trackName'>" . $albumSong->getName() . "</span>
 						<span class='artistName'>" . $albumArtist->getName() . "</span>
 					</div>
 

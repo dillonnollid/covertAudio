@@ -49,7 +49,7 @@ $owner = new models\User($playlist->getOwner());
 						</div>
 
 						<div class='trackInfo' onclick='setTrack(\"" . $playlistSong->getId() . "\", tempPlaylist, true)'>
-							<span class='trackName'>" . $playlistSong->getTitle() . "</span>
+							<span class='trackName'>" . $playlistSong->getName() . "</span>
 							<span class='artistName'>" . $songArtist->getName() . "</span>
 						</div>
 

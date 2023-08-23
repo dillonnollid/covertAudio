@@ -28,7 +28,7 @@ $artistId = $artist->getId();
 	</div>
 
 	<div class="rightSection"><br>
-		<h2 class="text-2xl"><?php echo $album->getTitle(); ?></h2><br>
+		<h2 class="text-2xl"><?php echo $album->getName(); ?></h2><br>
 		<p role="link" tabindex="0" onclick="openPage('artistView.php?id=$artistId')">By <?php echo $artist->getName(); ?></p><br>
 		<p class="text-xl"><?php echo $album->getNumberOfSongs(); ?> songs</p><br>
         <span class="themedText cursor-pointer hover:underline" role="link" tabindex="0" onclick="openPage('browse.php')">&larr; Back to Home</span>
@@ -54,7 +54,7 @@ $artistId = $artist->getId();
                         </div>
             
                         <div class='trackInfo' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
-                            <span class='trackName'>" . $albumSong->getTitle() . "</span>
+                            <span class='trackName'>" . $albumSong->getName() . "</span>
                             <span class='artistName'>" . $albumArtist->getName() . "</span>
                         </div>
             

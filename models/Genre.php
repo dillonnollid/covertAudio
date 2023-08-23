@@ -1,31 +1,24 @@
 <?php
 namespace models;
 
-use models\Database;
-
-class Genre {
-
-    private $con;
-    private $id;
-    private $mysqliData;
-    private $name;
+class Genre extends General {
 
     public function __construct($id) {
         $this->id = $id;
         $this->con = Database::getInstance()->getConnection();
 
-        //Query on creation, store data in myslqiData array and assign the vars values
+        //Query on object creation, store result array in $this->mysqliData, then call setProperties() to set properties values
+        $this->mysqliData = $this->getProperties();
+        $this->setProperties($this->mysqliData);
+    }
+
+    public function getProperties(){
         $query = mysqli_query($this->con, "SELECT * FROM genres WHERE id='$this->id'");
-        $this->mysqliData = mysqli_fetch_array($query);
-        $this->name = $this->mysqliData['name'];
+        return mysqli_fetch_array($query);
     }
 
-    public function getName() {
-        return $this->name;
-    }
-
-    public function getId() {
-        return $this->id;
+    public function setProperties($mysqliData){
+        $this->name = $mysqliData['name'];
     }
 
     public function getMysqliData() {
@@ -37,6 +30,7 @@ class Genre {
         return mysqli_num_rows($query);
     }
 
+    /* Static Methods Below */
     public static function getGenreObjects() {
         $genres = array();
 
