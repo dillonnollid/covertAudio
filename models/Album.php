@@ -1,7 +1,10 @@
 <?php
 namespace models;
 
+use traits\QueryTrait;
+
 class Album extends General {
+	use QueryTrait;
 	private $artistId;
 	private $genre;
 	private $artworkPath;
@@ -77,36 +80,11 @@ class Album extends General {
 
 	/* Static Methods Below */
 	public static function getAllAlbums() {
-		$albums = array();
-
-		$query = "SELECT * FROM albums ORDER BY id ASC";
-		$stmt = Database::getInstance()->getConnection()->prepare($query);
-		$stmt->execute();
-
-		$result = $stmt->get_result();
-
-        while ($row = $result->fetch_assoc()) {
-            // Create Album objects and store them in the $albums array
-			$albums[] = new Album($row['id']);
-        }
-
-        $stmt->close();
-
-		return $albums;
-		
+		return self::getObjectArray('albums');//Using getObjectArray() from QueryTrait
 	}
 
 	public static function getAlbumCount() {
-		$query = "SELECT COUNT(id) AS albumCount FROM albums";
-        $stmt = Database::getInstance()->getConnection()->prepare($query);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $albumCount = $row['albumCount'];
-        $stmt->close();
-
-        return $albumCount;
+		return self::getCount('albums');
 	}
 }
 ?>

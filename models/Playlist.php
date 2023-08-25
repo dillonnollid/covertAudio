@@ -4,6 +4,8 @@ namespace models;
 use models\Database;
 use models\User;
 
+use traits\QueryTrait;
+
 class Playlist extends General {
 		private $owner;
         private $created;

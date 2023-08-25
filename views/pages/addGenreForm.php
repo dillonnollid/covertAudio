@@ -8,7 +8,7 @@ $con = models\Database::getInstance()->getConnection();
         <h1 class="generalCenteredText">Add Genre!</h1>
         <h2 class="generalCenteredText">(Existing Genres listed below)</h2><br>
 
-        <form action="/controllers/FormController.php" method="post" enctype="multipart/form-data">
+        <form action="controllers/FormController.php" method="post" enctype="multipart/form-data">
             <input type="text" name="genre" placeholder="Genre Name (Please don't duplicate)" class="generalInput" required/>
             <br>
             <input type="hidden" name="action" value="addGenre">

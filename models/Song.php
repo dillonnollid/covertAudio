@@ -1,7 +1,9 @@
 <?php
 namespace models;
+use traits\QueryTrait;
 
 class Song extends General {
+	use QueryTrait;
 	private $artistId;
 	private $albumId;
 	private $genre;
@@ -14,6 +16,7 @@ class Song extends General {
 
 		$this->mysqliData = $this->getProperties();
 		$this->setProperties($this->mysqliData);
+
 	}
 
 	public function getProperties(){
@@ -62,37 +65,11 @@ class Song extends General {
 
 	/* Static Methods Below */
 	public static function getAllSongs() {
-		$songs = array();
-		// Query to get all songs from the database
-		$query = "SELECT * FROM songs ORDER BY id ASC";
-		$stmt = Database::getInstance()->getConnection()->prepare($query);
-		$stmt->execute();
-
-		$result = $stmt->get_result();
-
-        while ($row = $result->fetch_assoc()) {
-            // Create Song objects and store them in the $songs array
-			$songs[] = new Song($row['id']);
-        }
-
-        $stmt->close();
-
-		return $songs;
+		return self::getObjectArray('songs');//Using getObjectArray() from QueryTrait
 	}
 
 	public static function getSongCount() {
-		// Query to get the count of all songs from the database
-		$query = "SELECT COUNT(id) AS songCount FROM songs";
-
-		$stmt = Database::getInstance()->getConnection()->prepare($query);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $songCount = $row['songCount'];
-        $stmt->close();
-
-        return $songCount;
+		return self::getCount('songs');//Using getCount() from QueryTrait
 	}
 
 }

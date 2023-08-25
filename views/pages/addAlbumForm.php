@@ -8,7 +8,7 @@ $con = models\Database::getInstance()->getConnection();
         <h1 class="generalCenteredText">Add Album! </h1>
         <h2 class="generalCenteredText">(Existing Albums listed below)</h2><br>
 
-        <form action="/controllers/FormController.php" method="post" enctype="multipart/form-data">
+        <form action="controllers/FormController.php" method="post" enctype="multipart/form-data">
             <input type="text" name="albumTitle" placeholder="Album Title" class="generalInput" required/>
             <select name="artistID" id="ART" class="generalInput" required>
                 <option value="" disabled selected>Select the artist!</option>

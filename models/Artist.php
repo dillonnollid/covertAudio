@@ -1,7 +1,10 @@
 <?php
 namespace models;
 
+use traits\QueryTrait;
+
 class Artist extends General {
+	use QueryTrait;
 	private $genre;
 
 	public function __construct($id) {
@@ -50,37 +53,11 @@ class Artist extends General {
 
 	/* Static Methods Below */
 	public static function getAllArtists() {
-		$artists = array();
-		// Query to get all artists from the database
-		$query = "SELECT * FROM artists ORDER BY id ASC";
-		$stmt = Database::getInstance()->getConnection()->prepare($query);
-		$stmt->execute();
-
-		$result = $stmt->get_result();
-
-		while ($row = $result->fetch_assoc()) {
-            // Create Album objects and store them in the $albums array
-			$artists[] = new Artist($row['id']);
-        }
-
-        $stmt->close();
-
-		return $artists;
+		return self::getObjectArray('artists');//Using getObjectArray() from QueryTrait
 	}
 
 	public static function getArtistCount() {
-		// Query to get the count of all artists from the database
-		$query = "SELECT COUNT(id) AS artistCount FROM artists";
-        $stmt = Database::getInstance()->getConnection()->prepare($query);
-        $stmt->execute();
-		$result = $stmt->get_result();
-
-		// Fetch the single result value
-		$row = $result->fetch_assoc();
-        $artistCount = $row['artistCount'];
-        $stmt->close();
-
-        return $artistCount;
+		return self::getCount('artists');
 	}
 }
 ?>

@@ -8,7 +8,7 @@ $con = models\Database::getInstance()->getConnection();
         <h1 class="generalCenteredText">Add Artist! </h1>
         <h2 class="generalCenteredText">(Existing artists listed below)</h2><br>
 
-        <form action="/controllers/FormController.php" method="post" enctype="multipart/form-data">
+        <form action="controllers/FormController.php" method="post" enctype="multipart/form-data">
             <input type="text" name="songArtist" placeholder="Artist Name" class="generalInput" required/>
 
             <select name="genre" id="genre" class="generalInput" required>
